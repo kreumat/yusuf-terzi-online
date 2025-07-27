@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Game Generator - Create</title>
+    <link rel="icon" type="image/png" href="./images/selt_logo.png">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="navbar-brand-silver">SILVER</span>
+            <img src="./images/selt_logo.png" alt="SELT Logo" class="navbar-brand-logo">
+            <span class="navbar-brand-elt">ELT</span>
+        </div>
+        <div class="navbar-nav">
+            <a href="main.html" class="navbar-nav-item">Main Page</a>
+            <a href="index.html" class="navbar-nav-item">Simple Board Game Generator</a>
+            <a href="about.html" class="navbar-nav-item">About Us</a>
+        </div>
+    </nav>
+    <div class="page-wrapper">
+        <!-- Left information box with color palette -->
+        <div class="info-box">
+            <h3>Tile Colors</h3>
+            <p>You can create your own custom game board by adding tiles to the grid. Select tiles by clicking on them and choose your tile colour by clicking on the colour you want. Alternatively, you can use pre-set grids if you want. To unselect a tile, click on the selected tile again.</p>
+            <!-- Color palette for selecting tile colors -->
+            <div class="color-palette">
+                <div class="color-option color-red" data-color="red" title="Red"></div>
+                <div class="color-option color-green" data-color="green" title="Green"></div>
+                <div class="color-option color-blue" data-color="blue" title="Blue"></div>
+                <div class="color-option color-yellow" data-color="yellow" title="Yellow"></div>
+                <div class="color-option color-orange" data-color="orange" title="Orange"></div>
+                <div class="color-option color-brown" data-color="brown" title="Brown"></div>
+                <div class="color-option color-pink" data-color="pink" title="Pink"></div>
+                <div class="color-option color-purple" data-color="purple" title="Purple"></div>
+                <div class="color-option color-grey" data-color="grey" title="Grey"></div>
+                <div class="color-option color-default selected" data-color="default" title="Silver (Default)"></div>
+                <div class="color-option color-cutty-sark" data-color="cutty-sark" title="Cutty Sark"></div>
+                <div class="color-option color-lightning-yellow" data-color="lightning-yellow" title="Lightning Yellow"></div>
+            </div>
+            <p>To unselect a tile, click on the selected tile again.</p>
+            
+            <!-- Start/Finish buttons section -->
+            <h4>Start and Finish</h4>
+            <div class="start-finish-buttons">
+                <button id="start-button" class="special-button start-button">Start</button>
+                <button id="finish-button" class="special-button finish-button">Finish</button>
+            </div>
+            <p>These tiles indicate where the player starts and ends the game.</p>
+        </div>
+        
+        <!-- Main container with grid and controls -->
+        <div class="container">
+            <h1>Board Game Generator</h1>
+            <div class="controls">
+                <p>Add tiles to your board. To proceed, you need at least one start tile and one finish tile.</p>
+                
+                <!-- Puzzle template selector -->
+                <div class="puzzle-selector">
+                    <label for="puzzle-select">Choose a preset template:</label>
+                    <select id="puzzle-select">
+                        <option value="">Custom (Draw your own)</option>
+                        <option value="snake">Snake Shaped</option>
+                        <option value="crossways">Crossways</option>
+                        <option value="whirlwind">Whirlwind</option>
+                        <option value="piston">Piston</option>
+                        <option value="castle">The Castle</option>
+                        <option value="erzinRoads">Erzin Roads</option>
+                    </select>
+                </div>
+                
+                <!-- Save button to proceed to the next step -->
+                <button id="save-grid">Go to the Next Step: Add Text</button>
+            </div>
+            
+            <!-- Grid container populated by grid.js -->
+            <div class="grid-container">
+                <div id="grid"></div>
+            </div>
+            <p id="validation-message" class="validation-message hidden">You must add at least one Start tile and one Finish tile to proceed.</p>
+        </div>
+        
+        <!-- Right information box with Contact Us Image -->
+        <div class="info-box team-info-box">
+            <a href="about.html">
+                <img src="./images/contact_us.png" alt="Contact Us" style="width: 100%; height: auto; border: 3px solid #e5e7eb; border-radius: 8px;">
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts loaded in order: puzzles first, grid.js for functionality, then script.js for navigation -->
+    <script src="./puzzles.js"></script>
+    <script src="./grid.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
