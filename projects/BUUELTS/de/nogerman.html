@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | BUUELTS</title>
+    <meta name="description" content="The page you requested couldn't be found on the BUÜ English Language Teaching Society website.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 404 Page Specific Styles */
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 200px);
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        /* Chicken Easter Egg Styles */
+        #chicken {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background-image: url('gorsellerde/chicken_pictures/chicken_walk_down1.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 1000;
+            display: none;
+            transition: transform 0.2s ease;
+        }
+        
+        /* Cow Easter Egg Styles */
+        #cow {
+            position: absolute;
+            width: 32px; /* Base size same as chicken */
+            height: 32px;
+            background-image: url('gorsellerde/cow_pictures/cow_walk_down1.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 999; /* Slightly behind chicken */
+            display: none;
+            transform: scale(2.5); /* Scale up the cow by 2.5x */
+            transform-origin: center; /* Scale from center */
+            will-change: background-image; /* Hardware acceleration hint */
+        }
+        
+        /* Chicken style update */
+        #chicken {
+            will-change: background-image; /* Hardware acceleration hint */
+        }
+        
+
+        .error-title {
+            font-size: 8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .error-message {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .error-image-container {
+            margin: 2rem 0;
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .error-image {
+            max-width: 100%;
+            max-height: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .error-image:hover {
+            transform: scale(1.05);
+        }
+
+        .home-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+
+        /* Animation classes */
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .error-title {
+                font-size: 6rem;
+            }
+
+            .error-message {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .error-title {
+                font-size: 4rem;
+            }
+
+            .error-message {
+                font-size: 1rem;
+            }
+
+            .error-image-container {
+                width: 150px;
+                height: 150px;
+            }
+        }
+        
+        @keyframes walking {
+            0% { opacity: 1; }
+            25% { opacity: 1; }
+            26% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="gorsellerde/placeholderlogo.png" alt="BUUELTS Logo">
+            </div>
+           
+            
+            <button class="nav-toggle" id="navToggle">
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Chicken character for easter egg -->
+        <div id="chicken"></div>
+        
+        <!-- Cow character that follows the chicken -->
+        <div id="cow"></div>
+        
+        <div class="container">
+            <div class="error-container">
+                
+                <h1 class="error-title">oof!</h1>
+                <p class="error-message">Momentan gibt es keine deutsche Übersetzung, aber sie kommt bald! Danke für deine Geduld!</p>
+				<p class="error-message" style="font-size: 0.85rem;">tr: Şu an için Almanca çeviri yok, ama yakında geliyor! Sabrınız için teşekkürler!</p>
+				<p class="error-message" style="font-size: 0.85rem;">en: There’s no German translation yet, but it’s coming soon! Thanks for your patience!</p>
+                
+                <div class="error-image-container">
+                    <img src="gorsellerde/closedbox.png" alt="Closed Box" class="error-image" id="errorImage">
+                </div>
+                
+                <a href="../index.html" class="home-button"><i class="fa-solid fa-house"></i></a>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- JavaScript for image switching, responsive navigation, and easter egg -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // =========================================================
+            // IMAGE SWITCHING FUNCTIONALITY
+            // =========================================================
+            const errorImage = document.getElementById('errorImage');
+            let isImageChanged = false;
+            
+            errorImage.addEventListener('click', function(e) {
+                if (isImageChanged) return; // Prevent further clicks after changing
+                
+                // Get click coordinates relative to the image
+                const rect = errorImage.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Check if the clicked pixel is non-transparent
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = errorImage.width;
+                canvas.height = errorImage.height;
+                context.drawImage(errorImage, 0, 0, errorImage.width, errorImage.height);
+                
+                // Get pixel data at click position
+                try {
+                    const pixelData = context.getImageData(x, y, 1, 1).data;
+                    const alpha = pixelData[3]; // Alpha channel (0-255)
+                    
+                    // Only proceed if clicking on a non-transparent part
+                    if (alpha > 0) {
+                        // Fade out the current image
+                        errorImage.classList.add('fade-out');
+                        
+                        // After fade out completes, switch the image and fade in
+                        setTimeout(function() {
+                            errorImage.src = 'gorsellerde/orangecat.png';
+                            errorImage.alt = 'Surprised Cat';
+                            errorImage.classList.remove('fade-out');
+                            errorImage.classList.add('fade-in');
+                            isImageChanged = true;
+                        }, 300);
+                    }
+                } catch (error) {
+                    // Fallback in case of CORS or other issues with canvas
+                    console.log("Could not analyze image pixels, using fallback click behavior");
+                    errorImage.classList.add('fade-out');
+                    setTimeout(function() {
+                        errorImage.src = 'gorsellerde/orangecat.png';
+                        errorImage.alt = 'Surprised Cat';
+                        errorImage.classList.remove('fade-out');
+                        errorImage.classList.add('fade-in');
+                        isImageChanged = true;
+                    }, 300);
+                }
+            });
+            
+            // =========================================================
+            // CHICKEN & COW EASTER EGG
+            // =========================================================
+            // DOM Elements
+            const chicken = document.getElementById('chicken');
+            const cow = document.getElementById('cow');
+            
+            // Constants
+            const CHICKEN_SIZE = 32;
+            const COW_SIZE = 32;
+            const COW_SCALE = 2.5;
+            const ANIMATION_SPEED = 150;
+            const EATING_ANIMATION_SPEED = 400;
+            const CHICKEN_SPEED = 3;
+            const COW_BASE_SPEED = 1.5;
+            const COW_CATCH_UP_SPEED = 2.5;
+            const FOLLOW_DISTANCE = 120;
+            const MIN_DISTANCE = 60; // Min distance to prevent overlap
+            const IDLE_TIME_BEFORE_EATING = 10000; // 10 seconds
+            const TIME_LIMIT_FOR_SEQUENCE = 10000; // 10 seconds for BUUELT
+            const DIRECTIONS = ['up', 'down', 'left', 'right'];
+            const COW_EATING_SEQUENCE = [1, 2, 3, 4, 3, 4, 3, 4, 3, 2, 1];
+            
+            // Game state
+            let gameActive = false;
+            let keySequence = [];
+            const correctSequence = ['B', 'U', 'U', 'E', 'L', 'T'];
+            let lastKeyTime = 0;
+            
+            // Characters state
+            let keysPressed = { w: false, a: false, s: false, d: false };
+            
+            // Chicken state
+            let chickenX = 0;
+            let chickenY = 0;
+            let chickenDirection = 'down';
+            let chickenFrame = 1;
+            let chickenIsMoving = false;
+            let lastChickenMoveTime = 0;
+            
+            // Cow state
+            let cowX = 0;
+            let cowY = 0;
+            let cowDirection = 'down';
+            let cowFrame = 1;
+            let cowIsMoving = false;
+            let cowIsEating = false;
+            let cowEatingIndex = 0;
+            
+            // Animation state
+            let lastFrameTime = 0;
+            let animationFrameId = null;
+            
+            // Image cache
+            const imageCache = {
+                chicken: { up: [], down: [], left: [], right: [] },
+                cow: { 
+                    up: [], down: [], left: [], right: [],
+                    eat_up: [], eat_down: [], eat_left: [], eat_right: []
+                }
+            };
+            
+            // =========================================================
+            // ASSET PRELOADING
+            // =========================================================
+            function preloadImages() {
+                return new Promise((resolve) => {
+                    let totalImages = 0;
+                    let loadedImages = 0;
+                    
+                    // Count how many images we need to load
+                    totalImages += DIRECTIONS.length * 4 * 2; // Walking animations (4 frames per direction, 2 characters)
+                    totalImages += DIRECTIONS.length * 4; // Cow eating animations (4 frames per direction)
+                    
+                    function onImageLoad() {
+                        loadedImages++;
+                        if (loadedImages === totalImages) {
+                            resolve();
+                        }
+                    }
+                    
+                    // Load walking animations for both characters
+                    ['chicken', 'cow'].forEach(character => {
+                        DIRECTIONS.forEach(direction => {
+                            for (let i = 1; i <= 4; i++) {
+                                const img = new Image();
+                                img.onload = onImageLoad;
+                                img.src = `gorsellerde/${character}_pictures/${character}_walk_${direction}${i}.png`;
+                                imageCache[character][direction][i-1] = img;
+                            }
+                        });
+                    });
+                    
+                    // Load cow eating animations
+                    DIRECTIONS.forEach(direction => {
+                        for (let i = 1; i <= 4; i++) {
+                            const img = new Image();
+                            img.onload = onImageLoad;
+                            img.src = `gorsellerde/cow_pictures/cow_eat_pictures/cow_eat_${direction}${i}.png`;
+                            imageCache.cow[`eat_${direction}`][i-1] = img;
+                        }
+                    });
+                });
+            }
+            
+            // =========================================================
+            // INPUT HANDLING
+            // =========================================================
+            function setupInputHandlers() {
+                // Keydown event for sequence detection and movement
+                document.addEventListener('keydown', (event) => {
+                    const key = event.key.toUpperCase();
+                    const currentTime = Date.now();
+                    
+                    // Handle the BUUELT sequence detection
+                    if (!gameActive) {
+                        if (correctSequence.includes(key)) {
+                            // Reset sequence if time limit exceeded
+                            if (keySequence.length > 0 && currentTime - lastKeyTime > TIME_LIMIT_FOR_SEQUENCE) {
+                                keySequence = [];
+                            }
+                            
+                            keySequence.push(key);
+                            lastKeyTime = currentTime;
+                            
+                            // Check if the sequence is correct so far
+                            let isCorrect = true;
+                            for (let i = 0; i < keySequence.length; i++) {
+                                if (keySequence[i] !== correctSequence[i]) {
+                                    isCorrect = false;
+                                    break;
+                                }
+                            }
+                            
+                            // If incorrect, reset
+                            if (!isCorrect) {
+                                keySequence = [];
+                            }
+                            
+                            // If complete sequence detected, activate the game
+                            if (isCorrect && keySequence.length === correctSequence.length) {
+                                startGame();
+                            }
+                        }
+                        return;
+                    }
+                    
+                    // Handle WASD movement when game is active
+                    if (gameActive) {
+                        switch (event.key.toLowerCase()) {
+                            case 'w': keysPressed.w = true; break;
+                            case 'a': keysPressed.a = true; break;
+                            case 's': keysPressed.s = true; break;
+                            case 'd': keysPressed.d = true; break;
+                        }
+                        updateChickenDirection();
+                    }
+                });
+                
+                // Keyup event for movement
+                document.addEventListener('keyup', (event) => {
+                    if (!gameActive) return;
+                    
+                    switch (event.key.toLowerCase()) {
+                        case 'w': keysPressed.w = false; break;
+                        case 'a': keysPressed.a = false; break;
+                        case 's': keysPressed.s = false; break;
+                        case 'd': keysPressed.d = false; break;
+                    }
+                    
+                    updateChickenDirection();
+                    
+                    // Check if all movement keys are released
+                    if (!keysPressed.w && !keysPressed.a && !keysPressed.s && !keysPressed.d) {
+                        chickenIsMoving = false;
+                    }
+                });
+            }
+            
+            // =========================================================
+            // GAME INITIALIZATION
+            // =========================================================
+            async function startGame() {
+                // Only start once
+                if (gameActive) return;
+                
+                // Preload all images first
+                await preloadImages();
+                
+                // Reset game state
+                gameActive = true;
+                keySequence = [];
+                
+                // Position characters in the center of the screen
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                
+                // Position chicken in the center
+                chickenX = (viewportWidth / 2) - (CHICKEN_SIZE / 2);
+                chickenY = (viewportHeight / 2) - (CHICKEN_SIZE / 2);
+                chicken.style.display = 'block';
+                chicken.style.left = chickenX + 'px';
+                chicken.style.top = chickenY + 'px';
+                
+                // Position cow slightly behind the chicken
+                cowX = chickenX - 100;
+                cowY = chickenY + 50;
+                cow.style.display = 'block';
+                cow.style.left = cowX + 'px';
+                cow.style.top = cowY + 'px';
+                
+                // Initialize direction and animation
+                chickenDirection = 'down';
+                cowDirection = 'down';
+                chickenFrame = 1;
+                cowFrame = 1;
+                
+                // Start tracking last movement time
+                lastChickenMoveTime = Date.now();
+                
+                // Start the main game loop
+                lastFrameTime = performance.now();
+                animationFrameId = requestAnimationFrame(gameLoop);
+            }
+            
+            // =========================================================
+            // ANIMATION AND MOVEMENT
+            // =========================================================
+            function updateChickenDirection() {
+                // Determine direction based on keys pressed
+                const prevDirection = chickenDirection;
+                
+                if (keysPressed.w && !keysPressed.s) {
+                    if (keysPressed.a && !keysPressed.d) {
+                        chickenDirection = 'left'; // Diagonal up-left, prioritize left
+                    } else if (keysPressed.d && !keysPressed.a) {
+                        chickenDirection = 'right'; // Diagonal up-right, prioritize right
+                    } else {
+                        chickenDirection = 'up'; // Pure up
+                    }
+                } else if (keysPressed.s && !keysPressed.w) {
+                    if (keysPressed.a && !keysPressed.d) {
+                        chickenDirection = 'left'; // Diagonal down-left, prioritize left
+                    } else if (keysPressed.d && !keysPressed.a) {
+                        chickenDirection = 'right'; // Diagonal down-right, prioritize right
+                    } else {
+                        chickenDirection = 'down'; // Pure down
+                    }
+                } else if (keysPressed.a && !keysPressed.d) {
+                    chickenDirection = 'left'; // Pure left
+                } else if (keysPressed.d && !keysPressed.a) {
+                    chickenDirection = 'right'; // Pure right
+                }
+                
+                // If direction changed or we're starting/stopping movement, update the sprite
+                if (chickenDirection !== prevDirection || 
+                    (chickenIsMoving !== (keysPressed.w || keysPressed.a || keysPressed.s || keysPressed.d))) {
+                    chickenIsMoving = keysPressed.w || keysPressed.a || keysPressed.s || keysPressed.d;
+                }
+            }
+            
+            function moveCharacters() {
+                // CHICKEN MOVEMENT
+                let chickenMoved = false;
+                
+                if (keysPressed.w) { chickenY -= CHICKEN_SPEED; chickenMoved = true; }
+                if (keysPressed.a) { chickenX -= CHICKEN_SPEED; chickenMoved = true; }
+                if (keysPressed.s) { chickenY += CHICKEN_SPEED; chickenMoved = true; }
+                if (keysPressed.d) { chickenX += CHICKEN_SPEED; chickenMoved = true; }
+                
+                // Update chicken state
+                if (chickenMoved) {
+                    chickenIsMoving = true;
+                    lastChickenMoveTime = Date.now();
+                    
+                    // If chicken moves, cow stops eating
+                    if (cowIsEating) {
+                        cowIsEating = false;
+                    }
+                } else {
+                    chickenIsMoving = false;
+                }
+                
+                // Keep chicken within viewport
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                chickenX = Math.max(0, Math.min(chickenX, viewportWidth - CHICKEN_SIZE));
+                chickenY = Math.max(0, Math.min(chickenY, viewportHeight - CHICKEN_SIZE));
+                
+                // Update chicken position in DOM
+                chicken.style.left = `${chickenX}px`;
+                chicken.style.top = `${chickenY}px`;
+                
+                // COW MOVEMENT AND BEHAVIOR
+                // Calculate distance and direction to chicken
+                const dx = chickenX - cowX;
+                const dy = chickenY - cowY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Check if chicken has been idle long enough for cow to eat
+                const timeIdle = Date.now() - lastChickenMoveTime;
+                
+                // Determine if cow should eat, follow, or wait
+                if (timeIdle >= IDLE_TIME_BEFORE_EATING && distance <= MIN_DISTANCE && !cowIsEating) {
+                    // Start eating animation
+                    cowIsEating = true;
+                    cowIsMoving = false;
+                    cowEatingIndex = 0;
+                } else if (distance > MIN_DISTANCE) {
+                    // Need to follow the chicken
+                    cowIsEating = false;
+                    cowIsMoving = true;
+                    
+                    // Calculate cow speed based on distance
+                    let cowSpeed = COW_BASE_SPEED;
+                    if (distance > FOLLOW_DISTANCE * 2) {
+                        cowSpeed = COW_CATCH_UP_SPEED; // Speed up to catch up
+                    }
+                    
+                    // Move cow towards chicken
+                    const moveRatio = cowSpeed / distance;
+                    cowX += dx * moveRatio;
+                    cowY += dy * moveRatio;
+                    
+                    // Update cow direction based on movement
+                    if (Math.abs(dx) > Math.abs(dy)) {
+                        // Moving more horizontally
+                        cowDirection = dx > 0 ? 'right' : 'left';
+                    } else {
+                        // Moving more vertically
+                        cowDirection = dy > 0 ? 'down' : 'up';
+                    }
+                } else {
+                    // Close enough and not eating, just wait
+                    cowIsMoving = false;
+                }
+                
+                // Keep cow within viewport
+                cowX = Math.max(0, Math.min(cowX, viewportWidth - COW_SIZE));
+                cowY = Math.max(0, Math.min(cowY, viewportHeight - COW_SIZE));
+                
+                // Update cow position in DOM
+                cow.style.left = `${cowX}px`;
+                cow.style.top = `${cowY}px`;
+            }
+            
+            function updateAnimations(timestamp) {
+                const elapsed = timestamp - lastFrameTime;
+                const regularAnimationDue = elapsed > ANIMATION_SPEED;
+                const eatingAnimationDue = elapsed > EATING_ANIMATION_SPEED;
+                
+                if ((cowIsEating && eatingAnimationDue) || (!cowIsEating && regularAnimationDue)) {
+                    // Update chicken animation
+                    if (chickenIsMoving) {
+                        // Advance to next frame (1-4)
+                        chickenFrame = (chickenFrame % 4) + 1;
+                    } else {
+                        // Reset to first frame when idle
+                        chickenFrame = 1;
+                    }
+                    
+                    // Update chicken sprite
+                    chicken.style.backgroundImage = `url('gorsellerde/chicken_pictures/chicken_walk_${chickenDirection}${chickenFrame}.png')`;
+                    
+                    // Update cow animation
+                    if (cowIsEating) {
+                        // Get current frame from eating sequence
+                        const currentFrame = COW_EATING_SEQUENCE[cowEatingIndex];
+                        
+                        // Update to next position in sequence for next frame
+                        cowEatingIndex = (cowEatingIndex + 1) % COW_EATING_SEQUENCE.length;
+                        
+                        // Set cow eating sprite
+                        cow.style.backgroundImage = `url('gorsellerde/cow_pictures/cow_eat_pictures/cow_eat_${cowDirection}${currentFrame}.png')`;
+                    } else if (cowIsMoving) {
+                        // Walking animation (1-4)
+                        cowFrame = (cowFrame % 4) + 1;
+                        cow.style.backgroundImage = `url('gorsellerde/cow_pictures/cow_walk_${cowDirection}${cowFrame}.png')`;
+                    } else {
+                        // Reset to first frame when idle
+                        cowFrame = 1;
+                        cow.style.backgroundImage = `url('gorsellerde/cow_pictures/cow_walk_${cowDirection}${cowFrame}.png')`;
+                    }
+                    
+                    // Update last animation time
+                    lastFrameTime = timestamp;
+                }
+            }
+            
+            function gameLoop(timestamp) {
+                // Move characters based on current state
+                moveCharacters();
+                
+                // Update animations
+                updateAnimations(timestamp);
+                
+                // Continue the loop
+                animationFrameId = requestAnimationFrame(gameLoop);
+            }
+            
+            // Set up input handlers
+            setupInputHandlers();
+        });
+        
+        // Handle responsive navigation
+        document.getElementById('navToggle').addEventListener('click', function() {
+            document.getElementById('navMenu')?.classList.toggle('active');
+        });
+        
+        // Language dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const langSelector = document.getElementById('langSelector');
+            const langSelected = document.getElementById('langSelected');
+            
+            if (langSelected && langSelector) {
+                langSelected.addEventListener('click', function() {
+                    langSelector.classList.toggle('active');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!langSelector.contains(event.target)) {
+                        langSelector.classList.remove('active');
+                    }
+                });
+                
+                // Optional: Store selected language in localStorage
+                const langOptions = document.querySelectorAll('.lang-option');
+                langOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        localStorage.setItem('preferredLanguage', this.getAttribute('href'));
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
