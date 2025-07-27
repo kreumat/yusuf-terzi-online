@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUUELTS - English Language Teaching Society</title>
-    <meta name="description" content="The official website of the BUÜ English Language Teaching Society, a community for students and faculty passionate about language education.">
+    <title>Announcements - BUUELTS - English Language Teaching Society</title>
+    <meta name="description" content="Latest news, updates, and announcements from the BUÜ English Language Teaching Society.">
     <link rel="stylesheet" href="css/style.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -47,9 +47,9 @@
             
             <nav class="nav-menu" id="navMenu">
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="announcements-page.html">Announcements</a></li>
+                    <li><a href="announcements-page.html" class="active">Announcements</a></li>
                     <li><a href="members.html">Members & Contributors</a></li>
                 </ul>
             </nav>
@@ -59,15 +59,11 @@
     <!-- Main Content -->
     <main>
         <div class="container">
-            <!-- Hero Section -->
-            <section class="hero">
-                <h2>Welcome to BUÜ English Language Teaching Society</h2>
-                <p>A community of students and faculty passionate about language education, teaching methodologies, and cultural exchange.</p>
-            </section>
-
             <!-- Announcements Section -->
             <section class="announcements">
-                <h2>Latest Announcements</h2>
+                <h2>Society Announcements</h2>
+                <p>Stay up-to-date with the latest news, events, and opportunities from our English Language Teaching Society.</p>
+                
                 <div class="announcements-list">
                     <!-- Announcement 3 -->
                     <article class="announcement-card">
@@ -82,9 +78,9 @@
                         <img src="images/duyuru2foto.png" alt="Announcement Image">
                         <div class="date">July 10, 2025</div>
                         <h3>Founding Members Wanted: Bursa Uludağ University ELT Society</h3>
-                        <p>We're starting the Uludağ University ELT Society — and you're invited to be one of our founding members.</p>
+                        <p>We're starting the Uludağ University ELT Society — and you're invited to be one of our founding members. Whether you're studying ELT or just interested in language and teaching, this is your chance to join a friendly, creative, and active community from day one.</p>
                         <p>Want to know what you'll gain and how to join?</p>
-						<a href="announcements/founding-member-announcement.html" class="read-more">Read More</a>
+                        <a href="announcements/founding-member-announcement.html" class="read-more">Read More</a>
                     </article>
 
                     <!-- Announcement 1 -->
@@ -96,9 +92,7 @@
                         <p>Design and send us your logo, earn a one-time-only medal!</p>
                         <a href="announcements/logo-announcement.html" class="read-more">Read More</a>
                     </article>
-                </div>
-                <div style="text-align: center; margin-top: 2rem;">
-                    <a href="announcements-page.html" style="display: inline-block; background-color: var(--primary); color: white; padding: 0.8rem 1.5rem; border-radius: 5px; font-weight: 600; transition: all 0.3s ease;">View All Announcements</a>
+
                 </div>
             </section>
         </div>
@@ -153,32 +147,15 @@
         </div>
     </footer>
 
-    <!-- JavaScript for popup and responsive navigation -->
-    <script src="js/popup.js"></script>
-    
-    <!-- Subtle adjustment to popup dimensions -->
+    <!-- JavaScript for responsive navigation and language selector -->
     <script>
+        // Navigation toggle
+        document.getElementById('navToggle').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+        
+        // Language dropdown functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // Create a simple style element to adjust popup proportions
-            const style = document.createElement('style');
-            style.textContent = `
-                .popup-container {
-                    max-width: 580px;
-                }
-                .popup-content-wrapper {
-                    max-width: 550px;
-                }
-                .popup-content-wrapper img {
-                    max-height: 65vh; /* Even bigger image */
-                }
-                .popup-button-close {
-                    padding: 8px 20px; /* Smaller padding */
-                    font-size: 14px; /* Smaller font size */
-                }
-            `;
-            document.head.appendChild(style);
-            
-            // Language dropdown toggle
             const langSelector = document.getElementById('langSelector');
             const langSelected = document.getElementById('langSelected');
             
