@@ -576,8 +576,8 @@ export default class GameScene extends Phaser.Scene {
         // Update objective text
         this.updateObjective("Put out the fire");
         
-        // Auto-close dialogue after 10 seconds
-        this.time.delayedCall(10000, () => {
+        // Auto-close dialogue after 5 seconds
+        this.time.delayedCall(5000, () => {
             this.dialoguePanel.destroy();
         });
     }
