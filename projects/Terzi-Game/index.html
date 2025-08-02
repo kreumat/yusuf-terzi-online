@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terzi Game</title>
+    
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    
+    <!-- Import Phaser library -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Add subtle pattern for background */
+            background-image: 
+                linear-gradient(to right, rgba(30, 30, 50, 0.2) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 30, 50, 0.2) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        
+        #game-frame {
+            position: relative;
+            border: 12px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            max-width: calc(1024px + 24px);
+            max-height: calc(1024px + 24px);
+            overflow: hidden;
+            
+            /* Decorative border with pixel art style */
+            background: #333;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 4px, #444 4px, #444 8px),
+                repeating-linear-gradient(90deg, transparent, transparent 4px, #444 4px, #444 8px);
+        }
+        
+        /* Inner border to create a double-border pixel art look */
+        #game-frame::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            border: 2px solid #222;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        #game-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        canvas {
+            display: block;
+            margin: 0 auto;
+            image-rendering: pixelated; /* Ensure pixel art stays crisp */
+            image-rendering: crisp-edges;
+        }
+        
+        /* Add subtle corner accents */
+        .corner {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #555;
+            z-index: 5;
+        }
+        
+        .top-left { top: 0; left: 0; }
+        .top-right { top: 0; right: 0; }
+        .bottom-left { bottom: 0; left: 0; }
+        .bottom-right { bottom: 0; right: 0; }
+        
+        /* Mobile Controls */
+        #mobile-controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            z-index: 9999;
+            display: none; /* Hidden by default, shown on small screens */
+            pointer-events: none; /* Allow clicks to pass through by default */
+        }
+        
+        /* Joystick */
+        #joystick-area {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 120px;
+            height: 120px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            pointer-events: auto; /* Make this element clickable */
+        }
+        
+        #joystick-handle {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none; /* The handle itself shouldn't receive events */
+        }
+        
+        /* Action Buttons */
+        .action-button {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 18px;
+            user-select: none;
+            pointer-events: auto; /* Make buttons clickable */
+        }
+        
+        #f-button {
+            bottom: 30px;
+            right: 120px;
+            background-color: rgba(140, 61, 61, 0.8);
+            border: 3px solid #ffffff;
+        }
+        
+        #esc-button {
+            bottom: 30px;
+            right: 20px;
+            background-color: rgba(61, 92, 140, 0.8);
+            border: 3px solid #ffffff;
+        }
+        
+        /* Responsive behavior - only show on small screens */
+        @media (max-width: 1023px) {
+            #mobile-controls {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="game-frame">
+        <!-- Corner accents for decorative frame -->
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+        
+        <!-- Game container -->
+        <div id="game-container"></div>
+    </div>
+    
+    <!-- Mobile controls overlay -->
+    <div id="mobile-controls">
+        <div id="joystick-area">
+            <div id="joystick-handle"></div>
+        </div>
+        <div id="f-button" class="action-button">F</div>
+        <div id="esc-button" class="action-button">ESC</div>
+    </div>
+    
+    <!-- Import game modules -->
+    <script src="./ui/Button.js" type="module"></script>
+    <script src="./scenes/MainMenu.js" type="module"></script>
+    <script src="./scenes/OptionsMenu.js" type="module"></script>
+    <script src="./main.js" type="module"></script>
+    
+    <!-- Mobile controls script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Only run on screens less than 1024px wide
+            if (window.innerWidth >= 1024) return;
+            
+            console.log("Initializing direct HTML mobile controls");
+            
+            const joystickArea = document.getElementById('joystick-area');
+            const joystickHandle = document.getElementById('joystick-handle');
+            const fButton = document.getElementById('f-button');
+            const escButton = document.getElementById('esc-button');
+            
+            // Track joystick state
+            let joystickActive = false;
+            let centerX, centerY;
+            let maxDistance = 40;
+            
+            // Wait for game to initialize
+            const waitForGame = setInterval(function() {
+                if (window.game && window.game.isBooted) {
+                    clearInterval(waitForGame);
+                    initializeControls();
+                    console.log("Mobile controls connected to game instance");
+                }
+            }, 100);
+            
+            function initializeControls() {
+                // Immediately force mobile controls visibility
+                document.getElementById('mobile-controls').style.display = 'block';
+            }
+            
+            // Helper function to get the current active scene
+            function getActiveScene() {
+                if (!window.game) return null;
+                
+                // Get the current scene that's running
+                for (const scene of ['GameScene', 'MainMenu', 'OptionsMenu']) {
+                    if (window.game.scene.isActive(scene)) {
+                        return window.game.scene.getScene(scene);
+                    }
+                }
+                return null;
+            }
+            
+            // Helper to set key state in the active scene
+            function setKeyState(keyName, isDown) {
+                const scene = getActiveScene();
+                if (!scene || !scene.keys) return false;
+                
+                try {
+                    // Map joystick directions to WASD keys
+                    const keyMap = {
+                        'up': 'up',     // W key
+                        'down': 'down',   // S key
+                        'left': 'left',   // A key
+                        'right': 'right'  // D key
+                    };
+                    
+                    // Get the appropriate key name if it's a mapped direction
+                    const mappedKey = keyMap[keyName] || keyName;
+                    
+                    console.log(`Setting key state: ${mappedKey} = ${isDown}`);
+                    
+                    // Directly manipulate the key's isDown state
+                    if (scene.keys[mappedKey]) {
+                        // Update the internal key state
+                        scene.keys[mappedKey].isDown = isDown;
+                        
+                        // If we're pressing the key down
+                        if (isDown) {
+                            // For F and ESC we need to also trigger the "down" event
+                            if (keyName === 'f' || keyName === 'esc') {
+                                // Call special handler functions
+                                if (keyName === 'esc' && scene.pauseGame) {
+                                    console.log("Calling pauseGame method directly");
+                                    scene.pauseGame();
+                                } else if (keyName === 'f' && scene.fButtonPressed) {
+                                    console.log("Calling fButtonPressed method directly");
+                                    scene.fButtonPressed();
+                                }
+                            }
+                        }
+                        return true;
+                    } else {
+                        console.error(`Key ${mappedKey} not found in scene.keys`);
+                    }
+                } catch (e) {
+                    console.error("Error setting key state:", e);
+                }
+                return false;
+            }
+            
+            // Joystick events
+            joystickArea.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                joystickActive = true;
+                
+                // Get joystick center position
+                const rect = joystickArea.getBoundingClientRect();
+                centerX = rect.left + rect.width / 2;
+                centerY = rect.top + rect.height / 2;
+                
+                updateJoystickPosition(e.touches[0]);
+            });
+            
+            joystickArea.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                joystickActive = true;
+                
+                // Get joystick center position
+                const rect = joystickArea.getBoundingClientRect();
+                centerX = rect.left + rect.width / 2;
+                centerY = rect.top + rect.height / 2;
+                
+                updateJoystickPosition(e);
+            });
+            
+            document.addEventListener('touchmove', function(e) {
+                if (joystickActive) {
+                    e.preventDefault();
+                    updateJoystickPosition(e.touches[0]);
+                }
+            });
+            
+            document.addEventListener('mousemove', function(e) {
+                if (joystickActive) {
+                    e.preventDefault();
+                    updateJoystickPosition(e);
+                }
+            });
+            
+            document.addEventListener('touchend', function(e) {
+                if (joystickActive) {
+                    e.preventDefault();
+                    joystickActive = false;
+                    resetJoystick();
+                }
+            });
+            
+            document.addEventListener('mouseup', function(e) {
+                if (joystickActive) {
+                    e.preventDefault();
+                    joystickActive = false;
+                    resetJoystick();
+                }
+            });
+            
+            function updateJoystickPosition(pointer) {
+                if (!joystickActive) return;
+                
+                // Calculate distance from center
+                const dx = pointer.clientX - centerX;
+                const dy = pointer.clientY - centerY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance === 0) return;
+                
+                // Normalize direction
+                const normalizedX = dx / distance;
+                const normalizedY = dy / distance;
+                
+                // Clamp distance to max radius
+                const clampedDistance = Math.min(distance, maxDistance);
+                
+                // Set handle position with a larger visual range for better feedback
+                joystickHandle.style.transform = `translate(-50%, -50%) translate(${normalizedX * clampedDistance}px, ${normalizedY * clampedDistance}px)`;
+                
+                // Lower deadzone for more responsive controls
+                const deadzone = 0.2;
+                
+                // Determine which keys should be pressed based on joystick position
+                const keys = {
+                    up: normalizedY < -deadzone,
+                    down: normalizedY > deadzone,
+                    left: normalizedX < -deadzone,
+                    right: normalizedX > deadzone
+                };
+                
+                // Debug output
+                console.log(`Joystick position: x=${normalizedX.toFixed(2)}, y=${normalizedY.toFixed(2)}`);
+                console.log(`Keys: W=${keys.up}, S=${keys.down}, A=${keys.left}, D=${keys.right}`);
+                
+                // Update game keys - map to WASD
+                setKeyState('up', keys.up);
+                setKeyState('down', keys.down);
+                setKeyState('left', keys.left);
+                setKeyState('right', keys.right);
+            }
+            
+            function resetJoystick() {
+                // Reset handle position
+                joystickHandle.style.transform = 'translate(-50%, -50%)';
+                
+                // Release all direction keys
+                setKeyState('up', false);
+                setKeyState('down', false);
+                setKeyState('left', false);
+                setKeyState('right', false);
+            }
+            
+            // Action button events
+            fButton.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(0.9)';
+                setKeyState('f', true);
+                
+                // Try to call the fButtonPressed function directly
+                const scene = getActiveScene();
+                if (scene && scene.fButtonPressed) {
+                    scene.fButtonPressed();
+                }
+            });
+            
+            fButton.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(0.9)';
+                setKeyState('f', true);
+                
+                // Try to call the fButtonPressed function directly
+                const scene = getActiveScene();
+                if (scene && scene.fButtonPressed) {
+                    scene.fButtonPressed();
+                }
+            });
+            
+            fButton.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(1)';
+                setKeyState('f', false);
+            });
+            
+            fButton.addEventListener('mouseup', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(1)';
+                setKeyState('f', false);
+            });
+            
+            escButton.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(0.9)';
+                setKeyState('esc', true);
+                
+                // Try to call the pauseGame function directly
+                const scene = getActiveScene();
+                if (scene && scene.pauseGame) {
+                    scene.pauseGame();
+                }
+            });
+            
+            escButton.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(0.9)';
+                setKeyState('esc', true);
+                
+                // Try to call the pauseGame function directly
+                const scene = getActiveScene();
+                if (scene && scene.pauseGame) {
+                    scene.pauseGame();
+                }
+            });
+            
+            escButton.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(1)';
+                setKeyState('esc', false);
+            });
+            
+            escButton.addEventListener('mouseup', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(1)';
+                setKeyState('esc', false);
+            });
+            
+            // Remove duplicate event listeners - we already set these up earlier
+            
+            // Enhanced window resize handler
+            window.addEventListener('resize', function() {
+                // Show/hide controls based on screen width
+                if (window.innerWidth < 1024) {
+                    document.getElementById('mobile-controls').style.display = 'block';
+                    console.log("Mobile controls visible (width < 1024px)");
+                } else {
+                    document.getElementById('mobile-controls').style.display = 'none';
+                    console.log("Mobile controls hidden (width >= 1024px)");
+                }
+            });
+            
+            // Force initial visibility with more aggressive approach
+            const mobileControls = document.getElementById('mobile-controls');
+            mobileControls.style.display = 'block';
+            
+            // Force the display style using !important via inline style
+            if (window.innerWidth < 1024) {
+                mobileControls.setAttribute('style', 'display: block !important');
+                
+                // Additional check after a short delay
+                setTimeout(() => {
+                    if (window.getComputedStyle(mobileControls).display !== 'block') {
+                        console.warn("Mobile controls still not visible after forcing display");
+                        mobileControls.setAttribute('style', 'display: block !important; opacity: 1 !important; visibility: visible !important;');
+                    }
+                    console.log("Mobile controls initialized and visibility forced");
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
