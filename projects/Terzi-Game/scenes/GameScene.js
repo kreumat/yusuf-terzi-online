@@ -94,6 +94,8 @@ export default class GameScene extends Phaser.Scene {
         // Create layers in order
         const landLayer = map.createLayer('land', [grassTileset]);
         const riverLayer = map.createLayer('river', [watergrassTileset]);
+        const fenceLayer = map.createLayer('fence', [fenceAltTileset]);
+        const bridgeBackFenceLayer = map.createLayer('bridgebackfence', [bridgeAndFencesTileset]);
         const bridgeLayer = map.createLayer('bridge', [bridgeAndFencesTileset]);
         
         // Create cat character at tile coordinates (4, 4)
@@ -126,7 +128,7 @@ export default class GameScene extends Phaser.Scene {
         this.campfire.setOrigin(0.5, 1.0); // Set origin to bottom center for consistent ground position
         
         // Create the bridge front fence layer (displayed above the cat)
-        const bridgeFrontFenceLayer = map.createLayer('bridgefrontfencelayer', [bridgeAndFencesTileset]);
+        const bridgeFrontFenceLayer = map.createLayer('bidgeforwardfence', [bridgeAndFencesTileset]);
         
         // Create tree and treetop layers (displayed above the cat)
         const treeLayer = map.createLayer('tree', [trunkTileset]);
@@ -135,7 +137,11 @@ export default class GameScene extends Phaser.Scene {
         // Set appropriate depths for proper layering
         this.campfire.setDepth(10); // Between ground and trees
         this.chicken.setDepth(15);
-        this.cat.setDepth(20); // Player below trees and treetops
+        riverLayer.setDepth(16);
+        fenceLayer.setDepth(17);
+        bridgeBackFenceLayer.setDepth(18);
+        bridgeLayer.setDepth(19);
+        this.cat.setDepth(20); // Player above bridge floor but below front fence
         treeLayer.setDepth(25); // Tree trunk layer appears in front of player
         bridgeFrontFenceLayer.setDepth(35);
         treetopLayer.setDepth(40);
@@ -148,6 +154,25 @@ export default class GameScene extends Phaser.Scene {
         
         // Set up collisions
         this.collisionLayer.setCollisionByExclusion([-1]);
+        
+        // Make sure the collision layer properly reflects the map structure
+        // Create a walkable path across the bridge by removing collision ONLY from the exact bridge tiles
+        // The bridge is at row 3, columns 5-6
+        const bridgeTile1 = this.collisionLayer.getTileAt(5, 3);
+        const bridgeTile2 = this.collisionLayer.getTileAt(6, 3);
+        if (bridgeTile1) bridgeTile1.setCollision(false);
+        if (bridgeTile2) bridgeTile2.setCollision(false);
+        
+        // Make sure the bridge layer itself is walkable (no collision)
+        // This ensures the cat can cross the bridge
+        bridgeLayer.setCollisionByExclusion([]); // No collision on bridge floor
+        
+        // Make sure water and fences have collision
+        fenceLayer.setCollisionByExclusion([-1]);
+        
+        // Add collider for fence
+        this.physics.add.collider(this.cat, fenceLayer);
+        
         this.physics.add.collider(this.cat, this.collisionLayer);
         this.physics.add.collider(this.cat, this.chicken);
         this.physics.add.collider(this.cat, this.campfire);
