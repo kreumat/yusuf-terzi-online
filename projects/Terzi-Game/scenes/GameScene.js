@@ -690,25 +690,57 @@ export default class GameScene extends Phaser.Scene {
         // We no longer need to check Phaser-based mobile controls
         // as we're using HTML-based controls that directly manipulate key states
         
-        // Handle keyboard movement input
-        if (this.keys.up.isDown) {
+        // Calculate movement direction
+        let movingUp = this.keys.up.isDown;
+        let movingDown = this.keys.down.isDown;
+        let movingLeft = this.keys.left.isDown;
+        let movingRight = this.keys.right.isDown;
+        
+        // Apply velocity based on input
+        if (movingUp) {
             this.cat.setVelocityY(-this.catSpeed);
-            this.cat.anims.play('cat_up', true);
             isMoving = true;
-        } else if (this.keys.down.isDown) {
+        } else if (movingDown) {
             this.cat.setVelocityY(this.catSpeed);
-            this.cat.anims.play('cat_down', true);
             isMoving = true;
         }
         
-        if (this.keys.left.isDown) {
+        if (movingLeft) {
             this.cat.setVelocityX(-this.catSpeed);
-            this.cat.anims.play('cat_left', true);
             isMoving = true;
-        } else if (this.keys.right.isDown) {
+        } else if (movingRight) {
             this.cat.setVelocityX(this.catSpeed);
-            this.cat.anims.play('cat_right', true);
             isMoving = true;
+        }
+        
+        // Handle animations based on movement direction
+        if (isMoving) {
+            // Determine which animation to play based on the dominant direction
+            if (movingUp && movingLeft) {
+                // Diagonal up-left: use the more visually appropriate animation
+                this.cat.anims.play('cat_left', true);
+            } else if (movingUp && movingRight) {
+                // Diagonal up-right: use the more visually appropriate animation
+                this.cat.anims.play('cat_right', true);
+            } else if (movingDown && movingLeft) {
+                // Diagonal down-left: use the more visually appropriate animation
+                this.cat.anims.play('cat_left', true);
+            } else if (movingDown && movingRight) {
+                // Diagonal down-right: use the more visually appropriate animation
+                this.cat.anims.play('cat_right', true);
+            } else if (movingUp) {
+                // Pure up movement
+                this.cat.anims.play('cat_up', true);
+            } else if (movingDown) {
+                // Pure down movement
+                this.cat.anims.play('cat_down', true);
+            } else if (movingLeft) {
+                // Pure left movement
+                this.cat.anims.play('cat_left', true);
+            } else if (movingRight) {
+                // Pure right movement
+                this.cat.anims.play('cat_right', true);
+            }
         }
         
         // The HTML mobile controls directly set key states, so we don't need 
