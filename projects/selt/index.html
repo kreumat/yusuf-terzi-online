@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Game Generator - Create (Static Demo)</title>
+    <link rel="icon" type="image/png" href="../static/images/selt_logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="navbar-brand-silver">SILVER</span>
+            <img src="../static/images/selt_logo.png" alt="SELT Logo" class="navbar-brand-logo">
+            <span class="navbar-brand-elt">ELT</span>
+        </div>
+        <div class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="navbar-nav" id="navbarNav">
+            <a href="#" class="navbar-nav-item" onclick="showDemoAlert('This would navigate to the Main Page in the real version.')">Main Page</a>
+            <a href="#" class="navbar-nav-item" onclick="showDemoAlert('This would navigate to the Board Game Generator in the real version.')">Simple Board Game Generator</a>
+            <a href="#" class="navbar-nav-item" onclick="showDemoAlert('This would navigate to the Explore page in the real version.')">Explore</a>
+            <a href="#" class="navbar-nav-item" onclick="showDemoAlert('This would navigate to the About Us page in the real version.')">About Us</a>
+            <a href="#" class="navbar-nav-item" onclick="showDemoAlert('This would navigate to the Play on a Screen page in the real version.')">Play on a Screen</a>
+        </div>
+    </nav>
+    
+    <!-- Step Progress Bar -->
+    <div class="stepper-container">
+        <div class="stepper">
+            <div class="step active">
+                <div class="step-dot">1</div>
+                <div class="step-label">Board Setup</div>
+            </div>
+            <div class="step">
+                <div class="step-dot">2</div>
+                <div class="step-label">Add Text</div>
+            </div>
+            <div class="step">
+                <div class="step-dot">3</div>
+                <div class="step-label">Add Images</div>
+            </div>
+            <div class="step">
+                <div class="step-dot">4</div>
+                <div class="step-label">Add Walls</div>
+            </div>
+            <div class="step">
+                <div class="step-dot">5</div>
+                <div class="step-label">Print Board</div>
+            </div>
+            <!-- Progress line for completed steps (initially hidden as this is step 1) -->
+            <div class="progress-line" style="width: 0%"></div>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <!-- Left information box with color palette -->
+        <div class="info-box">
+            <h3>Tile Colors</h3>
+            <p>You can create your own custom game board by adding tiles to the grid. Select tiles by clicking on them and choose your tile colour by clicking on the colour you want. Alternatively, you can use pre-set grids if you want. To unselect a tile, click on the selected tile again.</p>
+            <!-- Color palette for selecting tile colors -->
+            <div class="color-palette">
+                <div class="color-option color-red" data-color="red" title="Red"></div>
+                <div class="color-option color-green" data-color="green" title="Green"></div>
+                <div class="color-option color-blue" data-color="blue" title="Blue"></div>
+                <div class="color-option color-yellow" data-color="yellow" title="Yellow"></div>
+                <div class="color-option color-orange" data-color="orange" title="Orange"></div>
+                <div class="color-option color-brown" data-color="brown" title="Brown"></div>
+                <div class="color-option color-pink" data-color="pink" title="Pink"></div>
+                <div class="color-option color-purple" data-color="purple" title="Purple"></div>
+                <div class="color-option color-grey" data-color="grey" title="Grey"></div>
+                <div class="color-option color-default selected" data-color="default" title="Silver (Default)"></div>
+                <div class="color-option color-cutty-sark" data-color="cutty-sark" title="Cutty Sark"></div>
+                <div class="color-option color-lightning-yellow" data-color="lightning-yellow" title="Lightning Yellow"></div>
+            </div>
+            <p>To unselect a tile, click on the selected tile again.</p>
+            
+            <!-- Start/Finish buttons section -->
+            <h4>Start and Finish</h4>
+            <div class="start-finish-buttons">
+                <button id="start-button" class="special-button start-button">Start</button>
+                <button id="finish-button" class="special-button finish-button">Finish</button>
+            </div>
+            <p>These tiles indicate where the player starts and ends the game.</p>
+        </div>
+        
+        <!-- Main container with grid and controls -->
+        <div class="container">
+            <h1>Board Game Generator</h1>
+            <div class="controls">
+                <p>Add tiles to your board. To proceed, you need at least one start tile and one finish tile.</p>
+                
+                <!-- Puzzle template selector -->
+                <div class="puzzle-selector">
+                    <label for="puzzle-select">Choose a preset template:</label>
+                    <select id="puzzle-select">
+                        <option value="">Custom (Draw your own)</option>
+                        <option value="snake">Snake Shaped</option>
+                        <option value="crossways">Crossways</option>
+                        <option value="whirlwind">Whirlwind</option>
+                        <option value="piston">Piston</option>
+                        <option value="castle">The Castle</option>
+                        <option value="erzinRoads">Erzin Roads</option>
+                    </select>
+                </div>
+                
+                <!-- Save button to proceed to the next step -->
+                <button id="save-grid">Go to the Next Step: Add Text</button>
+                <p class="warning-message">Before moving forward in this step, make sure you got everything right. Later, you will not be able to return to this step without losing your progress (such as texts, images, or walls you add in future steps). This warning applies only to this step; in other steps, you will be able to move back and forth without losing your work.</p>
+            </div>
+            
+            <!-- Grid container populated by grid.js -->
+            <div class="grid-container">
+                <div id="grid"></div>
+            </div>
+            <p id="validation-message" class="validation-message hidden">You must add at least one Start tile and one Finish tile to proceed.</p>
+        </div>
+        
+        <!-- Right information box with Contact Us Image -->
+        <div class="info-box team-info-box">
+            <a href="#" onclick="showDemoAlert('This would navigate to the About Us page in the real version.')">
+                <img src="../static/images/contact_us.png" alt="Contact Us" style="width: 100%; height: auto; border: 3px solid #e5e7eb; border-radius: 8px;">
+            </a>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-nav">
+            <a href="#" onclick="showDemoAlert('This would navigate to the Main Page in the real version.')" class="footer-nav-item">Main Page</a>
+            <a href="#" onclick="showDemoAlert('This would navigate to the Board Game Generator in the real version.')" class="footer-nav-item">Board Game Generator</a>
+            <a href="#" onclick="showDemoAlert('This would navigate to the Explore page in the real version.')" class="footer-nav-item">Explore</a>
+            <a href="#" onclick="showDemoAlert('This would navigate to the About Us page in the real version.')" class="footer-nav-item">About Us</a>
+            <a href="#" onclick="showDemoAlert('This would navigate to the Play on a Screen page in the real version.')" class="footer-nav-item">Play on a Screen</a>
+        </div>
+        <div class="footer-copyright">
+            &copy; <span id="current-year"></span> SILVER ELT. All rights reserved.
+        </div>
+    </footer>
+    
+    <!-- Scripts loaded in order: puzzles first (for templates), then grid.js for functionality -->
+    <script src="../puzzles.js"></script>
+    <script src="../grid.js"></script>
+    <script src="static.js"></script>
+    
+    <!-- Mobile menu toggle script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in the footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Mobile menu toggle
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navbarNav = document.getElementById('navbarNav');
+            
+            if (mobileMenuToggle && navbarNav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileMenuToggle.classList.toggle('active');
+                    navbarNav.classList.toggle('show');
+                    
+                    // Prevent scrolling when menu is open
+                    document.body.style.overflow = navbarNav.classList.contains('show') ? 'hidden' : '';
+                });
+                
+                // Close mobile menu when clicking on a nav item
+                const navItems = navbarNav.querySelectorAll('.navbar-nav-item');
+                navItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        mobileMenuToggle.classList.remove('active');
+                        navbarNav.classList.remove('show');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+
+            // Override saveGrid function to show demo alert
+            const saveBtn = document.getElementById('save-grid');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showDemoAlert('In the real version, this would save your board and take you to the next step where you can add text to your board tiles.');
+                });
+            }
+
+            // Override clearGrid function to show demo alert
+            const clearBtn = document.getElementById('clear-grid');
+            if (clearBtn) {
+                clearBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showDemoAlert('In the real version, this would clear all tiles from your board after confirmation.');
+                });
+            }
+        });
+
+        // Function to show demo alerts
+        function showDemoAlert(message) {
+            alert('[STATIC DEMO] ' + message);
+        }
+    </script>
+</body>
+</html>
