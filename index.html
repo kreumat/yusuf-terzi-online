@@ -3,33 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yusuf Terzi | Personal Website</title>
-	<link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <title data-lang="title">Yusuf Terzi | Personal Website</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts (Poppins and Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Language Selection Popup Styles */
+        .language-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        
+        .language-popup {
+            background-color: white;
+            border-radius: 15px;
+            padding: 35px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            animation: popup-fade 0.3s ease-out;
+        }
+        
+        @keyframes popup-fade {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .language-popup h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        
+        .language-popup h2:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #007bff, transparent);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .language-options {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .language-option {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+        }
+        
+        .language-option:hover {
+            transform: scale(1.05);
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+        
+        .language-option img {
+            width: 120px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: contain;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .language-option:hover img {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .language-option p {
+            margin-top: 12px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        
+        /* Responsive styles for the language popup */
+        @media (max-width: 600px) {
+            .language-popup {
+                padding: 25px 20px;
+            }
+            
+            .language-popup h2 {
+                font-size: 1.5rem;
+            }
+            
+            .language-options {
+                gap: 20px;
+            }
+            
+            .language-option {
+                padding: 10px;
+            }
+            
+            .language-option img {
+                width: 100px;
+                height: 65px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .language-popup h2 {
+                font-size: 1.3rem;
+            }
+            
+            .language-options {
+                gap: 15px;
+            }
+            
+            .language-option img {
+                width: 80px;
+                height: 55px;
+            }
+            
+            .language-option p {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Language Selection Popup -->
+    <div class="language-overlay" id="languagePopup">
+        <div class="language-popup">
+            <h2>Select Language / Dil Seçin</h2>
+            <div class="language-options">
+                <div class="language-option" onclick="selectLanguage('en')">
+                    <img src="imagorseller/britishflag.png" alt="English">
+                    <p>English</p>
+                </div>
+                <div class="language-option" onclick="selectLanguage('tr')">
+                    <img src="imagorseller/turkishflag.png" alt="Türkçe">
+                    <p>Türkçe</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <main>
         <!-- About Section -->
         <section id="about">
             <div class="container">
                 <h1>Yusuf Terzi</h1>
                 <div class="subtitle">
-                    <p>3rd year ELT student at Uludağ University</p>
-                    <p class="turkish">Uludağ Üniversitesi 3. sınıf İngilizce öğretmenliği öğrencisi</p>
+                    <p data-lang="subtitle">3rd year ELT student at Uludağ University</p>
                 </div>
                 
                 <div class="welcome">
-                    <p>Welcome to my personal website!</p>
-                    <p class="turkish">Kişisel web siteme hoş geldiniz!</p>
+                    <p data-lang="welcome">Welcome to my personal website!</p>
                 </div>
                 
                 <div class="intro">
-                    <p>I'm an ELT student with a growing passion for creating things — both in the classroom and on the web.</p>
-                    <p class="turkish">Hem sınıf ortamında hem de webde bir şeyler üretmeyi seven bir İngilizce öğretmenliği öğrencisiyim.</p>
+                    <p data-lang="intro">I'm an ELT student with a growing passion for creating things — both in the classroom and on the web.</p>
                 </div>
             </div>
         </section>
@@ -38,7 +191,7 @@
         <section id="projects">
             <div class="container">
                 <div class="section-header">
-                    <h2>My Projects</h2>
+                    <h2 data-lang="projects">My Projects</h2>
                 </div>
                 
                 <div class="project-grid">
@@ -52,11 +205,10 @@
                             <div class="project-notes">
                                 <i class="fas fa-info-circle"></i>
                                 <div>
-                                    <p>This is a static demo of a PHP website. It may appear broken on mobile devices.</p><br>
-                                    <p class="turkish">Bu, bir PHP sitesinin statik demosudur. Mobilde bozuk görünebilir.</p>
+                                    <p data-lang="ssbggNote">This is a static demo of a PHP website. It may appear broken on mobile devices.</p>
                                 </div>
                             </div>
-                            <a href="projects/selt" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                            <a data-lang="viewproject" href="projects/selt" class="project-link">View Project</a>
                         </div>
                     </div>
                     
@@ -66,8 +218,8 @@
                             <img src="imagorseller/BUUELTSlogo.png" alt="BUU ELT Society Logo">
                         </div>
                         <div class="project-content">
-                            <h3>BUU ELT Society Website</h3>
-                            <a href="projects/BUUELTS" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                            <h3 data-lang="societyname">Bursa Uludağ University English Language Teaching Society Website</h3>
+                            <a data-lang="viewproject" href="projects/BUUELTS" class="project-link">View Project</a>
                         </div>
                     </div>
                     
@@ -81,10 +233,10 @@
                             <div class="project-notes">
                                 <i class="fas fa-info-circle"></i>
                                 <div>
-                                    <p>A very simple 2D pixel game made with Phaser JS.</p>
+                                    <p data-lang="terziGameNote">A very simple 2D pixel game made with Phaser JS.</p>
                                 </div>
                             </div>
-                            <a href="projects/Terzi-Game" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                            <a data-lang="viewproject" href="projects/Terzi-Game" class="project-link">View Project</i></a>
                         </div>
                     </div>
                 </div>
@@ -95,13 +247,12 @@
         <section id="contact">
             <div class="container">
                 <div class="section-header">
-                    <h2>Contact</h2>
+                    <h2 data-lang="contact">Contact</h2>
                 </div>
                 
                 <div class="contact-content">
                     <div class="contact-text">
-                        <p>For private English lessons, materials, or other questions, contact me:</p>
-                        <p class="turkish">Özel İngilizce dersleri, materyaller veya diğer konular için benimle iletişime geçin:</p>
+                        <p data-lang="contactText">For private English lessons, materials, or other questions, contact me:</p>
                     </div>
                     
                     <a href="mailto:yusufxterzi@gmail.com" class="email-link">
@@ -114,8 +265,52 @@
     
     <footer>
         <div class="container">
-            <p>&copy; 2025 Yusuf Terzi. All rights reserved.</p>
+            <p data-lang="copyright">&copy; 2025 Yusuf Terzi. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Function to select language and load translations
+        function selectLanguage(lang) {
+            // Hide the popup
+            document.getElementById('languagePopup').style.display = 'none';
+            
+            // Fetch the language file
+            fetch(`languages/${lang}.json`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Language file not found');
+                    }
+                    return response.json();
+                })
+                .then(translations => {
+                    // Apply translations to all elements with data-lang attribute
+                    const elements = document.querySelectorAll('[data-lang]');
+                    elements.forEach(element => {
+                        const key = element.getAttribute('data-lang');
+                        if (translations[key]) {
+                            element.textContent = translations[key];
+                        }
+                    });
+                    
+                    // Update document title
+                    if (translations.title) {
+                        document.title = translations.title;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading language file:', error);
+                    // Fallback to English if there's an error
+                    if (lang !== 'en') {
+                        selectLanguage('en');
+                    }
+                });
+        }
+
+        // Show language popup on page load (always show, no localStorage)
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('languagePopup').style.display = 'flex';
+        });
+    </script>
 </body>
 </html>
