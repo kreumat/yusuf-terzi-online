@@ -122,34 +122,9 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <img src="gorseller/placeholderlogo.png" alt="BUUELTS Logo">
+                <img src="../images/placeholderlogo.png" alt="BUUELTS Logo">
                 <h1>BUÜ İngilizce Öğretmenliği Topluluğu</h1>
             </div>
-            
-            <div class="lang-selector" id="langSelector">
-                <div class="lang-selected" id="langSelected">
-                    <img src="gorseller/turkishflag.png" alt="Türkçe" class="lang-flag">
-                    <span class="lang-name">Türkçe</span>
-                </div>
-                <div class="lang-dropdown">
-                    <a href="../index.html" class="lang-option">
-                        <img src="../images/britishflag.png" alt="English" class="lang-flag">
-                        <span>English</span>
-                    </a>
-                    <a href="ana-sayfa.html" class="lang-option">
-                        <img src="gorseller/turkishflag.png" alt="Türkçe" class="lang-flag">
-                        <span>Türkçe</span>
-                    </a>
-                    <a href="../de/nogerman.html" class="lang-option">
-                        <img src="../de/gorsellerde/germanflag.png" alt="Deutsch" class="lang-flag">
-                        <span>Deutsch</span>
-                    </a>
-                </div>
-            </div>
-            
-            <button class="nav-toggle" id="navToggle">
-                <i class="fas fa-bars"></i>
-            </button>
             
             <nav class="nav-menu" id="navMenu">
                 <ul>
@@ -170,7 +145,7 @@
                 <p class="error-message">Aradığınız sayfa bulunamadı — çünkü hala üzerinde çalışıyoruz! Endişelenmeyin, doğru düğmeye tıkladınız; sadece bizden biraz öndesiniz.</p>
                 
                 <div class="error-image-container">
-                    <img src="gorseller/closedbox.png" alt="Kapalı Kutu" class="error-image" id="errorImage">
+                    <img src="../images/closedbox.png" alt="Kapalı Kutu" class="error-image" id="errorImage">
                 </div>
                 
                 <a href="ana-sayfa.html" class="home-button">Ana Sayfaya Dön</a>
@@ -214,40 +189,8 @@
         </div>
     </footer>
 
-    <!-- JavaScript for image switching and responsive navigation -->
+    <!-- JavaScript for image switching -->
     <script>
-        // Handle responsive navigation
-        document.getElementById('navToggle').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
-        
-        // Language dropdown functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const langSelector = document.getElementById('langSelector');
-            const langSelected = document.getElementById('langSelected');
-            
-            if (langSelected && langSelector) {
-                langSelected.addEventListener('click', function() {
-                    langSelector.classList.toggle('active');
-                });
-                
-                // Close dropdown when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!langSelector.contains(event.target)) {
-                        langSelector.classList.remove('active');
-                    }
-                });
-                
-                // Optional: Store selected language in localStorage
-                const langOptions = document.querySelectorAll('.lang-option');
-                langOptions.forEach(option => {
-                    option.addEventListener('click', function() {
-                        localStorage.setItem('preferredLanguage', this.getAttribute('href'));
-                    });
-                });
-            }
-        });
-
         // Handle image switching with pixel-perfect click detection
         document.addEventListener('DOMContentLoaded', function() {
             const errorImage = document.getElementById('errorImage');
@@ -280,7 +223,7 @@
                         
                         // After fade out completes, switch the image and fade in
                         setTimeout(function() {
-                            errorImage.src = 'gorseller/orangecat.png';
+                            errorImage.src = '../images/orangecat.png';
                             errorImage.alt = 'Şaşırmış Kedi';
                             errorImage.classList.remove('fade-out');
                             errorImage.classList.add('fade-in');
@@ -295,7 +238,7 @@
                     
                     // After fade out completes, switch the image and fade in
                     setTimeout(function() {
-                        errorImage.src = 'gorseller/orangecat.png';
+                        errorImage.src = '../images/orangecat.png';
                         errorImage.alt = 'Şaşırmış Kedi';
                         errorImage.classList.remove('fade-out');
                         errorImage.classList.add('fade-in');
