@@ -261,7 +261,6 @@ nav a.active {
 }
 
 .members-grid-row:hover {
-  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .members-grid-row:last-child {
