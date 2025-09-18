@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muptela Cafe | Menu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Selection Popup -->
+    <div id="language-popup" class="popup">
+        <div class="popup-content">
+            <div class="logo-container">
+                <div class="cafe-logo">M</div>
+            </div>
+            <h2 id="language-selection-title">Lütfen dilinizi seçin</h2>
+            <div class="language-buttons">
+                <button class="language-btn" data-lang="tr">Türkçe</button>
+                <button class="language-btn" data-lang="en">English</button>
+                <button class="language-btn" data-lang="de">Deutsch</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="cafe-logo">M</div>
+                <h1 id="cafe-name">Muptela Cafe</h1>
+            </div>
+            <h2 id="menu-title">Menü</h2>
+        </div>
+    </header>
+
+    <main>
+        <!-- Menu Categories -->
+        <div id="categories-container" class="categories-container">
+            <!-- Categories will be loaded dynamically -->
+        </div>
+
+        <!-- Menu Items -->
+        <div id="menu-items-container" class="menu-items-container">
+            <!-- Menu items will be loaded dynamically -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <div class="cafe-logo">M</div>
+                <span>Muptela Cafe</span>
+            </div>
+            <p>&copy; 2025 Muptela Cafe</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="javascript/utils.js"></script>
+    <script src="javascript/languageSelector.js"></script>
+    <script src="javascript/menuRenderer.js"></script>
+    <script src="javascript/categoryLoader.js"></script>
+    <script src="javascript/popupHandler.js"></script>
+    <script>
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show language selection popup on page load
+            showLanguagePopup();
+        });
+    </script>
+</body>
+</html>

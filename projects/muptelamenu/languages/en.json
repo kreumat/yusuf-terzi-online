@@ -1,0 +1,11 @@
+{
+  "pageTitle": "QR Menu",
+  "menuTitle": "Menu",
+  "languageSelectionPrompt": "Please choose your language",
+  "category_desserts": "Desserts",
+  "category_cold_drinks": "Cold Drinks",
+  "category_teas": "Teas",
+  "no_items_found": "No items found in this category",
+  "error_loading_items": "Error loading menu items",
+  "loading": "Loading..."
+}

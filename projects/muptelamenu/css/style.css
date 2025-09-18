@@ -1,0 +1,372 @@
+/* Modern CSS for Muptela Cafe Menu */
+
+/* Import Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Color variables */
+:root {
+    --primary: #8D5B4C;     /* Rich coffee brown */
+    --primary-light: #A67C68;
+    --primary-dark: #614030;
+    --accent: #F8B400;      /* Warm gold */
+    --accent-light: #FFD26A;
+    --text-dark: #2D2926;   /* Almost black */
+    --text-medium: #595751;
+    --text-light: #8D8B84;
+    --background: #FAF7F2;  /* Creamy off-white */
+    --white: #FFFFFF;
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    --popup-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-bottom: 100px; /* Space for footer */
+    position: relative;
+}
+
+/* Logo Styles */
+.cafe-logo {
+    background-color: var(--primary);
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.popup .logo-container {
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.popup .cafe-logo {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+header {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#cafe-name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+#menu-title {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-medium);
+    margin-top: 0.25rem;
+}
+
+/* Language Popup Styles */
+.popup {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: var(--white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: var(--popup-shadow);
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    animation: popIn 0.4s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#language-selection-title {
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.language-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.language-btn {
+    background-color: var(--background);
+    color: var(--text-dark);
+    border: none;
+    padding: 0.9rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.language-btn:hover {
+    background-color: var(--primary-light);
+    color: var(--white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.language-flag {
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Categories Styles */
+.categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.category-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    padding: 1.2rem;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+    border-color: var(--accent-light);
+}
+
+.category-card.active {
+    background-color: var(--primary-light);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+/* Menu Items Styles */
+.menu-items-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 4rem auto;
+}
+
+.menu-item-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    width: 300px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.menu-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.menu-item-details {
+    padding: 1.5rem;
+}
+
+.menu-item-name {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.menu-item-description {
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.menu-item-price {
+    font-size: 1.2rem;
+    color: var(--accent);
+    font-weight: 600;
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background-color: rgba(248, 180, 0, 0.1);
+    border-radius: 6px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-logo .cafe-logo {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+    background-color: var(--accent);
+    color: var(--primary-dark);
+}
+
+/* Loading and Error States */
+.loading, .error, .no-items {
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem auto;
+    color: var(--text-medium);
+    max-width: 400px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+.error {
+    color: #e74c3c;
+    border-left: 4px solid #e74c3c;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .logo-container {
+        margin-bottom: 0;
+    }
+
+    .language-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .footer-logo {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .menu-item-card {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .category-card {
+        width: 130px;
+    }
+    
+    #cafe-name {
+        font-size: 1.4rem;
+    }
+}

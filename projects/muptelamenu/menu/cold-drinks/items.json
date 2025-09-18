@@ -1,0 +1,110 @@
+[
+  {
+    "price": 15.00,
+    "image": "images/menu-item-images/placeholder.png",
+    "translations": {
+      "tr": {
+        "name": "Cola",
+        "description": "Klasik gazlı içecek, soğuk servis edilir."
+      },
+      "en": {
+        "name": "Cola",
+        "description": "Classic carbonated soft drink, served cold."
+      },
+      "de": {
+        "name": "Cola",
+        "description": "Klassisches kohlensäurehaltiges Erfrischungsgetränk, kalt serviert."
+      }
+    }
+  },
+  {
+    "price": 12.50,
+    "image": "images/menu-item-images/placeholder.png",
+    "translations": {
+      "tr": {
+        "name": "Ayran",
+        "description": "Geleneksel Türk yoğurt içeceği, tuz ile servis edilir."
+      },
+      "en": {
+        "name": "Ayran",
+        "description": "Traditional Turkish yogurt drink, served with salt."
+      },
+      "de": {
+        "name": "Ayran",
+        "description": "Traditionelles türkisches Joghurtgetränk, mit Salz serviert."
+      }
+    }
+  },
+  {
+    "price": 20.00,
+    "image": "images/menu-item-images/placeholder.png",
+    "translations": {
+      "tr": {
+        "name": "Limonata",
+        "description": "Taze sıkılmış limondan yapılan serinletici içecek."
+      },
+      "en": {
+        "name": "Lemonade",
+        "description": "Refreshing drink made from freshly squeezed lemons."
+      },
+      "de": {
+        "name": "Limonade",
+        "description": "Erfrischendes Getränk aus frisch gepressten Zitronen."
+      }
+    }
+  },
+  {
+    "price": 25.00,
+    "image": "images/menu-item-images/placeholder.png",
+    "translations": {
+      "tr": {
+        "name": "Portakal Suyu",
+        "description": "Taze sıkılmış portakallardan yapılan doğal meyve suyu."
+      },
+      "en": {
+        "name": "Orange Juice",
+        "description": "Natural fruit juice made from freshly squeezed oranges."
+      },
+      "de": {
+        "name": "Orangensaft",
+        "description": "Natürlicher Fruchtsaft aus frisch gepressten Orangen."
+      }
+    }
+  },
+  {
+    "price": 10.00,
+    "image": "images/menu-item-images/placeholder.png",
+    "translations": {
+      "tr": {
+        "name": "Maden Suyu",
+        "description": "Doğal mineralli su, ferahlatıcı ve sağlıklı."
+      },
+      "en": {
+        "name": "Mineral Water",
+        "description": "Natural sparkling water, refreshing and healthy."
+      },
+      "de": {
+        "name": "Mineralwasser",
+        "description": "Natürliches Sprudelwasser, erfrischend und gesund."
+      }
+    }
+  },
+  {
+    "price": 18.00,
+    "image": "images/menu-item-images/placeholder.png",
+    "translations": {
+      "tr": {
+        "name": "Buzlu Çay",
+        "description": "Soğuk demlenmiş çay, limon ve şeker ile servis edilir."
+      },
+      "en": {
+        "name": "Iced Tea",
+        "description": "Cold brewed tea, served with lemon and sugar."
+      },
+      "de": {
+        "name": "Eistee",
+        "description": "Kalt gebrühter Tee, serviert mit Zitrone und Zucker."
+      }
+    }
+  }
+]

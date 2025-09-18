@@ -1,0 +1,124 @@
+[
+
+
+  {
+    "price": 54567898765.00,
+    "image": "images/menu-item-images/teas/cay.png",
+    "translations": {
+      "tr": {
+        "name": "Çay",
+        "description": "Geleneksel Türk çayı, ince belli bardakta sıcak servis edilir."
+      },
+      "en": {
+        "name": "Turkish Tea",
+        "description": "Traditional Turkish tea, served hot in tulip-shaped glasses."
+      },
+      "de": {
+        "name": "Türkischer Tee",
+        "description": "Traditioneller türkischer Tee, heiß serviert in tulpenförmigen Gläsern."
+      }
+    }
+  },
+  
+  
+  {
+    "price": 12.00,
+    "image": "images/menu-item-images/teas/ihlamur.png",
+    "translations": {
+      "tr": {
+        "name": "Ihlamur",
+        "description": "Rahatlatıcı bitki çayı, soğuk algınlığı ve gribe iyi gelir."
+      },
+      "en": {
+        "name": "Linden Tea",
+        "description": "Relaxing herbal tea, good for cold and flu symptoms."
+      },
+      "de": {
+        "name": "Lindenblütentee",
+        "description": "Entspannender Kräutertee, gut bei Erkältungs- und Grippesymptomen."
+      }
+    }
+  },
+  
+  
+  {
+    "price": 12.00,
+    "image": "images/menu-item-images/teas/adacayi.png",
+    "translations": {
+      "tr": {
+        "name": "Adaçayı",
+        "description": "Aromatik bitki çayı, sindirim ve boğaz ağrısına iyi gelir."
+      },
+      "en": {
+        "name": "Sage Tea",
+        "description": "Aromatic herbal tea, good for digestion and sore throat."
+      },
+      "de": {
+        "name": "Salbeitee",
+        "description": "Aromatischer Kräutertee, gut für die Verdauung und bei Halsschmerzen."
+      }
+    }
+  },
+  
+  
+  {
+    "price": 14.00,
+    "image": "images/menu-item-images/teas/yesilcay.png",
+    "translations": {
+      "tr": {
+        "name": "Yeşil Çay",
+        "description": "Antioksidan açısından zengin çay, hafif ve ferahlatıcı."
+      },
+      "en": {
+        "name": "Green Tea",
+        "description": "Antioxidant-rich tea, light and refreshing."
+      },
+      "de": {
+        "name": "Grüner Tee",
+        "description": "Antioxidantienreicher Tee, leicht und erfrischend."
+      }
+    }
+  },
+  
+  
+  {
+    "price": 12.50,
+    "image": "images/menu-item-images/teas/papatyacayi.png",
+    "translations": {
+      "tr": {
+        "name": "Papatya Çayı",
+        "description": "Sakinleştirici bitki çayı, uyku sorunlarına iyi gelir."
+      },
+      "en": {
+        "name": "Chamomile Tea",
+        "description": "Calming herbal tea, good for sleep issues."
+      },
+      "de": {
+        "name": "Kamillentee",
+        "description": "Beruhigender Kräutertee, gut bei Schlafproblemen."
+      }
+    }
+  },
+  
+  
+  {
+    "price": 13.00,
+    "image": "images/menu-item-images/teas/elmacayi.png",
+    "translations": {
+      "tr": {
+        "name": "Elma Çayı",
+        "description": "Tatlı ve aromatik meyve çayı, tarçın ile servis edilir."
+      },
+      "en": {
+        "name": "Apple Tea",
+        "description": "Sweet and aromatic fruit tea, served with cinnamon."
+      },
+      "de": {
+        "name": "Apfeltee",
+        "description": "Süßer und aromatischer Früchtetee, mit Zimt serviert."
+      }
+    }
+  }
+  
+  
+]
