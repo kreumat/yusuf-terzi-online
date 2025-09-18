@@ -24,7 +24,7 @@ function loadCategories() {
     categoriesContainer.innerHTML = '';
 
     // Available categories (based on the folder structure)
-    const categories = ['desserts', 'cold-drinks', 'teas'];
+    const categories = ['desserts', 'cold-drinks', 'teas', 'non-edibles' ];
 
     // Create a category button for each category
     categories.forEach(category => {

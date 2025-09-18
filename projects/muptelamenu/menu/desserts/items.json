@@ -1,7 +1,7 @@
 [
   {
     "price": 45.90,
-    "image": "images/menu-item-images/placeholder.png",
+    "image": "images/menu-item-images/desserts/placeholder.png",
     "translations": {
       "tr": {
         "name": "Baklava",
@@ -16,10 +16,17 @@
         "description": "Traditionelles türkisches Dessert aus dünnem Blätterteig mit Nüssen."
       }
     }
-  },
+  }
+  
+  
+  
+  ,
+  
+  
+  
   {
     "price": 35.50,
-    "image": "images/menu-item-images/placeholder.png",
+    "image": "images/menu-item-images/desserts/placeholder.png",
     "translations": {
       "tr": {
         "name": "Sütlaç",
@@ -34,10 +41,18 @@
         "description": "Traditionelles türkisches Milchdessert aus Reis, Milch und Zucker."
       }
     }
-  },
+  }
+  
+  
+  
+  ,
+  
+  
+  
+  
   {
     "price": 55.00,
-    "image": "images/menu-item-images/placeholder.png",
+    "image": "images/menu-item-images/desserts/placeholder.png",
     "translations": {
       "tr": {
         "name": "Künefe",
@@ -52,10 +67,17 @@
         "description": "Warmes, in Sirup getränktes Dessert aus Fadennudeln mit Käsefüllung."
       }
     }
-  },
+  }
+  
+  
+  
+  ,
+  
+  
+  
   {
     "price": 40.00,
-    "image": "images/menu-item-images/placeholder.png",
+    "image": "images/menu-item-images/desserts/placeholder.png",
     "translations": {
       "tr": {
         "name": "Kazandibi",
@@ -70,10 +92,18 @@
         "description": "Milchpudding-Dessert mit einer karamellisierten Bodenschicht."
       }
     }
-  },
+  }
+  
+  
+  
+  ,
+  
+  
+  
+  
   {
     "price": 30.00,
-    "image": "images/menu-item-images/placeholder.png",
+    "image": "images/menu-item-images/desserts/placeholder.png",
     "translations": {
       "tr": {
         "name": "Dondurma",

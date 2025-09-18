@@ -18,8 +18,13 @@
         "description": "Traditioneller türkischer Tee, heiß serviert in tulpenförmigen Gläsern."
       }
     }
-  },
+  }
   
+  
+  
+  ,
+ 
+ 
   
   {
     "price": 12.00,
@@ -38,7 +43,12 @@
         "description": "Entspannender Kräutertee, gut bei Erkältungs- und Grippesymptomen."
       }
     }
-  },
+  }
+  
+  
+  
+  ,
+  
   
   
   {
@@ -58,7 +68,12 @@
         "description": "Aromatischer Kräutertee, gut für die Verdauung und bei Halsschmerzen."
       }
     }
-  },
+  }
+  
+  
+  
+  ,
+  
   
   
   {
@@ -78,7 +93,12 @@
         "description": "Antioxidantienreicher Tee, leicht und erfrischend."
       }
     }
-  },
+  }
+  
+  
+  
+  ,
+  
   
   
   {
@@ -98,7 +118,33 @@
         "description": "Beruhigender Kräutertee, gut bei Schlafproblemen."
       }
     }
-  },
+  }
+  
+  
+  
+  ,
+    {
+    "price": 999.99,
+    "image": "images/menu-item-images/teas/placeholder.png",
+    "translations": {
+      "tr": {
+        "name": "Bilmemney Çayı",
+        "description": "Bilmem ney bilmemney."
+      },
+      "en": {
+        "name": "IDK Tea",
+        "description": "I really don't know."
+      },
+      "de": {
+        "name": "IWN Tee",
+        "description": "Ich weiss nicht. Vallah!"
+      }
+    }
+  }
+  
+  
+  
+  ,
   
   
   {

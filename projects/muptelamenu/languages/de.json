@@ -5,6 +5,7 @@
   "category_desserts": "Desserts",
   "category_cold_drinks": "Kaltgetränke",
   "category_teas": "Tees",
+  "category_non_edibles": "Nicht Essbar",
   "no_items_found": "Keine Artikel in dieser Kategorie gefunden",
   "error_loading_items": "Fehler beim Laden der Menüelemente",
   "loading": "Wird geladen..."

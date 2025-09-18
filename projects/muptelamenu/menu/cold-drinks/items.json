@@ -1,7 +1,7 @@
 [
   {
     "price": 15.00,
-    "image": "images/menu-item-images/placeholder.png",
+    "image": "images/menu-item-images/cold-drinks/placeholder.png",
     "translations": {
       "tr": {
         "name": "Cola",
@@ -19,7 +19,7 @@
   },
   {
     "price": 12.50,
-    "image": "images/menu-item-images/placeholder.png",
+    "image": "images/menu-item-images/cold-drinks/placeholder.png",
     "translations": {
       "tr": {
         "name": "Ayran",
@@ -37,7 +37,7 @@
   },
   {
     "price": 20.00,
-    "image": "images/menu-item-images/placeholder.png",
+    "image": "images/menu-item-images/cold-drinks/placeholder.png",
     "translations": {
       "tr": {
         "name": "Limonata",
@@ -55,7 +55,7 @@
   },
   {
     "price": 25.00,
-    "image": "images/menu-item-images/placeholder.png",
+    "image": "images/menu-item-images/cold-drinks/placeholder.png",
     "translations": {
       "tr": {
         "name": "Portakal Suyu",
@@ -73,7 +73,7 @@
   },
   {
     "price": 10.00,
-    "image": "images/menu-item-images/placeholder.png",
+    "image": "images/menu-item-images/cold-drinks/placeholder.png",
     "translations": {
       "tr": {
         "name": "Maden Suyu",
@@ -91,7 +91,7 @@
   },
   {
     "price": 18.00,
-    "image": "images/menu-item-images/placeholder.png",
+    "image": "images/menu-item-images/cold-drinks/placeholder.png",
     "translations": {
       "tr": {
         "name": "Buzlu Çay",
