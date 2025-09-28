@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartoon Face Designer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cartoon Face Designer</h1>
+        
+        <div class="designer-container">
+            <div class="controls-panel">
+                <div class="form-group">
+                    <label for="name-input">Your Name:</label>
+                    <input type="text" id="name-input" placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="hair-color">Hair Color:</label>
+                    <select id="hair-color">
+                        <option value="ash">Ash</option>
+                        <option value="blonde">Blonde</option>
+                        <option value="brown" selected>Brown</option>
+                        <option value="dark">Dark</option>
+                        <option value="red">Red</option>
+                        <option value="white">White</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hair-style">Hair Style:</label>
+                    <select id="hair-style">
+                        <option value="straight" selected>Straight</option>
+                        <option value="curly">Curly</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="glasses-style">Glasses:</label>
+                    <select id="glasses-style">
+                        <option value="none" selected>None</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                    </select>
+                </div>
+                
+                <button id="save-btn" class="save-button">Save as PNG</button>
+            </div>
+            
+            <div class="preview-panel">
+                <div class="name-display" id="name-display">Your Name</div>
+                <div class="face-container">
+                    <canvas id="face-canvas" width="400" height="400"></canvas>
+                </div>
+                <p id="description-text" class="description">
+                    I have brown straight hair and no glasses.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
