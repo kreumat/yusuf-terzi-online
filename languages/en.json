@@ -4,11 +4,10 @@
   "welcome": "Welcome to my personal website!",
   "intro": "I'm an ELT student with a growing passion for creating things — both in the classroom and on the web.",
   "projects": "My Projects",
-  "ssbggNote": "This is a static demo of a PHP website. It may appear broken on mobile devices.",
   "terziGameNote": "A very simple 2D pixel game made with Phaser JS.",
   "contact": "Contact",
   "contactText": "For private English lessons, materials, or other questions, contact me:",
   "copyright": "© 2025 Yusuf Terzi. All rights reserved.",
-  "societyname": "A community’s website; due to certain rules, we can’t say which community it belongs to. But who knows? Maybe it’s related to English Language Teaching.",
+  "societyname": "A society’s website; due to certain rules, we can’t say which community it belongs to. But who knows? Maybe it’s related to English Language Teaching.",
   "viewproject": "View Project"
 }
