@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listen and Repeat</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="listen-repeat-body">
+    <div class="activity-container">
+        <a href="../pronunciation.html" class="back-link">&larr; Go back to Pronunciation</a>
+        <div class="cards-wrapper">
+            <div class="card listen-card">
+                <h2 id="word-display">Word</h2>
+                <button id="listen-btn" class="icon-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <p class="card-description">Click the speaker to listen</p>
+            </div>
+            <div class="card pronunciation-card">
+                <button id="mic-btn" class="icon-btn">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <p class="card-description">Click the mic to speak</p>
+            </div>
+        </div>
+    </div>
+    <div class="feedback-container">
+        <p>Right now you are saying: <span id="feedback-text">-</span></p>
+    </div>
+    <div id="mic-status" class="mic-status-idle">Click the microphone to start speaking</div>
+    <div id="message-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const words = [
+                'apple', 'book', 'car', 'dog', 'eye', 'fish', 'girl', 'house', 'ice', 'jump',
+                'kite', 'lemon', 'mouse', 'nose', 'orange', 'pencil', 'queen', 'red', 'sun', 'tree',
+                'umbrella', 'violet', 'water', 'yellow', 'zebra', 'one', 'two', 'three', 'four', 'five'
+            ];
+
+            let shuffledWords = [];
+            let currentWordIndex = 0;
+            let recognition;
+            let timeoutId;
+            let isCorrect = false;
+
+            const wordDisplay = document.getElementById('word-display');
+            const listenBtn = document.getElementById('listen-btn');
+            const micBtn = document.getElementById('mic-btn');
+            const feedbackText = document.getElementById('feedback-text');
+            const messageContainer = document.getElementById('message-container');
+            const activityContainer = document.querySelector('.activity-container');
+            const micStatus = document.getElementById('mic-status');
+            const backLink = document.querySelector('.back-link');
+            const feedbackContainer = document.querySelector('.feedback-container');
+            const cardsWrapper = document.querySelector('.cards-wrapper');
+
+            const audio = new Audio('../../audio/apple.mp3');
+
+            // Speech Recognition setup
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechRecognition) {
+                recognition = new SpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.continuous = false;
+                recognition.interimResults = true;
+
+                recognition.onstart = () => {
+                    updateMicStatus('listening');
+                };
+
+                recognition.onresult = (event) => {
+                    const transcript = Array.from(event.results)
+                        .map(result => result[0])
+                        .map(result => result.transcript)
+                        .join('');
+
+                    feedbackText.textContent = transcript || '-';
+
+                    if (event.results[0].isFinal) {
+                        checkAnswer(transcript.toLowerCase().trim());
+                    }
+                };
+
+                recognition.onerror = (event) => {
+                    displayMessage(`Speech recognition error: ${event.error}`, 'error');
+                    stopListening();
+                    micBtn.disabled = false;
+                };
+
+                recognition.onend = () => {
+                    stopListening();
+                    if (!isCorrect) {
+                        micBtn.disabled = false;
+                    }
+                };
+
+            } else {
+                displayMessage('Speech recognition not supported in this browser.', 'error');
+                micBtn.disabled = true;
+            }
+
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function startGame() {
+                shuffledWords = shuffle([...words]);
+                currentWordIndex = 0;
+                displayNextWord();
+            }
+
+            function displayNextWord() {
+                if (currentWordIndex < shuffledWords.length) {
+                    isCorrect = false; // Reset the flag for the new word
+                    wordDisplay.textContent = shuffledWords[currentWordIndex];
+                    feedbackText.textContent = '-';
+                    messageContainer.innerHTML = '';
+                    micBtn.disabled = false;
+                    updateMicStatus('idle');
+                } else {
+                    showCompletionMessage();
+                }
+            }
+
+            function showCompletionMessage() {
+                if (cardsWrapper) cardsWrapper.style.display = 'none';
+                if (feedbackContainer) feedbackContainer.style.display = 'none';
+                micStatus.style.display = 'none';
+                messageContainer.innerHTML = `<span class="final-completion">You completed the activity!</span>`;
+                if (backLink) backLink.classList.add('glow');
+            }
+
+            function displayMessage(text, type) {
+                const className = type === 'correct' ? 'message-correct' :
+                                  type === 'error' ? 'message-error' : 'message-countdown';
+                messageContainer.innerHTML = `<p class="${className}">${text}</p>`;
+            }
+
+            function updateMicStatus(status) {
+                if (status === 'listening') {
+                    micStatus.textContent = 'Listening...';
+                    micStatus.className = 'mic-status-listening';
+                } else if (status === 'waiting') {
+                    micStatus.textContent = 'Waiting for microphone permission...';
+                    micStatus.className = 'mic-status-waiting';
+                }
+                else {
+                    micStatus.textContent = 'Click the microphone to start speaking';
+                    micStatus.className = 'mic-status-idle';
+                }
+            }
+
+            function startListening() {
+                if (!recognition) return;
+
+                micBtn.classList.add('listening');
+                micBtn.disabled = true;
+                feedbackText.textContent = '...';
+                updateMicStatus('waiting');
+                recognition.start();
+
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    recognition.stop();
+                    displayMessage('Try Again!', 'error');
+                    updateMicStatus('idle');
+                    micBtn.disabled = false;
+                }, 20000); // 20-second timer
+            }
+
+            function stopListening() {
+                if (!recognition) return;
+                micBtn.classList.remove('listening');
+                clearTimeout(timeoutId);
+                updateMicStatus('idle');
+            }
+
+            function checkAnswer(transcript) {
+                const currentWord = shuffledWords[currentWordIndex].toLowerCase();
+                if (transcript === currentWord) {
+                    isCorrect = true; // Set the flag to true on a correct answer
+                    micBtn.disabled = true; // Disable the button immediately
+                    clearTimeout(timeoutId);
+                    recognition.stop();
+                    displayMessage("That's Right!", 'correct');
+                    updateMicStatus('idle');
+
+                    let countdown = 3;
+                    const countdownInterval = setInterval(() => {
+                        displayMessage(`Get ready for next one: ${countdown}...`, 'countdown');
+                        countdown--;
+                        if (countdown < 0) {
+                            clearInterval(countdownInterval);
+                            currentWordIndex++;
+                            displayNextWord();
+                        }
+                    }, 1000);
+
+                }
+            }
+
+            listenBtn.addEventListener('click', () => {
+                audio.play();
+            });
+
+            micBtn.addEventListener('click', startListening);
+
+            startGame();
+        });
+    </script>
+</body>
+</html>

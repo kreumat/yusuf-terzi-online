@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom Objects Activity</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        /* Styles for the new drop target and layout */
+        .drop-zone {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Pushes description and target apart */
+            padding: 0.25rem 1rem; /* Reduced vertical padding */
+        }
+        .description-text {
+            flex-grow: 1; /* Allows text to take available space */
+            margin-right: 0.5rem;
+        }
+        .drop-target {
+            width: 50px;
+            height: 50px;
+            border: 2px dashed var(--primary-color);
+            border-radius: 8px;
+            flex-shrink: 0; /* Prevents the target from shrinking */
+            transition: background-color 0.2s;
+        }
+        .drop-target.hovered {
+            background-color: #e8f4ff;
+        }
+        .drop-target .draggable-item {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        /* Completion styles */
+        .completion-message {
+            display: none; /* Hidden by default */
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745; /* Cheerful green */
+            margin-top: 1rem;
+        }
+        .back-link.glow {
+            animation: glow 1.5s infinite ease-in-out;
+            border-radius: var(--border-radius); /* Add radius for glow effect */
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 8px var(--secondary-color); }
+            50% { box-shadow: 0 0 25px var(--secondary-color); }
+        }
+
+        /* Grid layout for desktop */
+        #itemsGrid1, #dropZones1 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .item-container {
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 0.5rem;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, opacity 0.2s;
+            /* New sizing rules for consistency */
+            height: 80px; /* Adjust height as needed */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+
+        .draggable-item {
+            max-width: 100%;
+            max-height: 100%; /* Ensure image fits within the container's height */
+            height: auto;
+            width: auto;
+            object-fit: contain; /* Scales the image to fit while maintaining aspect ratio */
+            cursor: grab;
+        }
+		
+        .mobileviewdescription {
+			padding-bottom: 20px;
+        }
+
+        .item-container.used {
+            opacity: 0.4;
+            background-color: #e9e9e9;
+        }
+
+
+        @media (max-width: 768px) {
+            /* Override grid layout for mobile */
+            #itemsGrid1, #dropZones1 {
+                display: flex;
+                flex-direction: column;
+            }
+            .item-container {
+                height: 60px; /* Adjust for smaller screens */
+            }
+            .item-container.selected {
+                border: 3px solid blue;
+            }
+            /* The .used class is now on the container */
+            .item-container.used {
+                pointer-events: none;
+            }
+            .drop-target.incorrect-mobile {
+                border: 2px solid red;
+            }
+            .items-grid.glow-hint {
+                box-shadow: 0 0 15px lightblue;
+                transition: box-shadow 0.3s ease-in-out;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="correctSound" src="../../../files/audio/apple.mp3" preload="auto"></audio>
+    <div class="activity-container">
+        <a href="../vocabulary.html" class="back-link">&larr; Go back to activities</a>
+        <h1>Vocabulary Activity: Classroom Objects</h1>
+		<p class="mobileviewdescription">If you are using a tablet or smartphone, instead of dragging, tap to select the pictures and then tap their target location.</p>
+
+        <!-- Activity 1: Description Matching -->
+        <section id="activity1">
+            <div class="draggable-items">
+                <h3>Drag the Picture</h3>
+                <div class="items-grid" id="itemsGrid1"></div>
+            </div>
+            <div class="drop-zones">
+                <h3>To the Correct Description</h3>
+                <div id="dropZones1"></div>
+            </div>
+        </section>
+
+        <!-- Activity 2 has been removed -->
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const itemsData = [
+            { id: 'board', name: 'Board', description: 'The teacher writes on this.' },
+            { id: 'book', name: 'Book', description: 'We read stories from this.' },
+            { id: 'chair', name: 'Chair', description: 'We sit on this in the classroom.' },
+            { id: 'crayon', name: 'Crayon', description: 'We use this to color pictures.' },
+            { id: 'desk', name: 'Desk', description: 'We put our books on this.' },
+            { id: 'notebook', name: 'Notebook', description: 'We write in this with a pencil.' },
+            { id: 'pen', name: 'Pen', description: 'We use this to write with ink.' },
+            { id: 'pencil', name: 'Pencil', description: 'We use this to write and can erase it.' },
+            { id: 'pencilcase', name: 'Pencil Case', description: 'We put our pencils inside this.' },
+            { id: 'rubber', name: 'Rubber', description: 'We use this to erase mistakes.' },
+            { id: 'ruler', name: 'Ruler', description: 'We use this to draw straight lines.' },
+            { id: 'schoolbag', name: 'Schoolbag', description: 'We carry our books in this.' },
+            { id: 'scissors', name: 'Scissors', description: 'We use these to cut paper.' },
+            { id: 'sharpener', name: 'Sharpener', description: 'This makes our pencils sharp.' },
+            { id: 'table', name: 'Table', description: 'A piece of furniture with a flat top and one or more legs.' }
+        ];
+
+        const correctSound = document.getElementById('correctSound');
+        let correctMatches1 = 0;
+
+        // --- ACTIVITY 1 SETUP ---
+        const itemsGrid1 = document.getElementById('itemsGrid1');
+        const dropZones1 = document.getElementById('dropZones1');
+
+        function setupActivity1() {
+            const shuffledDescriptions = [...itemsData].sort(() => Math.random() - 0.5);
+
+            itemsData.forEach(item => {
+                // Create the container
+                const container = document.createElement('div');
+                container.className = 'item-container';
+                container.dataset.itemId = item.id; // Keep the ID on the container for mobile logic
+
+                // Create the image
+                const img = document.createElement('img');
+                img.src = `../../../files/images/vocabulary/classroomobjects/${item.id}.png`;
+                img.id = `item-${item.id}`;
+                img.className = 'draggable-item';
+                img.draggable = true;
+                img.dataset.itemId = item.id; // Also on the image for drag/drop logic
+
+                // Add listeners to the container for mobile, but image for desktop
+                container.appendChild(img);
+                itemsGrid1.appendChild(container);
+
+                // Add desktop drag listener to the image itself
+                img.addEventListener('dragstart', handleDragStart);
+            });
+
+            shuffledDescriptions.forEach(item => {
+                const dropZone = document.createElement('div');
+                dropZone.className = 'drop-zone';
+                dropZone.dataset.itemId = item.id;
+
+                const descriptionSpan = document.createElement('span');
+                descriptionSpan.className = 'description-text';
+                descriptionSpan.textContent = item.description;
+
+                const dropTarget = document.createElement('div');
+                dropTarget.className = 'drop-target';
+                dropTarget.dataset.itemId = item.id; // Also give the target the ID
+                dropTarget.addEventListener('dragover', handleDragOver);
+                dropTarget.addEventListener('dragleave', handleDragLeave);
+                dropTarget.addEventListener('drop', handleDropActivity1);
+
+                dropZone.appendChild(descriptionSpan);
+                dropZone.appendChild(dropTarget);
+                dropZones1.appendChild(dropZone);
+            });
+        }
+
+        // --- DRAG & DROP HANDLERS ---
+        function handleDragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.id);
+            // Fix for drag ghosting issue
+            e.dataTransfer.setDragImage(e.target, e.target.width / 2, e.target.height / 2);
+        }
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('hovered');
+        }
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('hovered');
+        }
+
+        function handleDropActivity1(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('hovered');
+            const draggedItemId = e.dataTransfer.getData('text/plain');
+            const draggedItem = document.getElementById(draggedItemId);
+            const dropTarget = e.currentTarget;
+            const dropZone = dropTarget.parentElement; // The parent is the main drop-zone
+
+            if (draggedItem.dataset.itemId === dropTarget.dataset.itemId) {
+                dropTarget.innerHTML = '';
+                dropTarget.appendChild(draggedItem);
+                dropZone.classList.add('correct');
+                draggedItem.draggable = false;
+                draggedItem.style.cursor = 'default';
+                correctSound.play();
+                correctMatches1++;
+
+                if (correctMatches1 === itemsData.length) {
+                    showCompletionFeedback();
+                }
+            } else {
+                dropZone.classList.add('incorrect');
+                setTimeout(() => dropZone.classList.remove('incorrect'), 500);
+            }
+        }
+
+        // --- INITIALIZE ---
+        setupActivity1();
+
+        // --- MOBILE CLICK-TO-MATCH LOGIC ---
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        if (isMobile) {
+            let selectedImage = null;
+
+            // On mobile, interactions are with the container, not the image
+            const itemContainers = document.querySelectorAll('.item-container');
+            const dropTargets = document.querySelectorAll('.drop-target');
+
+            itemContainers.forEach(container => {
+                // Disable dragging on the image inside
+                const img = container.querySelector('.draggable-item');
+                if (img) {
+                    img.draggable = false;
+                }
+                // Add click listener to the container
+                container.addEventListener('click', handleImageClick);
+            });
+
+            dropTargets.forEach(target => {
+                target.removeEventListener('dragover', handleDragOver);
+                target.removeEventListener('dragleave', handleDragLeave);
+                target.removeEventListener('drop', handleDropActivity1);
+                target.addEventListener('click', handleTargetClick);
+            });
+
+            function handleImageClick(e) {
+                const clickedContainer = e.currentTarget;
+                // Remove 'selected' from any other container
+                itemContainers.forEach(container => container.classList.remove('selected'));
+                // Add 'selected' to the clicked container
+                clickedContainer.classList.add('selected');
+                selectedImage = clickedContainer; // This now holds the container
+                // Remove glow hint if present
+                itemsGrid1.classList.remove('glow-hint');
+            }
+
+            function handleTargetClick(e) {
+                const dropTarget = e.currentTarget;
+
+                if (!selectedImage) {
+                    // Hint to the user to select an image first
+                    itemsGrid1.classList.add('glow-hint');
+                    setTimeout(() => itemsGrid1.classList.remove('glow-hint'), 1000);
+                    return;
+                }
+
+                // Check the dataset ID from the selected container
+                if (selectedImage.dataset.itemId === dropTarget.dataset.itemId) {
+                    dropTarget.innerHTML = '';
+                    // Find the image inside the container to clone it
+                    const imageToClone = selectedImage.querySelector('.draggable-item');
+                    const clonedImage = imageToClone.cloneNode(true);
+                    clonedImage.style.cursor = 'default';
+                    dropTarget.appendChild(clonedImage);
+
+                    // Update the container's state
+                    selectedImage.classList.remove('selected');
+                    selectedImage.classList.add('used');
+                    correctSound.play();
+                    correctMatches1++;
+                    selectedImage = null; // Reset selection
+
+                    if (correctMatches1 === itemsData.length) {
+                        showCompletionFeedback();
+                    }
+                } else {
+                    // Incorrect match feedback
+                    dropTarget.classList.add('incorrect-mobile');
+                    setTimeout(() => dropTarget.classList.remove('incorrect-mobile'), 1000);
+                }
+            }
+        }
+
+        function showCompletionFeedback() {
+            // Create and display the completion message
+            const title = document.querySelector('h1');
+            if (title) {
+                const message = document.createElement('p');
+                message.className = 'completion-message';
+                message.textContent = 'Congratulations! You completed the activity.';
+                message.style.display = 'block'; // Make it visible
+                title.insertAdjacentElement('afterend', message);
+            }
+        }
+    });
+    </script>
+</body>
+</html>

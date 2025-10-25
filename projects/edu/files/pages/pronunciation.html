@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronunciation Practice - Classroom Life</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .activity-hub {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .activity-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 25px;
+            width: 300px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        .card p {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="site-title">
+                <h1><a href="../../index.html">Classroom Life 🚀</a></h1>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-toggle" aria-label="toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+                <ul>
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="./learning_outcomes.html">Learning Outcomes</a></li>
+                    <li><a href="./vocabulary.html">Vocabulary</a></li>
+                    <li><a href="#">Reading</a></li>
+                    <li><a href="#">Listening</a></li>
+                    <li><a href="./pronunciation.html">Pronunciation</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="activity-hub">
+                <h1>Pronunciation Practice</h1>
+                <p>Choose an activity below to practice your English pronunciation.</p>
+                <div class="activity-grid">
+                    <a href="./pronunciationpages/listen_repeat.html" class="card">
+                        <h3>Listen & Repeat Practice</h3>
+                        <p>In these pronunciation practices, you listen to single words and try to pronounce them correctly.</p>
+                    </a>
+                    <a href="./pronunciationpages/dialogue_practice.html" class="card">
+                        <h3>Dialogue Pronunciation Practice</h3>
+                        <p>In this activity, you will see dialogues. You will read a character's lines to practice your pronunciation in a conversation.</p>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navUl = document.querySelector('.main-nav ul');
+
+            if (navToggle && navUl) {
+                navToggle.addEventListener('click', () => {
+                    navUl.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
