@@ -4,62 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pronunciation Practice - Classroom Life</title>
+    <link rel="icon" href="../../files/images/other/classroomlifelogo.png">
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .activity-hub {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        .activity-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        .card {
-            background-color: #fff;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            padding: 25px;
-            width: 300px;
-            text-align: left;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-        }
-        .card h3 {
-            margin-top: 0;
-            color: var(--primary-color);
-        }
-        .card p {
-            flex-grow: 1;
-        }
-    </style>
 </head>
-<body>
+<body class="pronunciation-page hub-background">
     <header>
         <div class="header-container">
             <div class="site-title">
-                <h1><a href="../../index.html">Classroom Life 🚀</a></h1>
+                <h1><a href="../../index.html">Classroom Life <img src="../../files/images/other/classroomlifelogo.png" alt="Classroom Life Logo" class="header-logo-img"></a></h1>
             </div>
             <nav class="main-nav">
                 <button class="nav-toggle" aria-label="toggle navigation">
                     <span class="hamburger"></span>
                 </button>
                 <ul>
-                    <li><a href="../../index.html">Home</a></li>
                     <li><a href="./learning_outcomes.html">Learning Outcomes</a></li>
-                    <li><a href="./vocabulary.html">Vocabulary</a></li>
-                    <li><a href="#">Reading</a></li>
-                    <li><a href="#">Listening</a></li>
+                    <li><a href="./listening.html">Listening</a></li>
                     <li><a href="./pronunciation.html">Pronunciation</a></li>
+                    <li><a href="./reading.html">Reading</a></li>
+                    <li><a href="./test-yourself.html">Test Yourself!</a></li>
+                    <li><a href="./vocabulary.html">Vocabulary</a></li>
                 </ul>
             </nav>
         </div>
@@ -67,9 +31,9 @@
 
     <main>
         <div class="container">
-            <section class="activity-hub">
-                <h1>Pronunciation Practice</h1>
-                <p>Choose an activity below to practice your English pronunciation.</p>
+            <section class="vocabulary-hub">
+                <h1 class="readable-background">Pronunciation Practice</h1>
+                <p class="readable-background">Choose an activity below to practice your English pronunciation. Click the buttons below to practice!</p>
                 <div class="activity-grid">
                     <a href="./pronunciationpages/listen_repeat.html" class="card">
                         <h3>Listen & Repeat Practice</h3>
@@ -78,6 +42,7 @@
                     <a href="./pronunciationpages/dialogue_practice.html" class="card">
                         <h3>Dialogue Pronunciation Practice</h3>
                         <p>In this activity, you will see dialogues. You will read a character's lines to practice your pronunciation in a conversation.</p>
+                        <span class="construction-note">(Under Construction)</span>
                     </a>
                 </div>
             </section>

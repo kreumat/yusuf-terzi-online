@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening Practice</title>
+    <link rel="icon" href="../../files/images/other/classroomlifelogo.png">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="hub-background listening-page">
+    <header>
+        <div class="header-container">
+            <div class="site-title">
+                <h1><a href="../../index.html">Classroom Life <img src="../../files/images/other/classroomlifelogo.png" alt="Classroom Life Logo" class="header-logo-img"></a></h1>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-toggle" aria-label="toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+                <ul>
+                    <li><a href="./learning_outcomes.html">Learning Outcomes</a></li>
+                    <li><a href="./listening.html">Listening</a></li>
+                    <li><a href="./pronunciation.html">Pronunciation</a></li>
+                    <li><a href="./reading.html">Reading</a></li>
+                    <li><a href="./test-yourself.html">Test Yourself!</a></li>
+                    <li><a href="./vocabulary.html">Vocabulary</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="title-box large-padding readable-background">
+                <h2>Listening Practice</h2>
+                <p>Listen to the audio clip and then answer the questions. You must answer each question correctly to move to the next one.</p>
+            </div>
+
+            <audio controls>
+                <source src="../audio/listeningaudio.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <p class="audio-instructions">Click 'play' on the audio player above to start.</p>
+
+            <div id="listening-quiz-container">
+                <div class="quiz-question" id="q1">
+                    <h3>What is the first object?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="false">
+                            <img src="../images/vocabulary/classroomobjects/desk.png" alt="Desk">
+                            <span>desk</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <img src="../images/vocabulary/classroomobjects/board.png" alt="Board">
+                            <span>board</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <img src="../images/vocabulary/classroomobjects/sharpener.png" alt="Pencil sharpener">
+                            <span>pencil sharpener</span>
+                        </button>
+                        <button class="quiz-option" data-correct="true">
+                            <img src="../images/vocabulary/classroomobjects/book.png" alt="Book">
+                            <span>book</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="quiz-question" id="q2" style="display: none;">
+                    <h3>What colour is the book?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="true">
+                            <div class="color-circle" style="background-color: blue;"></div>
+                            <span>blue</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <div class="color-circle" style="background-color: red;"></div>
+                            <span>red</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <div class="color-circle" style="background-color: green;"></div>
+                            <span>green</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <div class="color-circle" style="background-color: yellow;"></div>
+                            <span>yellow</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="quiz-question" id="q3" style="display: none;">
+                    <h3>What is the second object?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="false">
+                            <img src="../images/vocabulary/classroomobjects/crayon.png" alt="Crayon">
+                            <span>crayon</span>
+                        </button>
+                        <button class="quiz-option" data-correct="true">
+                            <img src="../images/vocabulary/classroomobjects/pencil.png" alt="Pencil">
+                            <span>pencil</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <img src="../images/vocabulary/classroomobjects/notebook.png" alt="Notebook">
+                            <span>notebook</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <img src="../images/vocabulary/classroomobjects/rubber.png" alt="Rubber">
+                            <span>rubber</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="quiz-question" id="q4" style="display: none;">
+                    <h3>What color is the pencil?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="false">
+                            <div class="color-circle" style="background-color: blue;"></div>
+                            <span>blue</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <div class="color-circle" style="background-color: orange;"></div>
+                            <span>orange</span>
+                        </button>
+                        <button class="quiz-option" data-correct="true">
+                            <div class="color-circle" style="background-color: yellow;"></div>
+                            <span>yellow</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <div class="color-circle" style="background-color: purple;"></div>
+                            <span>purple</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="quiz-question" id="q5" style="display: none;">
+                    <h3>Is Alice late?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="true">
+                            <span>Yes, she is.</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <span>No, she isn't.</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="completion-message" style="display: none;">
+                    <h2>You completed the activity!</h2>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizContainer = document.getElementById('listening-quiz-container');
+            const questions = quizContainer.querySelectorAll('.quiz-question');
+            const completionMessage = document.getElementById('completion-message');
+
+            quizContainer.addEventListener('click', (e) => {
+                const option = e.target.closest('.quiz-option');
+                if (!option) return;
+
+                const isCorrect = option.dataset.correct === 'true';
+                const currentQuestion = option.closest('.quiz-question');
+
+                if (isCorrect) {
+                    option.classList.add('correct');
+                    setTimeout(() => {
+                        const currentQuestionId = parseInt(currentQuestion.id.replace('q', ''));
+                        const nextQuestion = document.getElementById(`q${currentQuestionId + 1}`);
+
+                        currentQuestion.style.display = 'none';
+
+                        if (nextQuestion) {
+                            nextQuestion.style.display = 'block';
+                        } else {
+                            completionMessage.style.display = 'block';
+                        }
+                    }, 1000); // 1-second delay
+                } else {
+                    option.classList.add('incorrect');
+                    setTimeout(() => {
+                        option.classList.remove('incorrect');
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

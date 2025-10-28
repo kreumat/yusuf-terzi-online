@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Practice - Classroom Life</title>
+    <link rel="icon" href="../../files/images/other/classroomlifelogo.png">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="reading-page hub-background">
+    <header>
+        <div class="header-container">
+            <div class="site-title">
+                <h1><a href="../../index.html">Classroom Life <img src="../../files/images/other/classroomlifelogo.png" alt="Classroom Life Logo" class="header-logo-img"></a></h1>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-toggle" aria-label="toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+                <ul>
+                    <li><a href="./learning_outcomes.html">Learning Outcomes</a></li>
+                    <li><a href="./listening.html">Listening</a></li>
+                    <li><a href="./pronunciation.html">Pronunciation</a></li>
+                    <li><a href="./reading.html">Reading</a></li>
+                    <li><a href="./test-yourself.html">Test Yourself!</a></li>
+                    <li><a href="./vocabulary.html">Vocabulary</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="title-box large-padding readable-background">
+                <h2>Reading Practice</h2>
+                <p>Read the text below and then answer the questions. You must answer each question correctly to move to the next one.</p>
+            </div>
+
+            <div class="activity-container">
+                <div class="reading-text">
+                    <p>Hello! My name is Alice.</p>
+                    <p>I am in my classroom. My classroom is big. I see a green desk and a brown chair. I see a big, white Smart Board.</p>
+                    <p>Look at my blue pencil case. Inside my pencil case, I have a yellow pencil, a red sharpener, and a pink rubber.</p>
+                    <p>My teacher says, "Open your book, please!" My book is on the desk.</p>
+                </div>
+            </div>
+
+            <div id="reading-quiz-container">
+                <div class="quiz-question" id="q1">
+                    <h3>What colour is the desk?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option color-swatch" data-correct="true" style="background-color: green;"></div>
+                        <div class="quiz-option color-swatch" data-correct="false" style="background-color: brown;"></div>
+                        <div class="quiz-option color-swatch" data-correct="false" style="background-color: blue;"></div>
+                        <div class="quiz-option color-swatch" data-correct="false" style="background-color: white;"></div>
+                    </div>
+                </div>
+                <div class="quiz-question" id="q2" style="display: none;">
+                    <h3>What colour is the pencil case?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option color-swatch" data-correct="true" style="background-color: blue;"></div>
+                        <div class="quiz-option color-swatch" data-correct="false" style="background-color: red;"></div>
+                        <div class="quiz-option color-swatch" data-correct="false" style="background-color: yellow;"></div>
+                        <div class="quiz-option color-swatch" data-correct="false" style="background-color: green;"></div>
+                    </div>
+                </div>
+                <div class="quiz-question" id="q3" style="display: none;">
+                    <h3>What is *NOT* in the pencil case?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="true">
+                            <img src="../images/vocabulary/classroomobjects/book.png" alt="Book">
+                            <span>a book</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <img src="../images/vocabulary/classroomobjects/pencil.png" alt="Pencil">
+                            <span>a yellow pencil</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <img src="../images/vocabulary/classroomobjects/sharpener.png" alt="Sharpener">
+                            <span>a red sharpener</span>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <img src="../images/vocabulary/classroomobjects/rubber.png" alt="Rubber">
+                            <span>a pink rubber</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="quiz-question" id="q4" style="display: none;">
+                    <h3>What does the teacher say?</h3>
+                    <div class="quiz-options text-only">
+                        <button class="quiz-option" data-correct="true">Open your book, please!</button>
+                        <button class="quiz-option" data-correct="false">Sit down, please!</button>
+                        <button class="quiz-option" data-correct="false">Close the door, please!</button>
+                        <button class="quiz-option" data-correct="false">What is your name?</button>
+                    </div>
+                </div>
+                <div class="quiz-question" id="q5" style="display: none;">
+                    <h3>Where is the book?</h3>
+                    <div class="quiz-options text-only">
+                        <button class="quiz-option" data-correct="true">on the desk</button>
+                        <button class="quiz-option" data-correct="false">in the pencil case</button>
+                        <button class="quiz-option" data-correct="false">on the chair</button>
+                    </div>
+                </div>
+                <div id="completion-message" style="display: none;">
+                    <h2>You completed the activity!</h2>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizContainer = document.getElementById('reading-quiz-container');
+            const questions = quizContainer.querySelectorAll('.quiz-question');
+            const completionMessage = document.getElementById('completion-message');
+
+            quizContainer.addEventListener('click', (e) => {
+                const option = e.target.closest('.quiz-option');
+                if (!option) return;
+
+                const isCorrect = option.dataset.correct === 'true';
+                const currentQuestion = option.closest('.quiz-question');
+
+                if (isCorrect) {
+                    option.classList.add('correct');
+                    setTimeout(() => {
+                        const currentQuestionId = parseInt(currentQuestion.id.replace('q', ''));
+                        const nextQuestion = document.getElementById(`q${currentQuestionId + 1}`);
+
+                        currentQuestion.style.display = 'none';
+
+                        if (nextQuestion) {
+                            nextQuestion.style.display = 'block';
+                        } else {
+                            completionMessage.style.display = 'block';
+                        }
+                    }, 1000);
+                } else {
+                    option.classList.add('incorrect');
+                    setTimeout(() => {
+                        option.classList.remove('incorrect');
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
