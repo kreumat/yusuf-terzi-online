@@ -1,0 +1,60 @@
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0 1rem;
+  }
+}
+.card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+@media (max-width: 768px) {
+  #activity1,
+  #activity2 {
+    flex-direction: column;
+  }
+}
+.items-grid {
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+.scene-container {
+  min-height: 400px;
+}
+@media (max-width: 768px) {
+  .pronunciation-page .card {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .classroom-objects-page .items-grid,
+  .classroom-objects-page .drop-zones {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .classroom-objects-page .items-grid,
+  .classroom-objects-page .drop-zones {
+    grid-template-columns: 1fr;
+  }
+}
+.title-box {
+  padding: 1.5rem;
+}
+.listening-page .quiz-option,
+.reading-page .quiz-option {
+  min-height: auto;
+  padding: 1rem;
+}
+@media (max-width: 480px) {
+  .listening-page .quiz-options,
+  .reading-page .quiz-options {
+    grid-template-columns: 1fr;
+  }
+}
+.reading-page .quiz-options {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Activities - Classroom Life</title>
+    <link rel="icon" href="../../files/images/other/favicon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style2.css">
+</head>
+<body class="hub-background">
+    <header>
+        <div class="header-container">
+            <div class="site-title">
+                <h1><a href="../../index.html">Classroom Life <img src="../../files/images/other/classroomlifelogo.png" alt="Classroom Life Logo" class="header-logo-img"></a></h1>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-toggle" aria-label="toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+                <ul>
+                    <li><a href="./learning_outcomes.html">Learning Outcomes</a></li>
+                    <li><a href="./listening.html">Listening</a></li>
+                    <li><a href="./pronunciation.html">Pronunciation</a></li>
+                    <li><a href="./reading.html">Reading</a></li>
+                    <li><a href="./test-yourself.html">Test Yourself!</a></li>
+                    <li><a href="./vocabulary.html">Vocabulary</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="vocabulary-hub">
+                <h1 class="readable-background">Vocabulary Activities</h1>
+                <p class="readable-background">This section has four topics: Classroom Objects, Instructions, Colours, and Numbers. Click the buttons below to practice!</p>
+
+                <div class="activity-grid">
+                    <a href="./vocabularypages/classroom_objects.html" class="activity-btn">
+                        <img src="../images/vocabulary/icons/classroomobjects.png" alt="Classroom Objects">
+                        <span>Classroom Objects</span>
+                    </a>
+                    <a href="./vocabularypages/instructions.html" class="activity-btn">
+                        <img src="../images/vocabulary/icons/instructions.png" alt="Instructions">
+                        <span>Instructions</span>
+                        <span class="construction-note">(Under Construction)</span>
+                    </a>
+                    <a href="./vocabularypages/colours.html" class="activity-btn">
+                        <div class="colours-btn-visual">
+                            <div class="colour-circle red"></div>
+                            <div class="colour-circle green"></div>
+                            <div class="colour-circle blue"></div>
+                        </div>
+                        <span>Colours</span>
+                        <span class="construction-note">(Under Construction)</span>
+                    </a>
+                    <a href="./vocabularypages/numbers.html" class="activity-btn">
+                        <div class="numbers-btn-visual">1-2-3</div>
+                        <span>Numbers</span>
+                        <span class="construction-note">(Under Construction)</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navUl = document.querySelector('.main-nav ul');
+
+            if (navToggle && navUl) {
+                navToggle.addEventListener('click', () => {
+                    navUl.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
