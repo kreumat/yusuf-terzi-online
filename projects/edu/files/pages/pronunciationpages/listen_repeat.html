@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listen and Repeat</title>
+    <link rel="icon" href="../../../files/images/other/favicon.png">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="listen-repeat-body">
+    <div class="activity-container">
+        <a href="../pronunciation.html" class="back-link">&larr; Go back to Pronunciation</a>
+		<u>If the system isn't picking up your voice properly, try saying the command twice, like "four-four," instead of just once.</u>
+        <div class="cards-wrapper">
+            <div class="card listen-card">
+                <h2 id="word-display">Word</h2>
+                <button id="listen-btn" class="icon-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <p class="card-description">Click the speaker to listen</p>
+            </div>
+            <div class="card pronunciation-card">
+                <button id="mic-btn" class="icon-btn">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <p class="card-description">Click the mic to speak</p>
+            </div>
+        </div>
+    </div>
+    <div class="feedback-container">
+        <p>Right now you are saying: <span id="feedback-text">-</span></p>
+    </div>
+    <div id="mic-status" class="mic-status-idle">Click the microphone to start speaking</div>
+    <div id="message-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- DEĞİŞİKLİK 1: YENİ VERİ YAPISI ---
+            // 'words' dizisi yerine, her kelime için bir obje içeren 'wordData' dizisi kullanıyoruz.
+            // Bu "pre-set" yapı, her kelime için özel ses dosyası ve kabul edilen cevapları belirler.
+            const wordData = [
+                { display: 'zero', audio: '../../audio/zero.wav', accepted: ['zero', '0', '0 0', '00'] },
+                { display: 'one', audio: '../../audio/one.wav', accepted: ['one', '1', '1 1', '11'] },
+                { display: 'two', audio: '../../audio/two.wav', accepted: ['two', '2', '2 2', '22'] },
+                { display: 'three', audio: '../../audio/three.wav', accepted: ['three', '3', '3 3', '33'] },
+                { display: 'four', audio: '../../audio/four.wav', accepted: ['four', '4', '4 4', '44'] },
+                { display: 'five', audio: '../../audio/five.wav', accepted: ['five', '5', '5 5', '55'] },
+                { display: 'seven', audio: '../../audio/seven.wav', accepted: ['seven', '7', '7 7', '77'] },
+                { display: 'eight', audio: '../../audio/eight.wav', accepted: ['eight', '8', '8 8', '88'] },
+                { display: 'nine', audio: '../../audio/nine.wav', accepted: ['nine', '9', '9 9', '99'] },
+                { display: 'ten', audio: '../../audio/ten.wav', accepted: ['ten', '10', '10 10', '1010'] },
+                { display: 'eleven', audio: '../../audio/eleven.wav', accepted: ['eleven', '11', '11 11', '1111'] },
+                { display: 'twelve', audio: '../../audio/twelve.wav', accepted: ['twelve', '12', '12 12', '1212'] },
+                { display: 'thirteen', audio: '../../audio/thirteen.wav', accepted: ['thirteen', '13', '13 13', '1313'] },
+                { display: 'fourteen', audio: '../../audio/fourteen.wav', accepted: ['fourteen', '14', '14 14', '1414'] },
+                { display: 'fifteen', audio: '../../audio/fifteen.wav', accepted: ['fifteen', '15', '15 15', '1515'] },
+                { display: 'sixteen', audio: '../../audio/sixteen.wav', accepted: ['sixteen', '16', '16 16', '1616'] },
+                { display: 'seventeen', audio: '../../audio/seventeen.wav', accepted: ['seventeen', '17', '17 17', '1717'] },
+                { display: 'eighteen', audio: '../../audio/eighteen.wav', accepted: ['eighteen', '18', '18 18', '1818'] },
+                { display: 'nineteen', audio: '../../audio/nineteen.wav', accepted: ['nineteen', '19', '19 19', '1919'] },
+                { display: 'twenty', audio: '../../audio/twenty.wav', accepted: ['twenty', '20', '20 20', '2020'] },
+                // Renkler ve nesneler için sadece 1 kabul edilen cevap yeterli
+                { display: 'white', audio: '../../audio/white.wav', accepted: ['white'] },
+                { display: 'blue', audio: '../../audio/blue.wav', accepted: ['blue'] },
+                { display: 'brown', audio: '../../audio/brown.wav', accepted: ['brown'] },
+                { display: 'purple', audio: '../../audio/purple.wav', accepted: ['purple'] },
+                { display: 'pink', audio: '../../audio/pink.wav', accepted: ['pink'] },
+                { display: 'green', audio: '../../audio/green.wav', accepted: ['green'] },
+                { display: 'yellow', audio: '../../audio/yellow.wav', accepted: ['yellow'] },
+                { display: 'black', audio: '../../audio/black.wav', accepted: ['black'] },
+                { display: 'orange', audio: '../../audio/orange.wav', accepted: ['orange'] },
+                { display: 'desk', audio: '../../audio/desk.wav', accepted: ['desk'] },
+                { display: 'table', audio: '../../audio/table.wav', accepted: ['table'] },
+                { display: 'sharpener', audio: '../../audio/sharpener.wav', accepted: ['sharpener'] },
+                { display: 'eraser', audio: '../../audio/eraser.wav', accepted: ['eraser'] }
+            ];
+
+
+            let shuffledWords = []; // Artık kelime objelerini tutacak
+            let currentWordIndex = 0;
+            let recognition;
+            let timeoutId;
+            let isCorrect = false;
+
+            const wordDisplay = document.getElementById('word-display');
+            const listenBtn = document.getElementById('listen-btn');
+            const micBtn = document.getElementById('mic-btn');
+            const feedbackText = document.getElementById('feedback-text');
+            const messageContainer = document.getElementById('message-container');
+            const activityContainer = document.querySelector('.activity-container');
+            const micStatus = document.getElementById('mic-status');
+            const backLink = document.querySelector('.back-link');
+            const feedbackContainer = document.querySelector('.feedback-container');
+            const cardsWrapper = document.querySelector('.cards-wrapper');
+
+
+            // Speech Recognition setup (Aynı kalabilir)
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechRecognition) {
+                recognition = new SpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.continuous = false;
+                recognition.interimResults = true;
+
+                recognition.onstart = () => {
+                    updateMicStatus('listening');
+                };
+
+                recognition.onresult = (event) => {
+                    const transcript = Array.from(event.results)
+                        .map(result => result[0])
+                        .map(result => result.transcript)
+                        .join('');
+
+                    feedbackText.textContent = transcript || '-';
+
+                    if (event.results[0].isFinal) {
+                        checkAnswer(transcript.toLowerCase().trim());
+                    }
+                };
+
+                recognition.onerror = (event) => {
+                    displayMessage(`Speech recognition error: ${event.error}`, 'error');
+                    stopListening();
+                    micBtn.disabled = false;
+                };
+
+                recognition.onend = () => {
+                    stopListening();
+                    if (!isCorrect) {
+                        micBtn.disabled = false;
+                    }
+                };
+
+            } else {
+                displayMessage('Speech recognition not supported in this browser.', 'error');
+                micBtn.disabled = true;
+            }
+
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function startGame() {
+                shuffledWords = shuffle([...wordData]); // 'words' yerine 'wordData' kullan
+                currentWordIndex = 0;
+                displayNextWord();
+            }
+
+            function displayNextWord() {
+                if (currentWordIndex < shuffledWords.length) {
+                    isCorrect = false; 
+                    // Görüntülenecek kelimeyi objeden al:
+                    wordDisplay.textContent = shuffledWords[currentWordIndex].display; 
+                    feedbackText.textContent = '-';
+                    messageContainer.innerHTML = '';
+                    micBtn.disabled = false;
+                    updateMicStatus('idle');
+                } else {
+                    showCompletionMessage();
+                }
+            }
+
+            function showCompletionMessage() {
+                if (cardsWrapper) cardsWrapper.style.display = 'none';
+                if (feedbackContainer) feedbackContainer.style.display = 'none';
+                micStatus.style.display = 'none';
+                messageContainer.innerHTML = `<span class="final-completion">You completed the activity!</span>`;
+                if (backLink) backLink.classList.add('glow');
+            }
+
+            function displayMessage(text, type) {
+                const className = type === 'correct' ? 'message-correct' :
+                                  type === 'error' ? 'message-error' : 'message-countdown';
+                messageContainer.innerHTML = `<p class="${className}">${text}</p>`;
+            }
+
+            function updateMicStatus(status) {
+                if (status === 'listening') {
+                    micStatus.textContent = 'Listening...';
+                    micStatus.className = 'mic-status-listening';
+                } else if (status === 'waiting') {
+                    micStatus.textContent = 'Waiting for microphone permission...';
+                    micStatus.className = 'mic-status-waiting';
+                }
+                else {
+                    micStatus.textContent = 'Click the microphone to start speaking';
+                    micStatus.className = 'mic-status-idle';
+                }
+            }
+
+            function startListening() {
+                if (!recognition) return;
+
+                micBtn.classList.add('listening');
+                micBtn.disabled = true;
+                feedbackText.textContent = '...';
+                updateMicStatus('waiting');
+                recognition.start();
+
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    recognition.stop();
+                    displayMessage('Try Again!', 'error');
+                    updateMicStatus('idle');
+                    micBtn.disabled = false;
+                }, 20000); 
+            }
+
+            function stopListening() {
+                if (!recognition) return;
+                micBtn.classList.remove('listening');
+                clearTimeout(timeoutId);
+                updateMicStatus('idle');
+            }
+
+            // --- DEĞİŞİKLİK 3: GÜNCELLENEN KONTROL FONKSİYONU ---
+            function checkAnswer(transcript) {
+                // Mevcut kelimenin 'kabul edilen' cevaplar dizisini al
+                const acceptedAnswers = shuffledWords[currentWordIndex].accepted;
+
+                // Eğer kullanıcının söylediği (transcript), kabul edilen cevaplar listesinde varsa:
+                if (acceptedAnswers.includes(transcript)) {
+                    isCorrect = true; 
+                    micBtn.disabled = true; 
+                    clearTimeout(timeoutId);
+                    recognition.stop();
+                    displayMessage("That's Right!", 'correct');
+                    updateMicStatus('idle');
+
+                    let countdown = 3;
+                    const countdownInterval = setInterval(() => {
+                        displayMessage(`Get ready for next one: ${countdown}...`, 'countdown');
+                        countdown--;
+                        if (countdown < 0) {
+                            clearInterval(countdownInterval);
+                            currentWordIndex++;
+                            displayNextWord();
+                        }
+                    }, 1000);
+
+                }
+                // Yanlışsa (veya 'accepted' listesinde yoksa) hiçbir şey yapma.
+                // Zamanlayıcı (timeout) dolana kadar kullanıcı tekrar deneyebilir 
+                // veya 'onend' olayı tetiklenir.
+            }
+
+            // --- DEĞİŞİKLİK 2: GÜNCELLENEN DİNLEME BUTONU ---
+            listenBtn.addEventListener('click', () => {
+                // O anki kelime objesinden 'audio' yolunu al
+                const audioPath = shuffledWords[currentWordIndex].audio;
+                
+                // Her tıklamada doğru ses dosyası için yeni bir Audio nesnesi oluştur
+                const audio = new Audio(audioPath);
+                
+                // Ses dosyasının çalınamaması durumunda konsola hata yazdır
+                audio.onerror = () => {
+                    console.error(`Ses dosyası yüklenemedi: ${audioPath}`);
+                    displayMessage('Audio file could not be played.', 'error');
+                };
+                
+                audio.play();
+            });
+
+            micBtn.addEventListener('click', startListening);
+
+            startGame();
+        });
+    </script>
+</body>
+</html>
