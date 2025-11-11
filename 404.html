@@ -4,27 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Not Found | Yusuf Terzi</title>
-    <link rel="stylesheet" href="style.css">
-	<link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts (Poppins and Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 
+      YENİ GÖMÜLÜ STİLLER
+      - 'style.css' kaldırıldı ve sitenizin yeni "havalı" karanlık temasına
+      - uygun olarak tüm stiller buraya eklendi.
+    -->
+    <style>
+        /* Base styles and variables (KARANLIK MOD ve YENİ TEMA) */
+        :root {
+            --primary-color: #00bfa5; /* Ana Turkuaz Rengi */
+            --primary-dark: #009688;
+            --primary-light: #b2dfdb;
+            --text-color: #e0e0e0;     /* Açık gri yazı */
+            --text-light: #a0a0a0;     /* Daha soluk yazı */
+            --bg-color: #121212;       /* Ana arka plan (çok koyu) */
+            --bg-secondary: #1e1e1e;   /* Kart arka planı (biraz daha açık) */
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.7);
+            --transition: all 0.3s ease;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --border-radius: 12px;
+        }
+
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            
+            /* Sayfayı dikeyde ortalamak ve footer'ı en alta itmek için */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Ana içerik (404 kartı) dikeyde ortalanacak */
+        main {
+            flex-grow: 1; /* Mevcut tüm alanı kapla */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-lg);
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+            font-size: 8rem; /* 404 yazısını çok büyük yaptım */
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px; /* Kartın maksimum genişliği */
+            margin: 0 auto;
+        }
+
+        /* 404 Kartı */
+        #about {
+            background-color: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: var(--spacing-xl);
+            text-align: center;
+            width: 100%;
+            /* 3D Görünüm için (isteğe bağlı) */
+            transform: perspective(1000px) rotateX(-2deg);
+        }
+        
+        .subtitle p {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        .forlng {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+        
+        .home-button-container {
+             margin-top: var(--spacing-lg); /* Buton ile metin arasına boşluk */
+        }
+
+        /* Ana Sayfa Butonu (project-link404) */
+        .project-link404 {
+            display: inline-block;
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-xl); /* Biraz daha büyük buton */
+            background-color: var(--primary-color);
+            color: #121212; /* Koyu yazı */
+            font-weight: 600;
+            border-radius: 50px;
+            transition: var(--transition);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+
+        .project-link404:hover {
+            background-color: var(--primary-light);
+            color: #121212;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .project-link404 i {
+            margin-right: var(--spacing-sm); /* İkon ve yazı arasına (eğer olsaydı) */
+            font-size: 1.2rem; /* İkonu büyüt */
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            color: var(--text-light);
+            text-align: center;
+            padding: var(--spacing-lg) 0;
+            width: 100%;
+            border-top: 1px solid #333;
+        }
+
+        /* Küçük ekranlar için 404 yazısını küçült */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 6rem;
+            }
+            #about {
+                padding: var(--spacing-lg);
+            }
+            .subtitle p {
+                font-size: 1.2rem;
+            }
+        }
+
+    </style>
 </head>
 <body>
+    
     <main>
+        <!-- #about section'ı 404 kartı olarak kullanıyoruz -->
         <section id="about">
             <div class="container">
                 <h1>404</h1>
                 <div class="subtitle">
                     <p>Page Not Found</p>
                     <p class="forlng">Sayfa Bulunamadı</p>
-					<p class="forlng">Seite nicht gefunden</p>
+                    <p class="forlng">Seite nicht gefunden</p>
                 </div>
                 
-                
-                <div style="margin-top: var(--spacing-x0);">
-                    <a href="../../../../../../../../" class="project-link404">
+                <!-- Buton için konteyner -->
+                <div class="home-button-container">
+                    <!-- 
+                      Not: 'href' adresini "/" olarak değiştirdim. 
+                      "../../../../" gibi bir kullanım çok kırılgandır ve
+                      ana dizine (root) gitmek için "/" en doğru yoldur.
+                    -->
+                    <a href="/" class="project-link404" aria-label="Go to Homepage">
                         <i class="fas fa-home"></i>
                     </a>
                 </div>
