@@ -1,24 +1,24 @@
-/* Base styles and variables */
+/* Base styles and variables (Updated to RED/BLACK THEME) */
 :root {
-    --primary-color: #e63946;
-    --primary-dark: #c1121f;
-    --primary-light: #f8d7da;
-    --text-color: #1d3557;
-    --text-light: #457b9d;
-    --text-muted: #6c757d;
-    --bg-color: #f8f9fa;
-    --bg-secondary: #ffffff;
-    --bg-notes: #f8f5f5;
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --primary-color: #D9232D;   /* Red */
+    --primary-dark: #B71C1C;    /* Dark Red */
+    --primary-light: #F05555;   /* Light Red */
+    --text-color: #e0e0e0;     /* Light gray text color */
+    --text-light: #a0a0a0;     /* Paler text */
+    --text-muted: #888888;     /* Muted text */
+    --bg-color: #121212;       /* Main background (very dark) */
+    --bg-secondary: #1e1e1e;   /* Card background (slightly lighter) */
+    --bg-notes: #2c2c2c;       /* Notes box background */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.7);
     --transition: all 0.3s ease;
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
-    --border-radius: 8px;
+    --border-radius: 12px; /* Slightly softened the corners */
     --border-radius-full: 50%;
 }
 
@@ -40,6 +40,8 @@ body {
     background-color: var(--bg-color);
     padding: 0;
     margin: 0;
+    /* 'perspective' removed from here to prevent 3D effect conflicts */
+    overflow-x: hidden;
 }
 
 /* Typography */
@@ -51,19 +53,19 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     font-size: 2.5rem;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Updated with primary color */
     margin-bottom: var(--spacing-md);
 }
 
 h2 {
     font-size: 1.8rem;
-    color: var(--text-color);
+    color: var(--text-color); /* Updated with main text color */
     margin-bottom: var(--spacing-sm);
 }
 
 h3 {
     font-size: 1.4rem;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Updated with primary color */
     margin-bottom: var(--spacing-md);
 }
 
@@ -78,7 +80,7 @@ a {
 }
 
 a:hover {
-    color: var(--primary-dark);
+    color: var(--primary-light); /* Light color instead of dark */
 }
 
 .forlng {
@@ -136,14 +138,36 @@ section {
     opacity: 0.8;
 }
 
-/* About Section */
-#about {
+/* About & Contact Sections (Shared 3D Card Style) */
+.tilt-card {
     text-align: center;
     background-color: var(--bg-secondary);
-    padding-top: var(--spacing-xl);
-    padding-bottom: var(--spacing-xl);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* 3D Effect styles */
+    transform: perspective(1500px) rotateX(0) rotateY(0);
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
 }
+
+@media (min-width: 992px) {
+    .tilt-card {
+         /* 3D TILT EFFECT ONLY ON WIDE SCREENS */
+        will-change: transform;
+    }
+}
+
+/* About Section (Specific styles) */
+#about {
+    border-bottom: none; /* Removed the bottom border */
+    margin-top: var(--spacing-xl);
+}
+
 
 .subtitle {
     margin-bottom: var(--spacing-lg);
@@ -162,7 +186,7 @@ section {
 
 /* Projects Section */
 #projects {
-    background-color: var(--bg-color);
+    background-color: var(--bg-color); /* Main background */
     padding: var(--spacing-xl) 0;
 }
 
@@ -178,13 +202,22 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: transparent;
+    background: var(--bg-secondary); /* Background changed from transparent to card color */
     transition: var(--transition);
     padding: var(--spacing-md);
     border-radius: var(--border-radius);
     width: 100%;
     max-width: 500px;
+    box-shadow: var(--shadow); /* Shadow added */
+    
+    /* 3D styles removed from here */
 }
+
+.project-item:hover {
+     box-shadow: var(--shadow-hover); /* Shadow on hover */
+     transform: translateY(-5px); /* Light lift effect instead of 3D tilt */
+}
+
 
 .project-logo {
     width: 160px;
@@ -195,11 +228,13 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-color); /* Darker color to highlight the logo */
     box-shadow: var(--shadow);
     transition: var(--transition);
     border: 3px solid var(--primary-color);
     flex-shrink: 0;
+    
+    transform: translateZ(0);
 }
 
 .project-logo:hover {
@@ -228,10 +263,11 @@ section {
 
 .project-content h3 {
     margin-bottom: var(--spacing-md);
+    transform: translateZ(0);
 }
 
 .project-notes {
-    background-color: var(--bg-notes);
+    background-color: var(--bg-notes); /* Note background updated */
     border-radius: var(--border-radius);
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-md);
@@ -239,6 +275,8 @@ section {
     align-items: flex-start;
     gap: var(--spacing-sm);
     text-align: left;
+    
+    transform: translateZ(0);
 }
 
 .project-notes i {
@@ -262,10 +300,13 @@ section {
     margin-top: var(--spacing-sm);
     padding: var(--spacing-sm) var(--spacing-lg);
     background-color: var(--primary-color);
-    color: white;
+    color: #121212; /* Dark text for better button readability */
+    font-weight: 600;
     border-radius: 50px;
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
+    
+    transform: translateZ(0);
 }
 
 .project-link404 {
@@ -273,22 +314,23 @@ section {
     margin-top: var(--spacing-sm);
     padding: var(--spacing-sm) var(--spacing-lg);
     background-color: var(--primary-color);
-    color: white;
+    color: #121212; /* Dark text for better button readability */
+    font-weight: 600;
     border-radius: 50px;
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
 }
 
 .project-link:hover {
-    background-color: var(--primary-dark);
-    color: white;
+    background-color: var(--primary-light);
+    color: #121212;
     transform: translateY(-3px);
     box-shadow: var(--shadow);
 }
 
 .project-link404:hover {
-    background-color: var(--primary-dark);
-    color: white;
+    background-color: var(--primary-light);
+    color: #121212;
     transform: translateY(-3px);
     box-shadow: var(--shadow);
 }
@@ -306,11 +348,9 @@ section {
     transform: translateX(3px);
 }
 
-/* Contact Section */
+/* Contact Section (Specific styles) */
 #contact {
-    text-align: center;
-    background-color: var(--bg-secondary);
-    padding: var(--spacing-xl) 0;
+    /* It gets all its styles from .tilt-card */
 }
 
 .contact-content {
@@ -326,7 +366,8 @@ section {
     display: inline-block;
     padding: var(--spacing-md) var(--spacing-lg);
     background-color: var(--primary-color);
-    color: white;
+    color: #121212; /* Dark text */
+    font-weight: 600;
     border-radius: 50px;
     transition: var(--transition);
     font-size: 1.1rem;
@@ -334,8 +375,8 @@ section {
 }
 
 .email-link:hover {
-    background-color: var(--primary-dark);
-    color: white;
+    background-color: var(--primary-light);
+    color: #121212;
     transform: translateY(-3px);
     box-shadow: var(--shadow);
 }
@@ -346,14 +387,14 @@ section {
 
 /* Footer */
 footer {
-    background-color: var(--text-color);
-    color: white;
+    background-color: var(--bg-secondary); /* One shade lighter than the background */
+    color: var(--text-light); /* A paler color */
     text-align: center;
     padding: var(--spacing-lg) 0;
     margin-top: var(--spacing-xl);
+    border-top: 1px solid #333;
 }
 
-/* Responsive adjustments */
 /* Responsive adjustments */
 @media (min-width: 768px) {
     h1 {
@@ -399,6 +440,39 @@ footer {
         text-align: center;
         width: calc(33.333% - var(--spacing-xl));
         max-width: 350px;
+        
+        /* 3D Styles removed from here */
+    }
+    
+    .project-item:hover {
+        /* Disable hover to allow JS tilt effect */
+        transform: translateY(-5px); /* Reverted to normal hover */
+    }
+    
+    /* 3D PARALLAX FOR INNER ELEMENTS (DEPTH) */
+    /* Since these are no longer in a 3D card, 3D is not needed */
+    .project-logo {
+        transform: translateZ(0);
+    }
+    
+    .project-logo:hover {
+        transform: scale(1.05) translateZ(0); /* Maintain 3D */
+    }
+
+    .project-content h3 {
+        transform: translateZ(0);
+    }
+    
+    .project-notes {
+        transform: translateZ(0);
+    }
+    
+    .project-link {
+        transform: translateZ(0);
+    }
+
+    .project-link:hover {
+        transform: translateY(-3px) translateZ(0); /* Maintain 3D */
     }
     
     .project-content {
@@ -425,5 +499,148 @@ footer {
 @media (min-width: 1200px) {
     .container {
         width: 80%;
+    }
+}
+
+
+/* ============================================== */
+/* --- POPUP STYLES MOVED FROM index.html --- */
+/* ============================================== */
+/* (Updated for dark mode) */
+
+.language-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Darker */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.language-popup {
+    background-color: var(--bg-notes); /* Dark background */
+    border-radius: 15px;
+    padding: 35px;
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7); /* Dark shadow */
+    animation: popup-fade 0.3s ease-out;
+}
+
+@keyframes popup-fade {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.language-popup h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #ffffff; /* White title */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.language-popup h2:after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent); /* Updated with primary color */
+    bottom: -10px;
+    left: 25%;
+}
+
+.language-options {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.language-option {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.language-option:hover {
+    transform: scale(1.05);
+    background-color: rgba(217, 35, 45, 0.1); /* Red hover (changed from turquoise) */
+}
+
+.language-option img {
+    width: 120px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: contain;
+    border: 2px solid #444; /* Dark border */
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.language-option:hover img {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.language-option p {
+    margin-top: 12px;
+    font-weight: 600;
+    color: var(--text-color); /* Light text color */
+    font-size: 1.1rem;
+}
+
+/* Responsive styles for the language popup */
+@media (max-width: 600px) {
+    .language-popup {
+        padding: 25px 20px;
+    }
+    
+    .language-popup h2 {
+        font-size: 1.5rem;
+    }
+    
+    .language-options {
+        gap: 20px;
+    }
+    
+    .language-option {
+        padding: 10px;
+    }
+    
+    .language-option img {
+        width: 80px;
+        height: 52px;
+    }
+}
+
+@media (max-width: 400px) {
+    .language-popup h2 {
+        font-size: 1.1rem;
+    }
+    
+    .language-options {
+        gap: 15px;
+    }
+    
+    .language-option img {
+        width: 64px;
+        height: 44px;
+    }
+    
+    .language-option p {
+        font-size: 1rem;
     }
 }

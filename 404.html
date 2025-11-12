@@ -5,22 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Not Found | Yusuf Terzi</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Poppins and Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- 
-      YENİ GÖMÜLÜ STİLLER
-      - 'style.css' kaldırıldı ve sitenizin yeni "havalı" karanlık temasına
-      - uygun olarak tüm stiller buraya eklendi.
-    -->
     <style>
-        /* Base styles and variables (KARANLIK MOD ve YENİ TEMA) */
+        /* Base styles and variables (KIRMIZI/SİYAH TEMA ile güncellendi) */
         :root {
-            --primary-color: #00bfa5; /* Ana Turkuaz Rengi */
-            --primary-dark: #009688;
-            --primary-light: #b2dfdb;
+            --primary-color: #D9232D;   /* Kırmızı */
+            --primary-dark: #B71C1C;    /* Koyu Kırmızı */
+            --primary-light: #F05555;   /* Açık Kırmızı */
             --text-color: #e0e0e0;     /* Açık gri yazı */
             --text-light: #a0a0a0;     /* Daha soluk yazı */
             --bg-color: #121212;       /* Ana arka plan (çok koyu) */
@@ -73,7 +66,7 @@
             font-weight: 700;
             line-height: 1.1;
             font-size: 8rem; /* 404 yazısını çok büyük yaptım */
-            color: var(--primary-color);
+            color: var(--primary-color); /* Kırmızıya güncellendi */
             margin-bottom: var(--spacing-sm);
         }
 
@@ -121,7 +114,7 @@
             display: inline-block;
             margin-top: var(--spacing-sm);
             padding: var(--spacing-md) var(--spacing-xl); /* Biraz daha büyük buton */
-            background-color: var(--primary-color);
+            background-color: var(--primary-color); /* Kırmızıya güncellendi */
             color: #121212; /* Koyu yazı */
             font-weight: 600;
             border-radius: 50px;
@@ -132,7 +125,7 @@
         }
 
         .project-link404:hover {
-            background-color: var(--primary-light);
+            background-color: var(--primary-light); /* Açık kırmızıya güncellendi */
             color: #121212;
             transform: translateY(-3px);
             box-shadow: var(--shadow);
@@ -171,7 +164,6 @@
 <body>
     
     <main>
-        <!-- #about section'ı 404 kartı olarak kullanıyoruz -->
         <section id="about">
             <div class="container">
                 <h1>404</h1>
@@ -181,13 +173,7 @@
                     <p class="forlng">Seite nicht gefunden</p>
                 </div>
                 
-                <!-- Buton için konteyner -->
                 <div class="home-button-container">
-                    <!-- 
-                      Not: 'href' adresini "/" olarak değiştirdim. 
-                      "../../../../" gibi bir kullanım çok kırılgandır ve
-                      ana dizine (root) gitmek için "/" en doğru yoldur.
-                    -->
                     <a href="/" class="project-link404" aria-label="Go to Homepage">
                         <i class="fas fa-home"></i>
                     </a>

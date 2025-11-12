@@ -6,152 +6,11 @@
     <title data-lang="title">Yusuf Terzi | Personal Website</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Poppins and Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Language Selection Popup Styles */
-        .language-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
-        }
-        
-        .language-popup {
-            background-color: white;
-            border-radius: 15px;
-            padding: 35px;
-            text-align: center;
-            max-width: 600px;
-            width: 90%;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            animation: popup-fade 0.3s ease-out;
-        }
-        
-        @keyframes popup-fade {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .language-popup h2 {
-            margin-top: 0;
-            margin-bottom: 25px;
-            color: #333;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            position: relative;
-            display: inline-block;
-            white-space: nowrap;
-        }
-        
-        .language-popup h2:after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #007bff, transparent);
-            bottom: -10px;
-            left: 25%;
-        }
-        
-        .language-options {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
-        }
-        
-        .language-option {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            padding: 15px;
-            border-radius: 12px;
-        }
-        
-        .language-option:hover {
-            transform: scale(1.05);
-            background-color: rgba(0, 123, 255, 0.1);
-        }
-        
-        .language-option img {
-            width: 120px;
-            height: 80px;
-            border-radius: 8px;
-            object-fit: contain;
-            border: 2px solid #e0e0e0;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .language-option:hover img {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .language-option p {
-            margin-top: 12px;
-            font-weight: 600;
-            color: #333;
-            font-size: 1.1rem;
-        }
-        
-        /* Responsive styles for the language popup */
-        @media (max-width: 600px) {
-            .language-popup {
-                padding: 25px 20px;
-            }
-            
-            .language-popup h2 {
-                font-size: 1.5rem;
-            }
-            
-            .language-options {
-                gap: 20px;
-            }
-            
-            .language-option {
-                padding: 10px;
-            }
-            
-            .language-option img {
-                width: 80px;
-                height: 52px;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .language-popup h2 {
-                font-size: 1.1rem;
-            }
-            
-            .language-options {
-                gap: 15px;
-            }
-            
-            .language-option img {
-                width: 64px;
-                height: 44px;
-            }
-            
-            .language-option p {
-                font-size: 1rem;
-            }
-        }
-    </style>
-</head>
+    
+    </head>
 <body>
-    <!-- Language Selection Popup -->
     <div class="language-overlay" id="languagePopup">
         <div class="language-popup">
             <h2>Dil / Language / Sprache</h2>
@@ -173,8 +32,7 @@
     </div>
 
     <main>
-        <!-- About Section -->
-        <section id="about">
+        <section id="about" class="tilt-card">
             <div class="container">
                 <h1>Yusuf Terzi</h1>
                 <div class="subtitle">
@@ -191,7 +49,6 @@
             </div>
         </section>
         
-        <!-- Projects Section -->
         <section id="projects">
             <div class="container">
                 <div class="section-header">
@@ -199,7 +56,6 @@
                 </div>
                 
                 <div class="project-grid">
-                    <!-- Project 1 -->
                     <div class="project-item">
                         <div class="project-logo">
                             <img src="images/SSBGGlogo.png" alt="SSBGG Logo">
@@ -210,7 +66,6 @@
                         </div>
                     </div>
                     
-                    <!-- Project 2 -->
                     <div class="project-item">
                         <div class="project-logo">
                             <img src="images/xyzlogo.png" alt="?">
@@ -227,7 +82,6 @@
                         </div>
                     </div>
                     
-                    <!-- Project 3 -->
                     <div class="project-item">
                         <div class="project-logo">
                             <img src="images/terzigamelogo.png" alt="Terzi Game Logo">
@@ -244,7 +98,6 @@
                         </div>
                     </div>
 
-                    <!-- Project 4 -->
                     <div class="project-item">
                         <div class="project-logo">
                             <img src="images/classroomlifelogo.png" alt="Classroom Life Website">
@@ -265,8 +118,7 @@
             </div>
         </section>
         
-        <!-- Contact Section -->
-        <section id="contact">
+        <section id="contact" class="tilt-card">
             <div class="container">
                 <div class="section-header">
                     <h2 data-lang="contact">Contact</h2>
@@ -332,6 +184,43 @@
         // Show language popup on page load (always show, no localStorage)
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('languagePopup').style.display = 'flex';
+        });
+    </script>
+    
+    <script>
+        // *** 3D TILT EFFECT UPDATED (TARGET: .tilt-card) ***
+        document.addEventListener('DOMContentLoaded', () => {
+            // Target changed to .tilt-card (selects all cards)
+            const tiltElements = document.querySelectorAll('.tilt-card'); 
+            const maxTilt = 8; // Lowered the degree for a more subtle effect (more elegant)
+
+            if (tiltElements.length > 0) { // Check if the element(s) exist
+                
+                // Add listeners for each card (forEach)
+                tiltElements.forEach(tiltElement => { 
+                    
+                    tiltElement.addEventListener('mousemove', (e) => {
+                        // Only run on screens wider than 992px
+                        if (window.innerWidth < 992) return;
+
+                        const cardRect = tiltElement.getBoundingClientRect();
+                        const mouseX = e.clientX - cardRect.left;
+                        const mouseY = e.clientY - cardRect.top;
+                        
+                        const rotateX = (mouseY / cardRect.height - 0.5) * -maxTilt * 2;
+                        const rotateY = (mouseX / cardRect.width - 0.5) * maxTilt * 2;
+
+                        tiltElement.style.transform = `perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    });
+
+                    tiltElement.addEventListener('mouseleave', () => {
+                        // Only run on screens wider than 992px
+                        if (window.innerWidth < 992) return;
+                        
+                        tiltElement.style.transform = 'perspective(1500px) rotateX(0deg) rotateY(0deg)';
+                    });
+                });
+            }
         });
     </script>
 </body>
