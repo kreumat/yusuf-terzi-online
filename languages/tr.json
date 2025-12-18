@@ -8,9 +8,11 @@
   "contact": "İletişim",
   "contactText": "Özel İngilizce dersleri, materyaller veya diğer konular için benimle iletişime geçin:",
   "copyright": "© 2025 Yusuf Terzi. Tüm hakları saklıdır.",
-  "societyname": "Topluluk Web Sitesi",
+  "societyname": "Bursa Uludağ Üniversitesi İngilizce Öğretmenliği Topluluğu Web Sitesi",
   "viewproject": "Projeyi Görüntüle",
+  "blockytrivia": "Blocky Trivia",
+  "blockytriviadesc": "Statik Minecraft temalı fan-made trivia oyunu.",
   "classroomlife": "Tema 2: Classroom Life Web Sitesi",
-  "classroomlifedesc": "Yusuf Terzi tarafından hazırlanan bu web sayfası, Eğitim Teknolojileri dersi için bir proje olup, Türkiye'nin yeni Maarif Modeli'ne uygun olarak 2. Sınıf müfredatının 2. Teması için dijital öğrenme materyalleri sağlamak amacıyla tasarlanmıştır.",
-  "societydesc": "Bir topluluğa ait bir web sitesi; bazı kurallar gereği hangi topluluğa ait olduğunu söyleyemiyoruz. Ama kim bilir? Belki İngilizce Öğretmenliğiyle ilgilidir."
+  "classroomlifedesc": "Eğitim Teknolojileri dersi kapsamında geliştirdiğim, Türkiye'nin yeni Maarif Modeli'ne uygun 2. Sınıf 2. Tema dijital öğrenme materyalleri projesi.",
+  "societydesc": "Okuduğum üniversitenin İngilizce Öğretmenliği Topluluğu için bir öğrenci projesi olarak geliştirdiğim dinamik PHP web sitesi."
 }

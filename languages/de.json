@@ -8,9 +8,11 @@
   "contact": "Kontakt",
   "contactText": "Kontaktieren Sie mich für private Englischstunden, Materialien oder andere Themen:",
   "copyright": "© 2025 Yusuf Terzi. Alle Rechte vorbehalten.",
-  "societyname": "Gemeinschaftswebsite",
+  "societyname": "Webseite der English Language Teaching Society der Bursa Uludağ Universität",
   "viewproject": "Projekt anzeigen",
+  "blockytrivia": "Blocky Trivia",
+  "blockytriviadesc": "Statisches, Minecraft-basiertes Fan-Trivia-Spiel.",
   "classroomlife": "Thema 2: Classroom Life Webseite",
-  "classroomlifedesc": "Diese von Yusuf Terzi erstellte Webseite ist ein Projekt für den Kurs „Bildungstechnologien“ und wurde entwickelt, um digitale Lernmaterialien für das 2. Thema des Lehrplans der 2. Klasse gemäß dem neuen Maarif-Modell der Türkei bereitzustellen.",  
-  "societydesc": "Eine Website einer Gemeinschaft ; aufgrund bestimmter Regeln dürfen wir nicht sagen, zu welcher Gemeinschaft sie gehört. Aber wer weiß? Vielleicht hat sie etwas mit dem Englischunterricht zu tun."
+  "classroomlifedesc": "Projekt für digitale Lernmaterialien (2. Klasse, 2. Thema), entwickelt im Rahmen des Kurses 'Bildungstechnologien' im Einklang mit dem neuen türkischen Maarif-Modell.",  
+  "societydesc": "Dynamische PHP-Webseite, entwickelt für die English Language Teaching Society an meiner Universität als studentisches Projekt."
 }
