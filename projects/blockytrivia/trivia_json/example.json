@@ -1,0 +1,15 @@
+{
+  "NAME": "Example Quest",
+  "questions": [
+    {
+      "question": "Which block is used to build a Nether Portal?",
+      "answers": ["Dirt", "Obsidian", "Diamond Block", "Bedrock"],
+      "correct": 1
+    },
+    {
+      "question": "How many iron ingots are needed for a bucket?",
+      "answers": ["3", "2", "5", "8"],
+      "correct": 0
+    }
+  ]
+}

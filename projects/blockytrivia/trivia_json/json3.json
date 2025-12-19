@@ -1,0 +1,30 @@
+{
+  "NAME": "Quest 3",
+  "questions": [
+    {
+      "question": "What is the crafting recipe for a Stick?",
+      "answers": ["2 Planks", "1 Log", "3 Planks", "2 Logs"],
+      "correct": 0
+    },
+    {
+      "question": "Which mob explodes?",
+      "answers": ["Zombie", "Skeleton", "Creeper", "Spider"],
+      "correct": 2
+    },
+    {
+      "question": "What ore is found at Y level 11?",
+      "answers": ["Coal", "Diamond", "Iron", "Gold"],
+      "correct": 1
+    },
+    {
+      "question": "How many wool needed for a bed?",
+      "answers": ["1", "2", "3", "4"],
+      "correct": 2
+    },
+    {
+      "question": "What is the main boss of the End?",
+      "answers": ["Wither", "Ender Dragon", "Elder Guardian", "Warden"],
+      "correct": 1
+    }
+  ]
+}

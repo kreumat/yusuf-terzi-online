@@ -1,0 +1,105 @@
+{
+  "NAME": "7.3 Personal Life and Well-Being",
+  "questions": [
+    {
+      "question": "Which organ is inside your head and controls your body?",
+      "answers": ["Bone", "Brain", "Blood", "Stomach"],
+      "correct": 1
+    },
+    {
+      "question": "I have a terrible _______. I need to see a dentist.",
+      "answers": ["toothache", "headache", "backache", "flu"],
+      "correct": 0
+    },
+    {
+      "question": "Complete the sentence: 'She _______ sick last week.'",
+      "answers": ["is", "are", "was", "were"],
+      "correct": 2
+    },
+    {
+      "question": "Which one is a 'smart device'?",
+      "answers": ["Book", "Tablet", "Bicycle", "Pencil"],
+      "correct": 1
+    },
+    {
+      "question": "What is the past form of the verb 'visit'?",
+      "answers": ["visiting", "visits", "visit", "visited"],
+      "correct": 3
+    },
+    {
+      "question": "Choose the correct tag: 'You were at the hospital, _______?'",
+      "answers": ["weren't you", "didn't you", "wasn't you", "aren't you"],
+      "correct": 0
+    },
+    {
+      "question": "Too much _______ can be bad for your eyes.",
+      "answers": ["fresh air", "screen time", "healthy food", "sleep"],
+      "correct": 1
+    },
+    {
+      "question": "Which verb means 'to verify or examine'?",
+      "answers": ["Break", "Cut", "Fall", "Check"],
+      "correct": 3
+    },
+    {
+      "question": "We should eat healthy food to keep our _______.",
+      "answers": ["illness", "virus", "health", "accident"],
+      "correct": 2
+    },
+    {
+      "question": "You should call an _______ if there is a serious accident.",
+      "answers": ["ambulance", "appointment", "alternative", "exercise"],
+      "correct": 0
+    },
+    {
+      "question": "Choose the correct tag: 'They visited the doctor, _______?'",
+      "answers": ["weren't they", "don't they", "didn't they", "did they"],
+      "correct": 2
+    },
+    {
+      "question": "Where do you go to buy medicine?",
+      "answers": ["Web", "School", "Chemist", "Park"],
+      "correct": 2
+    },
+    {
+      "question": "Be careful not to _______ a bone while playing sports.",
+      "answers": ["break", "set", "reach", "check"],
+      "correct": 0
+    },
+    {
+      "question": "The _______ is a common illness caused by a virus.",
+      "answers": ["benefit", "flu", "health", "drug"],
+      "correct": 1
+    },
+    {
+      "question": "We should _______ a limit on our screen time.",
+      "answers": ["fall", "cut", "set", "break"],
+      "correct": 2
+    },
+    {
+      "question": "Some online games can be very _______.",
+      "answers": ["medical", "addictive", "healthy", "correct"],
+      "correct": 1
+    },
+    {
+      "question": "I ate too much junk food and now I have a _______.",
+      "answers": ["headache", "toothache", "stomachache", "cold"],
+      "correct": 2
+    },
+    {
+      "question": "You look tired. You should take a _______.",
+      "answers": ["rest", "risk", "virus", "data"],
+      "correct": 0
+    },
+    {
+      "question": "We use the _______ to find information and data.",
+      "answers": ["ambulance", "bone", "flu", "web"],
+      "correct": 3
+    },
+    {
+      "question": "Regular _______ is good for your body and muscles.",
+      "answers": ["accident", "disease", "exercise", "danger"],
+      "correct": 2
+    }
+  ]
+}
