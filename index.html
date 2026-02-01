@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    </head>
-<body>
+</head>
+<body data-theme="dark">
+    <!-- Language Selection Popup -->
     <div class="language-overlay" id="languagePopup">
         <div class="language-popup">
             <h2>Dil / Language / Sprache</h2>
@@ -31,32 +31,48 @@
         </div>
     </div>
 
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="#">YT.</a>
+            </div>
+            <nav class="main-nav">
+                <!-- Navigation links could go here -->
+            </nav>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
     <main>
-        <section id="about" class="tilt-card">
-            <div class="container">
-                <h1>Yusuf Terzi</h1>
-                <div class="subtitle">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container hero-content">
+                <h1 class="hero-title">Yusuf Terzi</h1>
+                <div class="hero-subtitle">
                     <p data-lang="subtitle">3rd year ELT student at Uludağ University</p>
                 </div>
-                
-                <div class="welcome">
+                <div class="hero-welcome">
                     <p data-lang="welcome">Welcome to my personal website!</p>
                 </div>
-                
-                <div class="intro">
+                <div class="hero-intro">
                     <p data-lang="intro">I'm an ELT student with a growing passion for creating things — both in the classroom and on the web.</p>
                 </div>
             </div>
         </section>
         
-        <section id="projects">
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
             <div class="container">
                 <div class="section-header">
                     <h2 data-lang="projects">My Projects</h2>
                 </div>
                 
                 <div class="project-grid">
-                    <div class="project-item">
+                    <!-- Project 1: SSBGG -->
+                    <article class="project-card">
                         <div class="project-logo">
                             <img src="images/SSBGGlogo.png" alt="SSBGG Logo">
                         </div>
@@ -64,11 +80,12 @@
                             <h3>SSBGG</h3>
                             <a data-lang="viewproject" href="projects/selt" class="project-link">View Project</a>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="project-item">
+                    <!-- Project 2: Society Website -->
+                    <article class="project-card">
                         <div class="project-logo">
-                            <img src="images/xyzlogo.png" alt="?">
+                            <img src="images/xyzlogo.png" alt="Society Logo">
                         </div>
                         <div class="project-content">
                             <h3 data-lang="societyname">Society Website</h3>
@@ -80,9 +97,10 @@
                             </div>
                             <a data-lang="viewproject" href="http://buuelts.home.uludag.edu.tr" class="project-link">View Project</a>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="project-item">
+                    <!-- Project 3: Terzi Game -->
+                    <article class="project-card">
                         <div class="project-logo">
                             <img src="images/terzigamelogo.png" alt="Terzi Game Logo">
                         </div>
@@ -94,11 +112,12 @@
                                     <p data-lang="terziGameNote">A very simple 2D pixel game made with Phaser JS.</p>
                                 </div>
                             </div>
-                            <a data-lang="viewproject" href="projects/Terzi-Game" class="project-link">View Project</i></a>
+                            <a data-lang="viewproject" href="projects/Terzi-Game" class="project-link">View Project</a>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="project-item">
+                    <!-- Project 4: Classroom Life -->
+                    <article class="project-card">
                         <div class="project-logo">
                             <img src="images/classroomlifelogo.png" alt="Classroom Life Website">
                         </div>
@@ -110,11 +129,12 @@
                                     <p data-lang="classroomlifedesc">Prepared by Yusuf Terzi, this webpage is a project for "Educational Technologies" course, designed to provide digital learning materials for the 2nd Theme of the 2nd Grade curriculum, in accordance with Turkey's new Maarif Model.</p>
                                 </div>
                             </div>
-                            <a data-lang="viewproject" href="projects/edu" class="project-link">View Project</i></a>
+                            <a data-lang="viewproject" href="projects/edu" class="project-link">View Project</a>
                         </div>
-                    </div>					
+                    </article>
 
-                    <div class="project-item">
+                    <!-- Project 5: BlockyTrivia -->
+                    <article class="project-card">
                         <div class="project-logo">
                             <img src="images/blockytrivialogo.png" alt="BlockyTrivia">
                         </div>
@@ -126,15 +146,15 @@
                                     <p data-lang="blockytriviadesc">Static, Minecraft-themed fan-made trivia game.</p>
                                 </div>
                             </div>
-                            <a data-lang="viewproject" href="projects/blockytrivia" class="project-link">View Project</i></a>
+                            <a data-lang="viewproject" href="projects/blockytrivia" class="project-link">View Project</a>
                         </div>
-                    </div>	
-
+                    </article>
                 </div>
             </div>
         </section>
         
-        <section id="contact" class="tilt-card">
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
             <div class="container">
                 <div class="section-header">
                     <h2 data-lang="contact">Contact</h2>
@@ -160,21 +180,15 @@
     </footer>
 
     <script>
-        // Function to select language and load translations
+        // Language Selection Logic
         function selectLanguage(lang) {
-            // Hide the popup
             document.getElementById('languagePopup').style.display = 'none';
-            
-            // Fetch the language file
             fetch(`languages/${lang}.json`)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Language file not found');
-                    }
+                    if (!response.ok) throw new Error('Language file not found');
                     return response.json();
                 })
                 .then(translations => {
-                    // Apply translations to all elements with data-lang attribute
                     const elements = document.querySelectorAll('[data-lang]');
                     elements.forEach(element => {
                         const key = element.getAttribute('data-lang');
@@ -182,62 +196,54 @@
                             element.textContent = translations[key];
                         }
                     });
-                    
-                    // Update document title
-                    if (translations.title) {
-                        document.title = translations.title;
-                    }
+                    if (translations.title) document.title = translations.title;
                 })
                 .catch(error => {
                     console.error('Error loading language file:', error);
-                    // Fallback to English if there's an error
-                    if (lang !== 'en') {
-                        selectLanguage('en');
-                    }
+                    if (lang !== 'en') selectLanguage('en');
                 });
         }
 
-        // Show language popup on page load (always show, no localStorage)
+        // Show language popup on page load
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('languagePopup').style.display = 'flex';
         });
-    </script>
-    
-    <script>
-        // *** 3D TILT EFFECT UPDATED (TARGET: .tilt-card) ***
-        document.addEventListener('DOMContentLoaded', () => {
-            // Target changed to .tilt-card (selects all cards)
-            const tiltElements = document.querySelectorAll('.tilt-card'); 
-            const maxTilt = 8; // Lowered the degree for a more subtle effect (more elegant)
 
-            if (tiltElements.length > 0) { // Check if the element(s) exist
-                
-                // Add listeners for each card (forEach)
-                tiltElements.forEach(tiltElement => { 
-                    
-                    tiltElement.addEventListener('mousemove', (e) => {
-                        // Only run on screens wider than 992px
-                        if (window.innerWidth < 992) return;
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
 
-                        const cardRect = tiltElement.getBoundingClientRect();
-                        const mouseX = e.clientX - cardRect.left;
-                        const mouseY = e.clientY - cardRect.top;
-                        
-                        const rotateX = (mouseY / cardRect.height - 0.5) * -maxTilt * 2;
-                        const rotateY = (mouseX / cardRect.width - 0.5) * maxTilt * 2;
+        // Check for saved theme preference or use default (dark)
+        // User asked for default dark, but a toggle button.
+        // We will default to dark in CSS, so no JS needed for initial load unless we check localStorage.
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+            updateIcon(savedTheme);
+        } else {
+             // Default is dark
+             updateIcon('dark');
+        }
 
-                        tiltElement.style.transform = `perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                    });
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-                    tiltElement.addEventListener('mouseleave', () => {
-                        // Only run on screens wider than 992px
-                        if (window.innerWidth < 992) return;
-                        
-                        tiltElement.style.transform = 'perspective(1500px) rotateX(0deg) rotateY(0deg)';
-                    });
-                });
-            }
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
         });
+
+        function updateIcon(theme) {
+            if (theme === 'light') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
     </script>
 </body>
 </html>
