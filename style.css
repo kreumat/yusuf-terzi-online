@@ -224,7 +224,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
 }
 
@@ -448,10 +448,40 @@ footer {
     }
     
     .project-grid {
-        grid-template-columns: 1fr; /* Stack on mobile */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
     
     .contact-content {
         padding: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .language-options {
+        gap: 1rem;
+    }
+
+    .language-option img {
+        width: 60px;
+    }
+
+    .language-popup {
+        padding: 1.5rem;
+    }
+
+    .project-card {
+        padding: 1.5rem;
     }
 }
