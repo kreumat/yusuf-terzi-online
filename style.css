@@ -472,8 +472,8 @@ footer {
     }
 
     .email-link {
-        padding: 0.8rem 1rem;
-        font-size: 0.85rem;
+        padding: 1rem 1.5rem;
+        font-size: 0.8rem;
         width: 100%;
         justify-content: center;
         word-break: normal;
