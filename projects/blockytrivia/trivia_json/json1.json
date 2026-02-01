@@ -1,30 +1,30 @@
 {
-  "NAME": "Quest 1",
+  "NAME": "Giving Advice",
   "questions": [
     {
-      "question": "What is the crafting recipe for a Stick?",
-      "answers": ["2 Planks", "1 Log", "3 Planks", "2 Logs"],
+      "question": "You look tired. You ____ take a rest.",
+      "answers": ["should", "shouldn't", "can't", "won't"],
       "correct": 0
     },
     {
-      "question": "Which mob explodes?",
-      "answers": ["Zombie", "Skeleton", "Creeper", "Spider"],
+      "question": "It's raining heavily. You ____ forget your umbrella.",
+      "answers": ["must", "should", "shouldn't", "have to"],
       "correct": 2
     },
     {
-      "question": "What ore is found at Y level 11?",
-      "answers": ["Coal", "Diamond", "Iron", "Gold"],
+      "question": "I have a toothache. What ____ I do?",
+      "answers": ["should", "would", "must", "did"],
+      "correct": 0
+    },
+    {
+      "question": "He has an exam tomorrow. He ____ play video games all night.",
+      "answers": ["should", "shouldn't", "must", "can"],
       "correct": 1
     },
     {
-      "question": "How many wool needed for a bed?",
-      "answers": ["1", "2", "3", "4"],
-      "correct": 2
-    },
-    {
-      "question": "What is the main boss of the End?",
-      "answers": ["Wither", "Ender Dragon", "Elder Guardian", "Warden"],
-      "correct": 1
+      "question": "Your room is messy. You ____ clean it.",
+      "answers": ["ought to", "shouldn't", "wouldn't", "couldn't"],
+      "correct": 0
     }
   ]
 }

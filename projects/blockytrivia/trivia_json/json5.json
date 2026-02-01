@@ -1,29 +1,54 @@
 {
-  "NAME": "Quest 5",
+  "NAME": "Past Simple",
   "questions": [
     {
-      "question": "What is the crafting recipe for a Stick?",
-      "answers": ["2 Planks", "1 Log", "3 Planks", "2 Logs"],
-      "correct": 0
-    },
-    {
-      "question": "Which mob explodes?",
-      "answers": ["Zombie", "Skeleton", "Creeper", "Spider"],
+      "question": "Yesterday I ____ to the cinema.",
+      "answers": [
+        "go",
+        "goed",
+        "went",
+        "gone"
+      ],
       "correct": 2
     },
     {
-      "question": "What ore is found at Y level 11?",
-      "answers": ["Coal", "Diamond", "Iron", "Gold"],
+      "question": "She ____ (buy) a new laptop last week.",
+      "answers": [
+        "buyed",
+        "bought",
+        "buys",
+        "buying"
+      ],
       "correct": 1
     },
     {
-      "question": "How many wool needed for a bed?",
-      "answers": ["1", "2", "3", "4"],
-      "correct": 2
+      "question": "We ____ (not/watch) the movie.",
+      "answers": [
+        "didn't watch",
+        "don't watch",
+        "didn't watched",
+        "not watched"
+      ],
+      "correct": 0
     },
     {
-      "question": "What is the main boss of the End?",
-      "answers": ["Wither", "Ender Dragon", "Elder Guardian", "Warden"],
+      "question": "____ they happy with the party?",
+      "answers": [
+        "Did",
+        "Were",
+        "Was",
+        "Are"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "He ____ (write) a letter to his friend.",
+      "answers": [
+        "writed",
+        "wrote",
+        "written",
+        "write"
+      ],
       "correct": 1
     }
   ]

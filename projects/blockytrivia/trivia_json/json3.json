@@ -1,30 +1,55 @@
 {
-  "NAME": "Quest 3",
+  "NAME": "Directions",
   "questions": [
     {
-      "question": "What is the crafting recipe for a Stick?",
-      "answers": ["2 Planks", "1 Log", "3 Planks", "2 Logs"],
+      "question": "The bank is ____ the post office.",
+      "answers": [
+        "next to",
+        "next",
+        "neighbors",
+        "near to"
+      ],
       "correct": 0
     },
     {
-      "question": "Which mob explodes?",
-      "answers": ["Zombie", "Skeleton", "Creeper", "Spider"],
-      "correct": 2
+      "question": "Go ____ on until you reach the park.",
+      "answers": [
+        "straight",
+        "straigh",
+        "street",
+        "strait"
+      ],
+      "correct": 0
     },
     {
-      "question": "What ore is found at Y level 11?",
-      "answers": ["Coal", "Diamond", "Iron", "Gold"],
+      "question": "Turn ____ at the traffic lights.",
+      "answers": [
+        "write",
+        "right",
+        "rite",
+        "ride"
+      ],
       "correct": 1
     },
     {
-      "question": "How many wool needed for a bed?",
-      "answers": ["1", "2", "3", "4"],
-      "correct": 2
+      "question": "The library is ____ the corner.",
+      "answers": [
+        "on",
+        "in",
+        "to",
+        "under"
+      ],
+      "correct": 0
     },
     {
-      "question": "What is the main boss of the End?",
-      "answers": ["Wither", "Ender Dragon", "Elder Guardian", "Warden"],
-      "correct": 1
+      "question": "Walk ____ the bridge to get to the island.",
+      "answers": [
+        "across",
+        "cross",
+        "crossing",
+        "accross"
+      ],
+      "correct": 0
     }
   ]
 }

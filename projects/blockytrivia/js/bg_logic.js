@@ -8,7 +8,7 @@ function updateBackground(screenName) {
         bgContainer.style.backgroundImage = "url('images/backgrounds/menubackground.png')";
         bgContainer.classList.remove('hidden');
     } else if (phases45.includes(screenName)) {
-        bgContainer.style.backgroundImage = "url('images/backgrounds/bossbackground.png')";
+        bgContainer.style.backgroundImage = "url('images/backgrounds/test_background.png')";
         bgContainer.classList.remove('hidden');
     } else if (screenName === 'credits') {
          // Keep existing background logic for credits (which currently relies on body color or no specific overlay)

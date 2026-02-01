@@ -40,7 +40,7 @@ const CONFIG = {
                 leggings: 'images/chainmail/chainmail_leggings.png',
                 boots: 'images/chainmail/chainmail_boots.png',
                 // TODO: These swords will be updated to Iron Swords in a future update.
-                sword: 'images/diamond/diamond_sword.png',
+                sword: 'images/iron/iron_sword.png',
                 gappleAmount: '1x'
             }
         },
@@ -55,7 +55,7 @@ const CONFIG = {
                 leggings: 'images/empty/empty_armor_slot_leggings.png',
                 boots: 'images/empty/empty_armor_slot_boots.png',
                 // TODO: These swords will be updated to Iron Swords in a future update.
-                sword: 'images/diamond/diamond_sword.png',
+                sword: 'images/iron/iron_sword.png',
                 gappleAmount: '0x'
             }
         }
@@ -161,6 +161,17 @@ function showFeedback(isCorrect) {
     }, 1000);
 }
 
+function triggerScreenShake() {
+    const body = document.body;
+    body.classList.remove('shake-screen'); // Reset if active
+    void body.offsetWidth; // Force reflow
+    body.classList.add('shake-screen');
+
+    setTimeout(() => {
+        body.classList.remove('shake-screen');
+    }, 500); // Match animation duration
+}
+
 function clearAllTimers() {
     if (gameState.timers.countdown) clearInterval(gameState.timers.countdown);
     if (gameState.timers.slideDownDelay) clearTimeout(gameState.timers.slideDownDelay);
@@ -199,7 +210,7 @@ function switchScreen(screenName) {
     });
     screens[screenName].classList.remove('hidden');
     screens[screenName].classList.add('active');
-    
+
     // Update background if not credits (Credits keeps previous background or handles itself)
     if (screenName !== 'credits') {
         updateBackground(screenName);
@@ -270,8 +281,8 @@ function setupMenuListeners() {
 
     // Game Over
     document.getElementById('btn-play-again').addEventListener('click', () => {
-         clearAllTimers();
-         switchScreen('menu');
+        clearAllTimers();
+        switchScreen('menu');
     });
 
     document.getElementById('btn-game-over-credits').addEventListener('click', () => {
@@ -387,8 +398,8 @@ function startGame() {
         gameState.isAnswering = false;
 
         // Reset Tweens
-        if(gameState.activeTweens.cameraShake) gameState.activeTweens.cameraShake.stop();
-        if(gameState.activeTweens.witherMove) gameState.activeTweens.witherMove.stop();
+        if (gameState.activeTweens.cameraShake) gameState.activeTweens.cameraShake.stop();
+        if (gameState.activeTweens.witherMove) gameState.activeTweens.witherMove.stop();
         TWEEN.removeAll();
 
         // 2. Setup HUD
@@ -396,7 +407,7 @@ function startGame() {
 
         // 3. Switch Screen (and Background via helper)
         switchScreen('game');
-        
+
         // 4. Initialize 3D Scene
         initThreeJS();
 
@@ -429,35 +440,35 @@ function updateHUD() {
     const currentAbs = Math.max(0, gameState.absorptionHP);
     // Display logic: only show if > 0. But to keep layout consistent if needed?
     // Requirement: "Render the exact amount of absorption health using full/half textures."
-    
+
     if (currentAbs > 0) {
         // We render as many hearts as needed.
         // Each heart represents 2 HP.
         // Ceiling of (currentAbs / 2) is number of hearts.
         const numAbsHearts = Math.ceil(currentAbs / 2);
-        
+
         for (let i = 0; i < numAbsHearts; i++) {
             const wrapper = document.createElement('div');
-            wrapper.className = 'relative w-6 h-6 md:w-8 md:h-8'; 
+            wrapper.className = 'relative w-6 h-6 md:w-8 md:h-8';
 
             // Calculate HP value for this specific heart slot
             // Slot 0 covers 1-2 HP. Slot 1 covers 3-4 HP.
             // slotMin = i * 2.
             const slotMin = i * 2;
-            
+
             // Background is NOT standard empty heart for absorption usually?
             // Reference: "full_golden_heart.png" overlaying "empty_heart_slot.png" or just transparent?
             // Minecraft logic: Absorption hearts usually don't have empty backgrounds when missing, they just vanish.
             // BUT for the ones present, they might sit on nothing?
             // The memory says "health HUD uses a discrete layered CSS approach where full_heart.png images overlay empty_heart_slot.png backgrounds."
             // But for absorption, if we have 2.5 hearts (5HP), we show 2 full and 1 half. We don't show empty slots for potential 8 hearts.
-            
+
             // Requirement says: "Render the exact amount of absorption health"
             // So we just render the active hearts.
-            
+
             // However, to match the style, maybe we don't need background for absorption?
             // Or maybe we do? Let's assume standard behavior: No empty slots for absorption, just the golden hearts.
-            
+
             // Background (Empty Slot) - added as per user request
             const bgImg = document.createElement('img');
             bgImg.src = 'images/gui/empty_heart_slot.png';
@@ -466,7 +477,7 @@ function updateHUD() {
 
             const fgImg = document.createElement('img');
             fgImg.className = 'absolute top-0 left-0 w-full h-full';
-            
+
             if (currentAbs >= slotMin + 2) {
                 fgImg.src = 'images/gui/full_golden_heart.png';
             } else {
@@ -539,7 +550,7 @@ function updateHUD() {
 
     // 4. Consumable
     const gapple = document.getElementById('consumable-container');
-    
+
     // Check if we have apples remaining
     if (gameState.gapplesRemaining <= 0) {
         gapple.classList.add('hidden');
@@ -593,7 +604,7 @@ function startRoundSequence() {
         if (count > 0) {
             countdown.innerText = count;
         } else {
-            if(gameState.timers.countdown) clearInterval(gameState.timers.countdown);
+            if (gameState.timers.countdown) clearInterval(gameState.timers.countdown);
             countdown.classList.add('hidden');
             // Step 2: Slide Up Question
             // Tiny delay to ensure countdown is fully hidden before slide starts (visual polish)
@@ -728,7 +739,7 @@ function performBossAttack() {
 
     // Logic update
     let dmg = CONFIG.DIFFICULTY[gameState.selectedDifficulty].bossDamage;
-    
+
     // Absorption Damage First
     if (gameState.absorptionHP > 0) {
         if (dmg <= gameState.absorptionHP) {
@@ -817,13 +828,13 @@ const witherOriginalRot = new THREE.Euler(0, Math.PI, 0);
 function initThreeJS() {
     if (!gameState.scene) {
         gameState.scene = new THREE.Scene();
-        gameState.scene.background = new THREE.Color(0x87ceeb);
+        // gameState.scene.background = new THREE.Color(0x87ceeb); // Removed to allow CSS background
 
         gameState.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         gameState.scene.add(gameState.camera);
 
         const canvas = document.getElementById('gameCanvas');
-        gameState.renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+        gameState.renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
         gameState.renderer.setSize(window.innerWidth, window.innerHeight);
 
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
@@ -893,46 +904,96 @@ function loadWither() {
 }
 
 function loadSword() {
-    // TODO: Implement Iron Sword loading logic for HARD/HARDCORE difficulties later.
-    // Currently forcing Diamond Sword for all difficulties as per user instruction.
-
-    const mtlLoader = new THREE.MTLLoader();
-    mtlLoader.load('3d/diamondsword/diamondsword.mtl', (materials) => {
-        materials.preload();
-        Object.values(materials.materials).forEach(material => {
-            material.depthTest = false;
-        });
-
-        const objLoader = new THREE.OBJLoader();
-        objLoader.setMaterials(materials);
-        objLoader.load('3d/diamondsword/diamondsword.obj', (object) => {
-            gameState.swordModel = object;
+    if (gameState.selectedDifficulty === 'HARDCORE' || gameState.selectedDifficulty === 'HARD') {
+        // Load Iron Sword (GLTF)
+        const gltfLoader = new THREE.GLTFLoader();
+        gltfLoader.load('3d/ironsword/source/model.gltf', (gltf) => {
+            gameState.swordModel = gltf.scene;
             gameState.camera.add(gameState.swordModel);
-            gameState.swordModel.position.copy(restPosition);
-            gameState.swordModel.rotation.copy(restRotation);
-            gameState.swordModel.scale.copy(swordScale);
-        }, undefined, (error) => console.error("OBJ Load Error:", error));
-    });
+
+            // Custom transform for Iron Sword (GLTF) - Verified by User
+            // Normalized rotation: 7.8 -> 1.52 (since 7.8 was > 360 degrees)
+            const startPos = new THREE.Vector3(1, -1.3, -1.3);
+            const startRot = new THREE.Euler(0, 1.52, 0.8); // 6.2 -> 0, 7.8 -> 1.52
+
+            gameState.swordModel.position.copy(startPos);
+            gameState.swordModel.rotation.copy(startRot);
+            gameState.swordModel.scale.set(1, 1, 1);
+
+            // Store animation data for dynamic swinging
+            // Heuristic Attack: Move forward/down slightly and pitch down
+            // Important: Use clones to ensure we don't accidentally mutate the reference
+            const attackPos = startPos.clone().add(new THREE.Vector3(-0.3, -0.2, -1.5));
+            const attackRot = startRot.clone();
+            attackRot.x -= 0.5;
+
+            gameState.swordAnim = {
+                restPos: startPos.clone(),
+                restRot: startRot.clone(),
+                attackPos: attackPos,
+                attackRot: attackRot
+            };
+
+            // Fix for dark models if materials need light
+            gameState.swordModel.traverse((child) => {
+                if (child.isMesh) {
+                    child.frustumCulled = false; // Prevent culling issues
+                }
+            });
+
+        }, undefined, (error) => console.error("Iron Sword Load Error:", error));
+
+    } else {
+        // Load Diamond Sword (OBJ/MTL)
+        const mtlLoader = new THREE.MTLLoader();
+        mtlLoader.load('3d/diamondsword/diamondsword.mtl', (materials) => {
+            materials.preload();
+            Object.values(materials.materials).forEach(material => {
+                material.depthTest = false;
+            });
+
+            const objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.load('3d/diamondsword/diamondsword.obj', (object) => {
+                gameState.swordModel = object;
+                gameState.camera.add(gameState.swordModel);
+                gameState.swordModel.position.copy(restPosition);
+                gameState.swordModel.rotation.copy(restRotation);
+                gameState.swordModel.scale.copy(swordScale);
+
+                // Store animation data
+                gameState.swordAnim = {
+                    restPos: restPosition,
+                    restRot: restRotation,
+                    attackPos: attackPosition,
+                    attackRot: attackRotation
+                };
+
+            }, undefined, (error) => console.error("OBJ Load Error:", error));
+        });
+    }
 }
 
 // --- ANIMATION FUNCTIONS (Ported from Reference) ---
 
 function swingSword() {
-    if (!gameState.swordModel) return;
+    if (!gameState.swordModel || !gameState.swordAnim) return;
+
+    const anim = gameState.swordAnim;
 
     // TWEENs
     const swingPosTween = new TWEEN.Tween(gameState.swordModel.position)
-        .to(attackPosition, 100)
+        .to(anim.attackPos, 100)
         .easing(TWEEN.Easing.Quadratic.Out);
     const swingRotTween = new TWEEN.Tween(gameState.swordModel.rotation)
-        .to(attackRotation, 100)
+        .to(anim.attackRot, 100)
         .easing(TWEEN.Easing.Quadratic.Out);
 
     const returnPosTween = new TWEEN.Tween(gameState.swordModel.position)
-        .to(restPosition, 300)
+        .to(anim.restPos, 300)
         .easing(TWEEN.Easing.Quadratic.In);
     const returnRotTween = new TWEEN.Tween(gameState.swordModel.rotation)
-        .to(restRotation, 300)
+        .to(anim.restRot, 300)
         .easing(TWEEN.Easing.Quadratic.In);
 
     swingPosTween.chain(returnPosTween);
@@ -975,6 +1036,7 @@ function blockAttackAnimation() {
 
     showDamageFlash();
     shakeCamera();
+    triggerScreenShake(); // Add CSS Shake for full screen effect
 
     // 1. Wither's GLTF Animation
     if (gameState.shootAction && gameState.idleAction) {
