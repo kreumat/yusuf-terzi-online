@@ -33,6 +33,9 @@
 
     <!-- BACKGROUND CONTAINER -->
     <div id="bg-container" class="fixed inset-0 z-[-1] bg-cover bg-center transition-all duration-1000"></div>
+    <video id="bg-video" autoplay loop muted playsinline class="fixed inset-0 z-[-2] object-cover w-full h-full hidden">
+        <source src="videos/mainbackground.mp4" type="video/mp4">
+    </video>
 
     <!-- TRANSITION OVERLAY -->
     <div id="transition-overlay"
@@ -93,6 +96,16 @@
                 <div class="flex-1 overflow-y-auto pr-2">
                     <h3 class="text-xl text-gray-200 mb-4 border-b border-zinc-600 pb-2">Update Log</h3>
                     <div class="flex flex-col gap-6 text-gray-300 text-sm">
+
+                        <!-- v1.3.0-alpha -->
+                        <div>
+                            <span class="text-orange-400 font-bold block text-base">Feb 04, 2026 (v1.3.0-alpha)</span>
+                            <ul class="list-disc pl-4 opacity-90 mt-1 space-y-1">
+                                <li>Changed main menu background.</li>
+                                <li>Added Giant Zombie Boss.</li>
+                                <li>UI fixes and improvements.</li>
+                            </ul>
+                        </div>
 
                         <!-- v1.2.0-alpha -->
                         <div>
@@ -182,6 +195,62 @@
             class="flex-none px-8 py-3 bg-zinc-600 border-b-4 border-r-4 border-zinc-800 hover:bg-zinc-500 hover:border-yellow-400 text-white text-xl shadow-lg transition-transform active:translate-y-1 active:border-b-0 active:border-r-0 rounded-sm mb-6 md:mb-4">Back</button>
     </div>
 
+    <!-- BOSS SELECTION -->
+    <div id="boss-selection" class="fixed inset-0 hidden z-50 bg-black/80 overflow-y-auto">
+        <div class="min-h-full flex flex-col items-center justify-center p-4 gap-8">
+            <h2
+                class="text-4xl md:text-5xl text-white drop-shadow-[4px_4px_0_#000] font-black tracking-widest uppercase text-center mt-8 md:mt-0">
+                Select Opponent</h2>
+
+            <div class="flex flex-row md:flex-row gap-2 md:gap-8 items-center justify-center w-full">
+                <!-- WITHER CARD -->
+                <div id="boss-card-wither"
+                    class="relative group w-36 h-60 md:w-72 md:h-96 bg-zinc-900 border-4 border-black hover:border-purple-600 flex flex-col items-center justify-center cursor-pointer transition-transform duration-100 hover:-translate-y-2 shadow-[8px_8px_0_0_rgba(0,0,0,0.5)] hover:shadow-[8px_8px_0_0_#9333ea]">
+
+                    <div class="w-24 h-24 md:w-40 md:h-40 mb-3 md:mb-6 border-4 border-black overflow-hidden">
+                        <img src="images/gui/witherhead.jpg" alt="Wither"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300">
+                    </div>
+
+                    <h3
+                        class="text-xl md:text-3xl text-purple-500 font-bold mb-2 tracking-widest drop-shadow-[2px_2px_0_#000]">
+                        WITHER
+                    </h3>
+                    <p class="text-zinc-400 px-2 md:px-6 text-center text-xs md:text-sm leading-tight">The classic
+                        skeletal terror.</p>
+                </div>
+
+                <!-- GIANT ZOMBIE CARD -->
+                <div id="boss-card-zombie"
+                    class="relative group w-36 h-60 md:w-72 md:h-96 bg-zinc-900 border-4 border-black hover:border-green-600 flex flex-col items-center justify-center cursor-pointer transition-transform duration-100 hover:-translate-y-2 shadow-[8px_8px_0_0_rgba(0,0,0,0.5)] hover:shadow-[8px_8px_0_0_#16a34a]">
+
+                    <!-- BADGE -->
+                    <div
+                        class="absolute -top-4 -right-4 bg-red-600 text-white text-[10px] md:text-xs font-bold px-2 py-1 border-2 border-black shadow-[4px_4px_0_0_#000] z-10 font-mono rotate-6">
+                        NOT FULLY IMPLEMENTED
+                    </div>
+
+                    <div class="w-24 h-24 md:w-40 md:h-40 mb-3 md:mb-6 border-4 border-black overflow-hidden">
+                        <img src="images/gui/zombiehead.jpg" alt="Giant Zombie"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300">
+                    </div>
+
+                    <h3
+                        class="text-xl md:text-3xl text-green-500 font-bold mb-2 tracking-widest drop-shadow-[2px_2px_0_#000]">
+                        GIANT
+                    </h3>
+                    <p class="text-zinc-400 px-2 md:px-6 text-center text-xs md:text-sm leading-tight">A mutated
+                        colossus.</p>
+                </div>
+            </div>
+
+            <button id="btn-boss-back"
+                class="flex-none px-8 py-3 bg-zinc-600 border-b-4 border-r-4 border-zinc-800 hover:bg-zinc-500 hover:border-yellow-400 text-white text-xl shadow-lg transition-transform active:translate-y-1 active:border-b-0 active:border-r-0 rounded-sm mt-8 mb-8 md:mb-0">
+                Back
+            </button>
+        </div>
+    </div>
+
     <!-- DIFFICULTY SELECTION -->
     <div id="difficulty-selection"
         class="fixed inset-0 hidden flex flex-col items-center justify-center z-50 p-2 gap-4 min-h-screen">
@@ -237,6 +306,11 @@
 
         <button id="btn-start-game"
             class="px-12 py-5 bg-green-700 border-b-4 border-r-4 border-green-900 hover:bg-green-600 hover:border-yellow-300 text-white text-3xl shadow-xl transition-transform active:translate-y-1 active:border-b-0 active:border-r-0 rounded-sm mt-4">START</button>
+
+        <button id="btn-diff-back"
+            class="flex-none px-8 py-3 bg-zinc-600 border-b-4 border-r-4 border-zinc-800 hover:bg-zinc-500 hover:border-yellow-400 text-white text-xl shadow-lg transition-transform active:translate-y-1 active:border-b-0 active:border-r-0 rounded-sm mt-4">
+            Back
+        </button>
     </div>
 
     <!-- GAME CONTAINER -->

@@ -66,9 +66,45 @@ const CONFIG = {
     MAX_ABSORPTION_HP: 16 // 8 Hearts
 };
 
+const BOSS_DATA = {
+    WITHER: {
+        id: 'WITHER',
+        name: 'WITHER',
+        modelPath: '3d/wither/witherBoss.gltf',
+        animations: {
+            idle: 'animation.witherBoss.new',
+            attack: 'animation.witherBoss.shoot'
+        },
+        scale: new THREE.Vector3(1.5, 1.5, 1.5),
+        pos: new THREE.Vector3(0, -2, -3.5),
+        rot: new THREE.Euler(0, Math.PI, 0),
+        color: 'text-purple-500',
+        hitSound: 'witherhurt',
+        shouldLunge: true,
+        hitDelay: 0
+    },
+    GIANT_ZOMBIE: {
+        id: 'GIANT_ZOMBIE',
+        name: 'GIANT ZOMBIE',
+        modelPath: '3d/zombiegiant/source/Zombie_mutant_geo.gltf',
+        animations: {
+            idle: 'animation.Enderman_mutant.general',
+            attack: 'smash'
+        },
+        scale: new THREE.Vector3(0.7, 0.7, 0.7),
+        pos: new THREE.Vector3(0, -1.2, -2.5),
+        rot: new THREE.Euler(0, 3.17, 0),
+        color: 'text-green-500',
+        hitSound: 'witherhurt',
+        shouldLunge: false,
+        hitDelay: 900
+    }
+};
+
 // --- STATE VARIABLES ---
 let gameState = {
     selectedQuest: null,
+    selectedBoss: 'WITHER', // Default
     selectedDifficulty: 'NORMAL',
     playerHP: CONFIG.INITIAL_PLAYER_HP,
     bossHP: CONFIG.INITIAL_BOSS_HP,
@@ -123,6 +159,7 @@ const screens = {
     menu: document.getElementById('main-menu'),
     credits: document.getElementById('credits-screen'),
     quest: document.getElementById('quest-selection'),
+    bossSelection: document.getElementById('boss-selection'),
     difficulty: document.getElementById('difficulty-selection'),
     game: document.getElementById('game-container'),
     gameOver: document.getElementById('game-over-screen')
@@ -162,13 +199,13 @@ function showFeedback(isCorrect) {
 }
 
 function triggerScreenShake() {
-    const body = document.body;
-    body.classList.remove('shake-screen'); // Reset if active
-    void body.offsetWidth; // Force reflow
-    body.classList.add('shake-screen');
+    const container = document.getElementById('game-container');
+    container.classList.remove('shake-screen'); // Reset if active
+    void container.offsetWidth; // Force reflow
+    container.classList.add('shake-screen');
 
     setTimeout(() => {
-        body.classList.remove('shake-screen');
+        container.classList.remove('shake-screen');
     }, 500); // Match animation duration
 }
 
@@ -204,12 +241,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function switchScreen(screenName) {
+    // Use global screens variable
+
+
     Object.values(screens).forEach(s => {
-        s.classList.add('hidden');
-        s.classList.remove('active');
+        if (s) {
+            s.classList.add('hidden');
+            s.classList.remove('active');
+        }
     });
-    screens[screenName].classList.remove('hidden');
-    screens[screenName].classList.add('active');
+
+    if (screens[screenName]) {
+        screens[screenName].classList.remove('hidden');
+        screens[screenName].classList.add('active');
+    }
 
     // Update background if not credits (Credits keeps previous background or handles itself)
     if (screenName !== 'credits') {
@@ -229,14 +274,23 @@ function setupMenuListeners() {
         switchScreen('credits');
     });
 
-    document.getElementById('btn-credits-back').addEventListener('click', () => {
+    document.getElementById('btn-credits-back').onclick = () => {
         switchScreen('menu');
-    });
+    };
 
     // Quest Selection
-    document.getElementById('btn-quest-back').addEventListener('click', () => {
+    document.getElementById('btn-quest-back').onclick = () => {
         switchScreen('menu');
-    });
+    };
+
+    // Boss Selection
+    document.getElementById('btn-boss-back').onclick = () => {
+        switchScreen('quest');
+    };
+
+    document.getElementById('boss-card-wither').onclick = () => selectBoss('WITHER');
+    document.getElementById('boss-card-zombie').onclick = () => selectBoss('GIANT_ZOMBIE');
+
 
     // Custom Quest Upload
     const uploadInput = document.getElementById('quest-upload-input');
@@ -281,8 +335,21 @@ function setupMenuListeners() {
 
     // Game Over
     document.getElementById('btn-play-again').addEventListener('click', () => {
-        clearAllTimers();
-        switchScreen('menu');
+        // Smooth transition
+        const overlay = document.getElementById('transition-overlay');
+        overlay.classList.remove('opacity-0');
+        overlay.classList.add('opacity-100');
+
+        setTimeout(() => {
+            clearAllTimers();
+            switchScreen('menu');
+
+            // Fade out (after screen switch)
+            setTimeout(() => {
+                overlay.classList.remove('opacity-100');
+                overlay.classList.add('opacity-0');
+            }, 100);
+        }, 1000); // Match CSS duration-1000
     });
 
     document.getElementById('btn-game-over-credits').addEventListener('click', () => {
@@ -317,9 +384,19 @@ async function loadQuestSelection() {
 
 function selectQuest(data) {
     gameState.selectedQuest = data;
-    gameState.questionPool = [...data.questions];
-    initDifficultyScreen();
+    initBossSelection();
+}
+
+function initBossSelection() {
+    switchScreen('bossSelection');
+}
+
+function selectBoss(bossId) {
+    gameState.selectedBoss = bossId;
+    // Optional: Highlight selected boss visual feedback if we wanted to stay on screen, 
+    // but we are immediately moving to difficulty.
     switchScreen('difficulty');
+    initDifficultyScreen();
 }
 
 // --- PHASE 3: DIFFICULTY SELECTION ---
@@ -348,6 +425,10 @@ function initDifficultyScreen() {
         if (currentDiffIndex >= difficultyKeys.length) currentDiffIndex = 0;
         updateDifficultyDisplay();
     });
+
+    document.getElementById('btn-diff-back').onclick = () => {
+        switchScreen('bossSelection');
+    };
 }
 
 function updateDifficultyDisplay() {
@@ -399,7 +480,7 @@ function startGame() {
 
         // Reset Tweens
         if (gameState.activeTweens.cameraShake) gameState.activeTweens.cameraShake.stop();
-        if (gameState.activeTweens.witherMove) gameState.activeTweens.witherMove.stop();
+        if (gameState.activeTweens.bossMove) gameState.activeTweens.bossMove.stop();
         TWEEN.removeAll();
 
         // 2. Setup HUD
@@ -709,15 +790,16 @@ function performPlayerAttack() {
 
     // Play Sound with Delay (200ms)
     setTimeout(() => {
-        playSound('witherhurt');
+        const soundName = BOSS_DATA[gameState.selectedBoss].hitSound;
+        playSound(soundName);
     }, 20);
 
     // Logic update
     const dmg = CONFIG.DIFFICULTY[gameState.selectedDifficulty].playerDamage;
     gameState.bossHP = Math.max(0, gameState.bossHP - dmg);
 
-    // Wither Shake (No red tint, just shake)
-    shakeBlock();
+    // Boss Shake (No red tint, just shake)
+    shakeBoss();
 
     updateHUD();
 
@@ -730,39 +812,47 @@ function performPlayerAttack() {
 
 function performBossAttack() {
     // 3D Anim (Lunge + Shoot + Camera Shake)
-    blockAttackAnimation();
+    bossAttackAnimation();
 
-    // Play Sound with Delay (200ms)
+    const bossData = BOSS_DATA[gameState.selectedBoss];
+    const delay = bossData.hitDelay || 0;
+
+    // Apply Effects with Delay
     setTimeout(() => {
-        playSound('hurt');
-    }, 20);
+        // Play Sound
+        setTimeout(() => {
+            playSound('hurt');
+        }, 20);
 
-    // Logic update
-    let dmg = CONFIG.DIFFICULTY[gameState.selectedDifficulty].bossDamage;
+        // Logic update
+        let dmg = CONFIG.DIFFICULTY[gameState.selectedDifficulty].bossDamage;
 
-    // Absorption Damage First
-    if (gameState.absorptionHP > 0) {
-        if (dmg <= gameState.absorptionHP) {
-            gameState.absorptionHP -= dmg;
-            dmg = 0;
-        } else {
-            dmg -= gameState.absorptionHP;
-            gameState.absorptionHP = 0;
+        // Absorption Damage First
+        if (gameState.absorptionHP > 0) {
+            if (dmg <= gameState.absorptionHP) {
+                gameState.absorptionHP -= dmg;
+                dmg = 0;
+            } else {
+                dmg -= gameState.absorptionHP;
+                gameState.absorptionHP = 0;
+            }
         }
-    }
 
-    // Remaining Damage to Player
-    if (dmg > 0) {
-        gameState.playerHP = Math.max(0, gameState.playerHP - dmg);
-    }
+        // Remaining Damage to Player
+        if (dmg > 0) {
+            gameState.playerHP = Math.max(0, gameState.playerHP - dmg);
+        }
 
-    updateHUD();
+        updateHUD();
 
-    // Step 7: Cooldown (Wait for animation to finish roughly)
+    }, delay);
+
+    // Step 7: Cooldown (Wait for animation + delay)
     // Lunge return is 500ms total (100+400).
+    const cooldownDelay = 600 + delay;
     gameState.timers.combatTriggerDelay = setTimeout(() => {
         startCooldown(checkLoseCondition);
-    }, 600);
+    }, cooldownDelay);
 }
 
 function startCooldown(callback) {
@@ -821,10 +911,6 @@ const restRotation = new THREE.Euler(2.2, 0, 1.6);
 const attackPosition = new THREE.Vector3(1.2, -1.2, -3.5);
 const attackRotation = new THREE.Euler(2, 0, 1.5);
 
-const witherScale = new THREE.Vector3(1.5, 1.5, 1.5);
-const witherOriginalPos = new THREE.Vector3(0, -2, -3.5);
-const witherOriginalRot = new THREE.Euler(0, Math.PI, 0);
-
 function initThreeJS() {
     if (!gameState.scene) {
         gameState.scene = new THREE.Scene();
@@ -848,29 +934,31 @@ function initThreeJS() {
         requestAnimationFrame(animate3D);
     } else {
         // Reset Scene Objects
-        if (gameState.witherModel) gameState.scene.remove(gameState.witherModel);
+        if (gameState.bossModel) gameState.scene.remove(gameState.bossModel);
         if (gameState.swordModel) gameState.camera.remove(gameState.swordModel);
-        gameState.witherModel = null;
+        gameState.bossModel = null;
         gameState.swordModel = null;
         gameState.mixer = null;
     }
 
-    loadWither();
+    loadBoss();
     loadSword();
 }
 
-function loadWither() {
+function loadBoss() {
+    const bossData = BOSS_DATA[gameState.selectedBoss];
     const gltfLoader = new THREE.GLTFLoader();
-    gltfLoader.load('3d/wither/witherBoss.gltf', (gltf) => {
-        gameState.witherModel = gltf.scene;
+
+    gltfLoader.load(bossData.modelPath, (gltf) => {
+        gameState.bossModel = gltf.scene;
         const modelAnimations = gltf.animations;
 
-        gameState.witherModel.scale.copy(witherScale);
-        gameState.witherModel.position.copy(witherOriginalPos);
-        gameState.witherModel.rotation.copy(witherOriginalRot);
+        gameState.bossModel.scale.copy(bossData.scale);
+        gameState.bossModel.position.copy(bossData.pos);
+        gameState.bossModel.rotation.copy(bossData.rot);
 
         // Cloning materials as per reference (good practice)
-        gameState.witherModel.traverse((child) => {
+        gameState.bossModel.traverse((child) => {
             if (child.isMesh && child.material) {
                 if (Array.isArray(child.material)) {
                     child.material.forEach((mat, index) => {
@@ -882,25 +970,43 @@ function loadWither() {
             }
         });
 
-        gameState.scene.add(gameState.witherModel);
+        gameState.scene.add(gameState.bossModel);
 
-        gameState.mixer = new THREE.AnimationMixer(gameState.witherModel);
+        gameState.mixer = new THREE.AnimationMixer(gameState.bossModel);
 
-        const idleAnim = THREE.AnimationClip.findByName(modelAnimations, 'animation.witherBoss.new');
-        const shootAnim = THREE.AnimationClip.findByName(modelAnimations, 'animation.witherBoss.shoot');
+        // Find Animations based on Boss Data
+        const idleAnimName = bossData.animations.idle;
+        const attackAnimName = bossData.animations.attack;
+
+        // Helper to find partial matches if exact name fails (especially for Giant Zombie where user said "idle" but it might be "ZombieIdle" or similar)
+        // Check exact first
+        let idleAnim = THREE.AnimationClip.findByName(modelAnimations, idleAnimName);
+        let attackAnim = THREE.AnimationClip.findByName(modelAnimations, attackAnimName);
+
+        // Fallback: simple search
+        if (!idleAnim) {
+            idleAnim = modelAnimations.find(clip => clip.name.toLowerCase().includes(idleAnimName.toLowerCase()));
+        }
+        if (!attackAnim) {
+            attackAnim = modelAnimations.find(clip => clip.name.toLowerCase().includes(attackAnimName.toLowerCase()));
+        }
 
         if (idleAnim) {
             gameState.idleAction = gameState.mixer.clipAction(idleAnim);
             gameState.idleAction.play();
+        } else {
+            console.warn("Idle Animation not found:", idleAnimName, modelAnimations.map(a => a.name));
         }
 
-        if (shootAnim) {
-            gameState.shootAction = gameState.mixer.clipAction(shootAnim);
-            gameState.shootAction.setLoop(THREE.LoopOnce);
-            gameState.shootAction.clampWhenFinished = false;
+        if (attackAnim) {
+            gameState.attackAction = gameState.mixer.clipAction(attackAnim);
+            gameState.attackAction.setLoop(THREE.LoopOnce);
+            gameState.attackAction.clampWhenFinished = false;
+        } else {
+            console.warn("Attack Animation not found:", attackAnimName, modelAnimations.map(a => a.name));
         }
 
-    }, undefined, (error) => console.error("Wither Load Error:", error));
+    }, undefined, (error) => console.error("Boss Load Error:", error));
 }
 
 function loadSword() {
@@ -1003,78 +1109,86 @@ function swingSword() {
     swingRotTween.start();
 }
 
-function shakeBlock() {
-    if (!gameState.witherModel) return;
+function shakeBoss() {
+    if (!gameState.bossModel) return;
 
-    if (gameState.activeTweens.witherMove) {
-        gameState.activeTweens.witherMove.stop();
+    if (gameState.activeTweens.bossMove) {
+        gameState.activeTweens.bossMove.stop();
     }
 
-    const startPos = witherOriginalPos.clone();
+    const originalPos = BOSS_DATA[gameState.selectedBoss].pos;
+    const startPos = originalPos.clone();
     const shakePos = startPos.clone().add(new THREE.Vector3(0.2, 0.2, 0));
 
-    gameState.witherModel.position.copy(startPos);
+    gameState.bossModel.position.copy(startPos);
 
-    const shakeTween = new TWEEN.Tween(gameState.witherModel.position)
+    const shakeTween = new TWEEN.Tween(gameState.bossModel.position)
         .to(shakePos, 50)
         .easing(TWEEN.Easing.Quadratic.Out);
 
-    const returnTween = new TWEEN.Tween(gameState.witherModel.position)
+    const returnTween = new TWEEN.Tween(gameState.bossModel.position)
         .to(startPos, 300)
         .easing(TWEEN.Easing.Bounce.Out)
         .onComplete(() => {
-            gameState.activeTweens.witherMove = null;
+            gameState.activeTweens.bossMove = null;
         });
 
     shakeTween.chain(returnTween);
-    gameState.activeTweens.witherMove = shakeTween;
+    gameState.activeTweens.bossMove = shakeTween;
     shakeTween.start();
 }
 
-function blockAttackAnimation() {
-    if (!gameState.witherModel) return;
+function bossAttackAnimation() {
+    if (!gameState.bossModel) return;
 
-    showDamageFlash();
-    shakeCamera();
-    triggerScreenShake(); // Add CSS Shake for full screen effect
+    const bossData = BOSS_DATA[gameState.selectedBoss];
+    const delay = bossData.hitDelay || 0;
 
-    // 1. Wither's GLTF Animation
-    if (gameState.shootAction && gameState.idleAction) {
-        gameState.shootAction.stop().play();
-        gameState.idleAction.crossFadeTo(gameState.shootAction, 0.2, true);
+    setTimeout(() => {
+        showDamageFlash();
+        shakeCamera();
+        triggerScreenShake(); // Add CSS Shake for full screen effect
+    }, delay);
+
+    // 1. Boss GLTF Animation
+    if (gameState.attackAction && gameState.idleAction) {
+        gameState.attackAction.stop().play();
+        gameState.idleAction.crossFadeTo(gameState.attackAction, 0.2, true);
 
         // Reduced from 4000ms to 2500ms to ensure it completes before the 3000ms cooldown ends.
-        // This prevents clearAllTimers() from killing the reset logic when the next round starts.
         gameState.timers.animReset = setTimeout(() => {
-            if (gameState.shootAction && gameState.idleAction) {
-                gameState.shootAction.fadeOut(0.5);
+            if (gameState.attackAction && gameState.idleAction) {
+                gameState.attackAction.fadeOut(0.5);
                 gameState.idleAction.reset().play();
                 gameState.idleAction.fadeIn(0.5);
             }
         }, 2500);
     }
 
-    // 2. Wither's Lunge Tween
-    const attackPos = witherOriginalPos.clone().add(new THREE.Vector3(0, 0, 3.5));
+    // 2. Boss Lunge Tween (Optional)
+    if (bossData.shouldLunge) {
+        const originalPos = bossData.pos;
+        const attackPos = originalPos.clone().add(new THREE.Vector3(0, 0, 3.5));
 
-    if (gameState.activeTweens.witherMove) {
-        gameState.activeTweens.witherMove.stop();
+        if (gameState.activeTweens.bossMove) {
+            gameState.activeTweens.bossMove.stop();
+        }
+
+        const lungeTween = new TWEEN.Tween(gameState.bossModel.position)
+            .to(attackPos, 100)
+            .easing(TWEEN.Easing.Quadratic.Out);
+
+        const returnTween = new TWEEN.Tween(gameState.bossModel.position)
+            .to(originalPos, 400)
+            .easing(TWEEN.Easing.Bounce.Out)
+            .onComplete(() => {
+                gameState.activeTweens.bossMove = null;
+            });
+
+        lungeTween.chain(returnTween);
+        gameState.activeTweens.bossMove = lungeTween;
+        lungeTween.start();
     }
-
-    const lungeTween = new TWEEN.Tween(gameState.witherModel.position)
-        .to(attackPos, 100)
-        .easing(TWEEN.Easing.Quadratic.Out);
-
-    const returnTween = new TWEEN.Tween(gameState.witherModel.position)
-        .to(witherOriginalPos, 400)
-        .easing(TWEEN.Easing.Bounce.Out)
-        .onComplete(() => {
-            gameState.activeTweens.witherMove = null;
-        });
-
-    lungeTween.chain(returnTween);
-    gameState.activeTweens.witherMove = lungeTween;
-    lungeTween.start();
 }
 
 function shakeCamera() {
