@@ -629,6 +629,15 @@ function updateHUD() {
     const cropDiv = document.getElementById('boss-health-crop');
     cropDiv.style.width = `${bossPercent}%`;
 
+    // 3.1 Boss Name & Color
+    const bossData = BOSS_DATA[gameState.selectedBoss];
+    const bossNameEl = document.getElementById('boss-name');
+    if (bossNameEl && bossData) {
+        bossNameEl.innerText = bossData.name;
+        // Reset classes to base + specific color
+        bossNameEl.className = `mt-6 text-2xl md:text-3xl ${bossData.color} drop-shadow-md tracking-wider`;
+    }
+
     // 4. Consumable
     const gapple = document.getElementById('consumable-container');
 
