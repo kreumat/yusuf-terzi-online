@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Coursebook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 base */
+            color: #f8fafc;
+            overflow: hidden; /* App-like feel */
+        }
+        
+        .page-container {
+            perspective: 1500px;
+            transform-style: preserve-3d;
+        }
+        
+        .book-page {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+            transform-origin: left center;
+        }
+        
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Custom Scrollbar for thumbnails */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(71, 85, 105, 0.8);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(100, 116, 139, 1);
+        }
+        
+        .audio-visualizer {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            height: 20px;
+        }
+        
+        .bar {
+            width: 4px;
+            background: #10b981;
+            border-radius: 2px;
+            height: 4px;
+            transition: height 0.1s ease;
+        }
+        
+        .bar.active {
+            animation: bounce 0.8s infinite alternate ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0% { height: 4px; }
+            100% { height: 20px; }
+        }
+        
+        .bar:nth-child(1) { animation-delay: 0.0s; }
+        .bar:nth-child(2) { animation-delay: 0.1s; }
+        .bar:nth-child(3) { animation-delay: 0.2s; }
+        .bar:nth-child(4) { animation-delay: 0.3s; }
+        
+        .thumbnail-active {
+            border: 2px solid #10b981;
+            transform: scale(1.05);
+        }
+        
+        /* Popup Modal Styles */
+        #draft-popup {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #draft-popup.hidden-popup {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .popup-content {
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #draft-popup:not(.hidden-popup) .popup-content {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col justify-between">
+
+    <!-- Draft Notice Popup -->
+    <div id="draft-popup" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4">
+        <div class="popup-content bg-slate-800 border border-emerald-500/30 w-full max-w-md rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+            <div class="p-6 flex flex-col items-center text-center">
+                <img src="buuelts.png" alt="BUUELTS Logo" class="w-24 h-24 object-contain mb-4 bg-white/10 rounded-full p-2">
+                <h2 class="text-xl font-bold text-white mb-2">Notice / Duyuru</h2>
+                <div class="space-y-4 text-sm text-slate-300">
+                    <p class="font-medium text-emerald-400">
+                        Bu proje Bursa Uludağ Üniversitesi İngilizce Öğretmenliği Topluluğu tarafından geliştirilen taslak bir projedir, şu anlık görüntülemede olan sitenin kendisi ve kitap taslak aşamasındadır. Son ürün değildir.
+                    </p>
+                    <hr class="border-slate-700/80">
+                    <p>
+                        This project is a draft project developed by the Bursa Uludağ University English Language Teaching Society. The site currently on display and the book are in the draft stage. It is not the final product.
+                    </p>
+                </div>
+                <button onclick="document.getElementById('draft-popup').classList.add('hidden-popup')" class="mt-6 w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-lg transition shadow-lg shadow-emerald-600/20">
+                    Anladım / I Understand
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <header class="glass-panel w-full py-2 px-3 md:py-4 md:px-6 flex justify-between items-center z-20 absolute top-0">
+        <div class="flex items-center gap-2 md:gap-3 flex-1 min-w-0 pr-2 md:pr-4">
+            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white flex items-center justify-center shadow-lg shadow-emerald-500/30 overflow-hidden shrink-0">
+                <img src="buuelts.png" alt="Logo" class="w-full h-full object-cover">
+            </div>
+            <div class="flex flex-col overflow-hidden">
+                <h1 class="text-xs md:text-sm font-bold tracking-tight text-white drop-shadow-sm truncate">Bursa Uludağ Üniversitesi İngilizce Öğretmenliği Topluluğu</h1>
+                <h2 class="text-[10px] md:text-xs text-emerald-300 drop-shadow-sm truncate mt-0.5">Bursa Uludağ University English Language Teaching Society</h2>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-2 md:gap-4 shrink-0">
+            <div class="px-3 py-1 md:px-4 md:py-2 rounded-full bg-slate-800/80 text-xs md:text-sm font-medium text-slate-300 border border-slate-700 flex items-center gap-1">
+                <span class="hidden md:inline">Page</span> <span id="current-page-nav" class="text-emerald-400 font-bold">1</span> <span class="hidden md:inline">of</span><span class="md:hidden">/</span> <span id="total-pages-nav" class="text-slate-400">1</span>
+            </div>
+            <button id="toggle-sidebar" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-800 hover:bg-slate-700 transition flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-layer-group text-slate-300 text-sm md:text-base"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 relative flex items-center justify-center w-full h-full pt-16 md:pt-20 pb-36 md:pb-24 overflow-hidden">
+        
+        <!-- Left Sidebar (Thumbnails) -->
+        <aside id="sidebar" class="absolute left-0 top-16 md:top-20 bottom-36 md:bottom-24 w-64 glass-panel transform -translate-x-full transition-transform duration-300 z-10 overflow-y-auto p-4 border-r border-slate-700/50">
+            <h3 class="text-xs uppercase tracking-wider text-slate-400 mb-4 font-semibold px-2">Table of Contents</h3>
+            <div id="thumbnails-container" class="grid grid-cols-2 gap-3">
+                <!-- Thumbnails injected via JS -->
+            </div>
+        </aside>
+
+        <!-- Book Viewer -->
+        <div class="page-container relative w-full max-w-4xl h-full flex items-center justify-center px-4" id="viewer-area">
+            
+            <button id="prev-btn" class="absolute left-1 md:left-4 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition opacity-60 md:opacity-100 disabled:opacity-30 disabled:cursor-not-allowed">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            
+            <!-- Main Image Wrapper -->
+            <div class="relative w-full h-full flex items-center justify-center object-contain max-h-[80vh]">
+                <img id="main-page-img" src="" alt="Coursebook Page" class="book-page max-w-full max-h-full object-contain rounded-md shadow-2xl bg-white">
+                
+                <!-- Loading Spinner -->
+                <div id="loader" class="absolute inset-0 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm rounded-md hidden">
+                    <i class="fa-solid fa-circle-notch fa-spin text-4xl text-emerald-500"></i>
+                </div>
+            </div>
+
+            <button id="next-btn" class="absolute right-1 md:right-4 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition opacity-60 md:opacity-100 disabled:opacity-30 disabled:cursor-not-allowed">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+        </div>
+    </main>
+
+    <!-- Bottom Audio Player Footer -->
+    <footer class="glass-panel w-full p-3 md:p-4 z-20 absolute bottom-0 border-t border-slate-700/50">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
+            
+            <div class="flex items-center gap-3 md:gap-4 w-full md:w-auto">
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-lg shrink-0">
+                    <i class="fa-solid fa-music text-white text-lg md:text-xl"></i>
+                </div>
+                <div class="min-w-0 pr-2">
+                    <h4 class="text-xs md:text-sm font-semibold text-white truncate">Listening Track</h4>
+                    <p class="text-[10px] md:text-xs text-emerald-300 truncate">Track 1 - assets/tracks/sample_track.mp3</p>
+                </div>
+                <div class="audio-visualizer ml-auto md:ml-4 flex" id="visualizer">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+
+            <!-- Custom Audio Controls -->
+            <div class="flex-1 w-full max-w-md flex flex-col items-center gap-1 md:gap-2">
+                <div class="flex items-center gap-4 md:gap-6">
+                    <button class="text-slate-400 hover:text-white transition flex items-center gap-1" onclick="document.getElementById('audio-player').currentTime -= 10">
+                        <i class="fa-solid fa-backward-rotate-90"></i> <span class="text-[10px] md:text-xs">-10s</span>
+                    </button>
+                    
+                    <button id="play-pause-btn" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white text-slate-900 flex items-center justify-center hover:scale-105 transition shadow-lg shrink-0">
+                        <i class="fa-solid fa-play ml-1 text-sm" id="play-icon"></i>
+                    </button>
+                    
+                    <button class="text-slate-400 hover:text-white transition flex items-center gap-1" onclick="document.getElementById('audio-player').currentTime += 10">
+                        <span class="text-[10px] md:text-xs">+10s</span> <i class="fa-solid fa-forward-rotate-90"></i>
+                    </button>
+                </div>
+                
+                <div class="w-full flex items-center gap-2 md:gap-3 text-[10px] md:text-xs text-slate-400">
+                    <span id="current-time" class="w-8 text-right">0:00</span>
+                    <input type="range" id="seek-bar" value="0" class="flex-1 h-1 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                    <span id="duration" class="w-8 text-left">0:00</span>
+                </div>
+            </div>
+
+            <!-- Volume -->
+            <div class="hidden md:flex items-center gap-2 w-32">
+                <i class="fa-solid fa-volume-high text-slate-400 text-sm"></i>
+                <input type="range" id="volume-bar" min="0" max="1" step="0.05" value="1" class="w-full h-1 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+            </div>
+
+            <audio id="audio-player" src="assets/tracks/sample_track.mp3" preload="metadata"></audio>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
