@@ -1,248 +1,445 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang="title">Yusuf Terzi | Personal Website</title>
+    <title>Yusuf Terzi | Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "Arial", "sans-serif"]
+                    },
+                    boxShadow: {
+                        soft: "0 24px 70px rgba(0, 0, 0, 0.28)"
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260527">
 </head>
-<body data-theme="dark">
-    <!-- Language Selection Popup -->
-    <div class="language-overlay" id="languagePopup">
-        <div class="language-popup">
-            <div class="language-options">
-                <div class="language-option" onclick="selectLanguage('en')">
-                    <img src="images/britishflag.png" alt="English">
-                    <p>English</p>
-                </div>
-                <div class="language-option" onclick="selectLanguage('tr')">
-                    <img src="images/turkishflag.png" alt="Türkçe">
-                    <p>Türkçe</p>
-                </div>
-                <div class="language-option" onclick="selectLanguage('de')">
-                    <img src="images/germanflag.png" alt="Deutsch">
-                    <p>Deutsch</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<body data-theme="dark" class="site-page min-h-screen overflow-x-hidden bg-[var(--bg-body)] text-[var(--text-main)] antialiased">
+    <header class="site-header sticky top-0 z-50 border-b border-[var(--border-color)] bg-[var(--bg-header)] backdrop-blur-xl">
+        <div class="site-header-inner mx-auto flex min-h-[72px] w-full max-w-[1180px] items-center justify-between gap-5 px-4">
+            <a href="#hero" aria-label="Yusuf Terzi" class="grid h-11 w-11 place-items-center rounded-lg border border-[var(--border-color)] bg-[var(--bg-surface)] text-sm font-extrabold text-[var(--text-main)] transition hover:border-[var(--accent)]">
+                YT
+            </a>
 
-    <!-- Navigation Header -->
-    <header class="site-header">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="#">YT.</a>
+            <div class="flex items-center gap-3 max-[520px]:gap-2">
+                <div class="language-switcher flex overflow-hidden rounded-lg border border-[var(--border-color)] bg-[var(--bg-surface)]" aria-label="Language">
+                    <button type="button" data-language="tr" aria-label="Türkçe" title="Türkçe" class="language-button grid h-11 w-12 place-items-center p-1.5 transition hover:bg-[var(--accent)] max-[520px]:h-9 max-[520px]:w-10">
+                        <img src="images/turkishflag.png" alt="" class="language-flag" aria-hidden="true">
+                    </button>
+                    <button type="button" data-language="en" aria-label="English" title="English" class="language-button grid h-11 w-12 place-items-center border-l border-[var(--border-color)] p-1.5 transition hover:bg-[var(--accent)] max-[520px]:h-9 max-[520px]:w-10">
+                        <img src="images/britishflag.png" alt="" class="language-flag" aria-hidden="true">
+                    </button>
+                    <button type="button" data-language="de" aria-label="Deutsch" title="Deutsch" class="language-button grid h-11 w-12 place-items-center border-l border-[var(--border-color)] p-1.5 transition hover:bg-[var(--accent)] max-[520px]:h-9 max-[520px]:w-10">
+                        <img src="images/germanflag.png" alt="" class="language-flag" aria-hidden="true">
+                    </button>
+                </div>
+
+                <button id="theme-toggle" type="button" data-lang-label="themeToggle" aria-label="Tema değiştir" title="Tema değiştir" class="grid h-11 w-11 place-items-center rounded-lg border border-[var(--border-color)] bg-[var(--bg-surface)] text-[var(--text-secondary)] transition hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white max-[520px]:h-9 max-[520px]:w-9">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
             </div>
-            <nav class="main-nav">
-                <!-- Navigation links could go here -->
-            </nav>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
-                <i class="fas fa-moon"></i>
-            </button>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section">
-            <div class="container hero-content">
-                <h1 class="hero-title">Yusuf Terzi</h1>
-                <div class="hero-subtitle">
-                    <p data-lang="subtitle">3rd year ELT student at Uludağ University</p>
-                </div>
-                <div class="hero-welcome">
-                    <p data-lang="welcome">Welcome to my personal website!</p>
-                </div>
-                <div class="hero-intro">
-                    <p data-lang="intro">I'm an ELT student with a growing passion for creating things — both in the classroom and on the web.</p>
-                </div>
+        <section id="hero" class="hero-section px-4 pb-10 pt-24 max-[720px]:pt-16" aria-labelledby="hero-title">
+            <div class="hero-shell mx-auto w-full max-w-[1180px]">
+                <span class="hero-rule" aria-hidden="true"></span>
+                <h1 id="hero-title" class="hero-title max-w-[850px] text-[clamp(2.6rem,8vw,5.8rem)] font-extrabold leading-[0.95] tracking-normal text-[var(--text-main)]">
+                    Yusuf Terzi
+                </h1>
+                <p class="origin-badge mt-5 text-sm max-[720px]:text-[0.82rem]" data-lang="originBadge">
+                    <span class="origin-badge-dot"></span>
+                    Bursa üretimi, Torul onaylı
+                </p>
+                <p class="hero-intro mt-4 max-w-[650px] text-xl font-medium leading-relaxed text-[var(--text-secondary)] max-[720px]:text-[1.05rem]" data-lang="intro">
+                    Hem sınıf ortamında hem de webde bir şeyler üretmeyi seven bir İngilizce öğretmenliği öğrencisiyim.
+                </p>
             </div>
         </section>
-        
-        <!-- Projects Section -->
-        <section id="projects" class="projects-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 data-lang="projects">My Projects</h2>
-                </div>
-                
-                <div class="project-grid">
-                    <!-- Project 1: SSBGG -->
-                    <article class="project-card">
-                        <div class="project-logo">
-                            <img src="images/SSBGGlogo.png" alt="SSBGG Logo">
-                        </div>
-                        <div class="project-content">
-                            <h3>SSBGG</h3>
-                            <a data-lang="viewproject" href="projects/selt" class="project-link">View Project</a>
-                        </div>
-                    </article>
-                    
-                    <!-- Project 2: Society Website -->
-                    <article class="project-card">
-                        <div class="project-logo">
-                            <img src="images/xyzlogo.png" alt="Society Logo">
-                        </div>
-                        <div class="project-content">
-                            <h3 data-lang="societyname">Society Website</h3>
-                            <div class="project-notes">
-                                <i class="fas fa-info-circle"></i>
-                                <div>
-                                    <p data-lang="societydesc">Dynamic PHP website developed for the English Language Teaching Society at my university as a student project.</p>
-                                </div>
-                            </div>
-                            <a data-lang="viewproject" href="http://buuelts.home.uludag.edu.tr" class="project-link">View Project</a>
-                        </div>
-                    </article>
-                    
-                    <!-- Project 3: Terzi Game -->
-                    <article class="project-card">
-                        <div class="project-logo">
-                            <img src="images/terzigamelogo.png" alt="Terzi Game Logo">
-                        </div>
-                        <div class="project-content">
-                            <h3>Terzi Game</h3>
-                            <div class="project-notes">
-                                <i class="fas fa-info-circle"></i>
-                                <div>
-                                    <p data-lang="terziGameNote">A very simple 2D pixel game made with Phaser JS.</p>
-                                </div>
-                            </div>
-                            <a data-lang="viewproject" href="projects/Terzi-Game" class="project-link">View Project</a>
-                        </div>
-                    </article>
 
-                    <!-- Project 4: Classroom Life -->
-                    <article class="project-card">
-                        <div class="project-logo">
-                            <img src="images/classroomlifelogo.png" alt="Classroom Life Website">
-                        </div>
-                        <div class="project-content">
-                            <h3 data-lang="classroomlife">Theme 2: Classroom Life Website</h3>
-                            <div class="project-notes">
-                                <i class="fas fa-info-circle"></i>
-                                <div>
-                                    <p data-lang="classroomlifedesc">Prepared by Yusuf Terzi, this webpage is a project for "Educational Technologies" course, designed to provide digital learning materials for the 2nd Theme of the 2nd Grade curriculum, in accordance with Turkey's new Maarif Model.</p>
-                                </div>
-                            </div>
-                            <a data-lang="viewproject" href="projects/edu" class="project-link">View Project</a>
-                        </div>
-                    </article>
+        <section id="timeline" class="timeline-section scroll-mt-24 px-4 pb-20 pt-8" aria-labelledby="timeline-title">
+            <div class="section-shell mx-auto w-full max-w-[1180px]">
+                <div class="section-heading grid max-w-[760px] gap-2">
+                    <p class="section-eyebrow text-xs font-extrabold uppercase text-[var(--accent-green)]" data-lang="timelineEyebrow">Yaşayan portfolyo</p>
+                    <h2 id="timeline-title" class="section-title text-[clamp(1.65rem,4vw,2.25rem)] font-extrabold leading-tight text-[var(--text-main)]" data-lang="timelineTitle">
+                        Üniversite hayatımdan bugüne yaptıklarım.
+                    </h2>
+                    <p class="section-note mt-3 max-w-[640px] text-sm font-medium leading-relaxed text-[var(--text-muted)]" data-lang="timelineNote">
+                        Tabii ki daha başka şeyler de var, ama dişlerimi fırçaladığımı yazmak istemiyorum; bunu herkes yapıyor.
+                    </p>
+                </div>
 
-                    <!-- Project 5: BlockyTrivia -->
-                    <article class="project-card">
-                        <div class="project-logo">
-                            <img src="images/blockytrivialogo.png" alt="BlockyTrivia">
-                        </div>
-                        <div class="project-content">
-                            <h3 data-lang="blockytrivia">BlockyTrivia</h3>
-                            <div class="project-notes">
-                                <i class="fas fa-info-circle"></i>
-                                <div>
-                                    <p data-lang="blockytriviadesc">Static, Minecraft-themed fan-made trivia game.</p>
-                                </div>
+                <div class="timeline-scroll mt-10" aria-label="Yusuf Terzi timeline">
+                    <div class="timeline-list">
+                        <article class="timeline-event">
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                            <div class="timeline-card">
+                                <time datetime="2005-06-06" data-lang="birthDate">6 Haziran 2005</time>
+                                <h3 data-lang="birthTitle">Doğdum.</h3>
+                                <p data-lang="birthText">Bu uzun çizgi Bursa'da başladı.</p>
                             </div>
-                            <a data-lang="viewproject" href="projects/blockytrivia" class="project-link">View Project</a>
+                        </article>
+
+                        <div class="timeline-event">
+                            <span class="timeline-dot timeline-dot-muted" aria-hidden="true"></span>
+                            <div class="timeline-card mystery-card" tabindex="0" data-lang-tooltip="mysteryTooltip" data-lang-title="mysteryTooltip" data-tooltip="Bu kısım tarihin karanlıklarına gömülü. Öğrenmek için beni bireysel olarak tanıman gerekiyor." title="Bu kısım tarihin karanlıklarına gömülü. Öğrenmek için beni bireysel olarak tanıman gerekiyor.">
+                                <span data-lang="mysteryYears">2005 - 2023</span>
+                                <strong data-lang="mysteryTitle">Ara dönem</strong>
+                            </div>
                         </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 data-lang="contact">Contact</h2>
-                </div>
-                
-                <div class="contact-content">
-                    <div class="contact-text">
-                        <p data-lang="contactText">For private English lessons, materials, or other questions, contact me:</p>
+
+                        <article class="timeline-event">
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                            <div class="timeline-card">
+                                <time datetime="2023" data-lang="universityDate">2023</time>
+                                <h3 data-lang="universityTitle">Bursa Uludağ Üniversitesi İngilizce Öğretmenliği bölümüne başladım.</h3>
+                                <p data-lang="universityText">İngilizce Öğretmenliği lisans eğitimime Bursa Uludağ Üniversitesi'nde başladım.</p>
+                            </div>
+                        </article>
+
+                        <article class="timeline-event">
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                            <div class="timeline-card">
+                                <time datetime="2025-12-01" data-lang="societyDate">1 Aralık 2025</time>
+                                <h3 data-lang="societyTitle">BUÜ İngilizce Öğretmenliği Topluluğu'nu kurdum.</h3>
+                                <p data-lang="societyText">Hocam Prof. Dr. Zübeyde Sinem Genç danışmanlığında Bursa Uludağ Üniversitesi İngilizce Öğretmenliği Topluluğu'nu kurdum.</p>
+                                <a class="timeline-action" href="https://buuelts.uludag.edu.tr/en/announcement-detail.php?id=1" target="_blank" rel="noopener" data-lang="sourceLink">Kaynak</a>
+                            </div>
+                        </article>
+
+                        <article class="timeline-event">
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                            <div class="timeline-card">
+                                <time datetime="2025-12-29" data-lang="hackathonDate">29 Aralık 2025</time>
+                                <h3 data-lang="hackathonTitle">Nilüfer Yapay Zeka Hackathonu'nda birinci oldum.</h3>
+                                <p data-lang="hackathonText">Nilüfer Yapay Zeka Hackathonu'nu takım arkadaşım Metin Torun ile kazandım.</p>
+                                <a class="timeline-action" href="https://www.nilufer.bel.tr/haber/genc-yazilimcilardan-nilufer-e-dijital-cozumler" target="_blank" rel="noopener" data-lang="sourceLink">Kaynak</a>
+                            </div>
+                        </article>
+
+                        <article class="timeline-event">
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                            <div class="timeline-card">
+                                <time datetime="2026-03-05" data-lang="unidesDate">5 Mart 2026</time>
+                                <h3 data-lang="unidesTitle">ÜNİDES "Geleceğin Eğitimcileri Kodluyor" projem onaylandı.</h3>
+                                <p data-lang="unidesText">T.C. Gençlik ve Spor Bakanlığı ÜNİDES kapsamında hazırladığım "Geleceğin Eğitimcileri Kodluyor" projem onaylandı. Projeyi başkanı olduğum Bursa Uludağ Üniversitesi İngilizce Öğretmenliği Topluluğu üzerinden yazdım ve 2-3 Mayıs 2026 tarihlerinde arkadaşım Metin Torun ile gerçekleştirdik.</p>
+                                <a class="timeline-action" href="https://www.instagram.com/p/DYW5E8kAE8-/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" data-lang="sourceLink">Kaynak</a>
+                            </div>
+                        </article>
+
+                        <article class="timeline-event">
+                            <span class="timeline-dot timeline-dot-active" aria-hidden="true"></span>
+                            <div class="timeline-card">
+                                <time datetime="2026-04-06" data-lang="gaziDate">6 Nisan 2026</time>
+                                <h3 data-lang="gaziTitle">Gazi Projesi'ne başladım.</h3>
+                                <p data-lang="gaziText">Danışman hocam Prof. Dr. Zübeyde Sinem Genç rehberliğinde Osmangazi temalı bir coursebook hazırlama, materyal geliştirme ve erişkinlere İngilizce öğretme eğitimi verme fikriyle şekillenen Gazi Projesi için Osmangazi Belediyesi'nden yeşil ışık aldım ve projenin ilk bölümü üzerinde hâlâ çalışıyorum.</p>
+                                <span class="timeline-status" data-lang="ongoing">Devam ediyor</span>
+                            </div>
+                        </article>
+
+                        <article class="timeline-event">
+                            <span class="timeline-dot timeline-dot-active" aria-hidden="true"></span>
+                            <div class="timeline-card">
+                                <time datetime="2026-05-13" data-lang="tubitakDate">13 Mayıs 2026</time>
+                                <h3 data-lang="tubitakTitle">TÜBİTAK 2209-A projem kabul edildi.</h3>
+                                <p data-lang="tubitakText">TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı'nın 2025 çağrısına proje ortağım Metin Torun ile gönderdiğim "Yabancı Dil Eğitiminde Yapay Zeka Destekli Masa Oyunu Oluşturma Platformu" projesi kabul edildi.</p>
+                                <span class="timeline-status" data-lang="ongoing">Devam ediyor</span>
+                            </div>
+                        </article>
                     </div>
-                    
-                    <a href="mailto:yusufxterzi@gmail.com" class="email-link">
-                        <i class="fas fa-envelope"></i> yusufxterzi@gmail.com
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="products-section border-y border-[var(--border-color)] bg-[color-mix(in_srgb,var(--bg-surface-soft)_55%,transparent)] px-4 py-20" aria-labelledby="products-title">
+            <div class="section-shell mx-auto w-full max-w-[1180px]">
+                <div class="section-heading grid max-w-[520px] gap-2">
+                    <p class="section-eyebrow text-xs font-extrabold uppercase text-[var(--accent-green)]" data-lang="productsEyebrow">Bireysel üretimler</p>
+                    <h2 id="products-title" class="section-title text-[clamp(1.65rem,4vw,2.25rem)] font-extrabold leading-tight text-[var(--text-main)]" data-lang="productsTitle">Kodladığım bireysel projelerim</h2>
+                </div>
+
+                <div class="project-grid mt-8 grid grid-cols-3 gap-4 max-[980px]:grid-cols-1">
+                    <article class="project-card grid grid-cols-[56px_1fr_42px] items-center gap-4 rounded-lg border border-[var(--border-color)] bg-[color-mix(in_srgb,var(--bg-surface)_92%,transparent)] p-4 shadow-soft max-[520px]:grid-cols-[48px_1fr_38px] max-[520px]:gap-3">
+                        <img src="images/buuelts_logo.png" alt="BUUELTS logo" class="project-logo h-14 w-14 object-contain p-0.5 max-[520px]:h-12 max-[520px]:w-12">
+                        <div class="min-w-0">
+                            <h3 class="font-extrabold text-[var(--text-main)]" data-lang="buueltsProductTitle">BUUELTS Topluluk Web Sitesi</h3>
+                            <p class="mt-1 text-sm text-[var(--text-secondary)]" data-lang="buueltsProductText">Bursa Uludağ Üniversitesi İngilizce Öğretmenliği Topluluğu için hazırladığım, PHP temelli dinamik web sitesi.</p>
+                        </div>
+                        <a class="project-link grid h-11 w-11 place-items-center rounded-lg border border-[var(--border-color)] text-[var(--text-secondary)] transition hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white max-[520px]:h-[38px] max-[520px]:w-[38px]" href="https://buuelts.uludag.edu.tr" target="_blank" rel="noopener" data-lang-label="openProduct" aria-label="Ürünü aç" title="Ürünü aç">
+                            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <article class="project-card grid grid-cols-[56px_1fr_42px] items-center gap-4 rounded-lg border border-[var(--border-color)] bg-[color-mix(in_srgb,var(--bg-surface)_92%,transparent)] p-4 shadow-soft max-[520px]:grid-cols-[48px_1fr_38px] max-[520px]:gap-3">
+                        <img src="images/terzigamelogo.png" alt="Terzi Game logo" class="project-logo h-14 w-14 object-contain p-0.5 max-[520px]:h-12 max-[520px]:w-12">
+                        <div class="min-w-0">
+                            <h3 class="font-extrabold text-[var(--text-main)]">Terzi Game</h3>
+                            <p class="mt-1 text-sm text-[var(--text-secondary)]" data-lang="terziGameText">Phaser JS ile yapılmış küçük bir 2D piksel oyun denemesi.</p>
+                        </div>
+                        <a class="project-link grid h-11 w-11 place-items-center rounded-lg border border-[var(--border-color)] text-[var(--text-secondary)] transition hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white max-[520px]:h-[38px] max-[520px]:w-[38px]" href="projects/Terzi-Game" data-lang-label="openProduct" aria-label="Ürünü aç" title="Ürünü aç">
+                            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <article class="project-card grid grid-cols-[56px_1fr_42px] items-center gap-4 rounded-lg border border-[var(--border-color)] bg-[color-mix(in_srgb,var(--bg-surface)_92%,transparent)] p-4 shadow-soft max-[520px]:grid-cols-[48px_1fr_38px] max-[520px]:gap-3">
+                        <img src="images/blockytrivialogo.png" alt="BlockyTrivia logo" class="project-logo h-14 w-14 object-contain p-0.5 max-[520px]:h-12 max-[520px]:w-12">
+                        <div class="min-w-0">
+                            <h3 class="font-extrabold text-[var(--text-main)]">BlockyTrivia</h3>
+                            <p class="mt-1 text-sm text-[var(--text-secondary)]" data-lang="blockyTriviaText">Minecraft temalı, statik fan-made trivia oyunu.</p>
+                        </div>
+                        <a class="project-link grid h-11 w-11 place-items-center rounded-lg border border-[var(--border-color)] text-[var(--text-secondary)] transition hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white max-[520px]:h-[38px] max-[520px]:w-[38px]" href="projects/blockytrivia" data-lang-label="openProduct" aria-label="Ürünü aç" title="Ürünü aç">
+                            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section px-4 py-20" aria-labelledby="contact-title">
+            <div class="contact-shell mx-auto grid w-full max-w-[1180px] grid-cols-[0.9fr_1fr] gap-8 max-[720px]:grid-cols-1">
+                <div>
+                    <p class="section-eyebrow text-xs font-extrabold uppercase text-[var(--accent-green)]" data-lang="contactEyebrow">Bağlantı</p>
+                    <h2 id="contact-title" class="section-title mt-2 text-[clamp(1.65rem,4vw,2.25rem)] font-extrabold leading-tight text-[var(--text-main)]" data-lang="contactTitle">Bana ulaş</h2>
+                </div>
+
+                <div class="grid content-start gap-5 text-[var(--text-secondary)]">
+                    <p data-lang="contactText">Soru, öneri veya ortak çalışma için bana ulaşabilirsin.</p>
+                    <a class="inline-flex w-fit max-w-full items-center gap-3 rounded-lg border border-[var(--border-color)] bg-[var(--bg-surface)] px-4 py-3 font-extrabold text-[var(--text-main)] transition hover:border-[var(--accent)] hover:text-[var(--accent-strong)]" href="mailto:yusufxterzi@gmail.com">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <span class="break-all">yusufxterzi@gmail.com</span>
                     </a>
                 </div>
             </div>
         </section>
     </main>
-    
-    <footer>
-        <div class="container">
-            <p data-lang="copyright">&copy; 2025 Yusuf Terzi. All rights reserved.</p>
-        </div>
+
+    <footer class="border-t border-[var(--border-color)] px-4 py-6 text-center text-sm text-[var(--text-muted)]">
+        <p data-lang="copyright">© 2026 Yusuf Terzi. Tüm hakları saklıdır.</p>
     </footer>
 
     <script>
-        // Language Selection Logic
-        function selectLanguage(lang) {
-            document.getElementById('languagePopup').style.display = 'none';
-            fetch(`languages/${lang}.json`)
-                .then(response => {
-                    if (!response.ok) throw new Error('Language file not found');
-                    return response.json();
-                })
-                .then(translations => {
-                    const elements = document.querySelectorAll('[data-lang]');
-                    elements.forEach(element => {
-                        const key = element.getAttribute('data-lang');
-                        if (translations[key]) {
-                            element.textContent = translations[key];
-                        }
-                    });
-                    if (translations.title) document.title = translations.title;
-                })
-                .catch(error => {
-                    console.error('Error loading language file:', error);
-                    if (lang !== 'en') selectLanguage('en');
-                });
-        }
-
-        // Show language popup on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('languagePopup').style.display = 'flex';
-        });
-
-        // Theme Toggle Logic
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        const icon = themeToggle.querySelector('i');
-
-        // Check for saved theme preference or use default (dark)
-        // User asked for default dark, but a toggle button.
-        // We will default to dark in CSS, so no JS needed for initial load unless we check localStorage.
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            body.setAttribute('data-theme', savedTheme);
-            updateIcon(savedTheme);
-        } else {
-             // Default is dark
-             updateIcon('dark');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = body.getAttribute('data-theme') || 'dark';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-            body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
-        });
-
-        function updateIcon(theme) {
-            if (theme === 'light') {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
+        const translations = {
+            tr: {
+                title: "Yusuf Terzi | Portfolio",
+                themeToggle: "Tema değiştir",
+                originBadge: "Bursa üretimi, Torul onaylı",
+                intro: "Hem sınıf ortamında hem de webde bir şeyler üretmeyi seven bir İngilizce öğretmenliği öğrencisiyim.",
+                timelineEyebrow: "Yaşayan portfolyo",
+                timelineTitle: "Üniversite hayatımdan bugüne yaptıklarım.",
+                timelineNote: "Tabii ki daha başka şeyler de var, ama dişlerimi fırçaladığımı yazmak istemiyorum; bunu herkes yapıyor.",
+                birthDate: "6 Haziran 2005",
+                birthTitle: "Doğdum.",
+                birthText: "Bu uzun çizgi Bursa'da başladı.",
+                mysteryYears: "2005 - 2023",
+                mysteryTitle: "Ara dönem",
+                mysteryTooltip: "Bu kısım tarihin karanlıklarına gömülü. Öğrenmek için beni bireysel olarak tanıman gerekiyor.",
+                universityDate: "2023",
+                universityTitle: "Bursa Uludağ Üniversitesi İngilizce Öğretmenliği bölümüne başladım.",
+                universityText: "İngilizce Öğretmenliği lisans eğitimime Bursa Uludağ Üniversitesi'nde başladım.",
+                societyDate: "1 Aralık 2025",
+                societyTitle: "BUÜ İngilizce Öğretmenliği Topluluğu'nu kurdum.",
+                societyText: "Hocam Prof. Dr. Zübeyde Sinem Genç danışmanlığında Bursa Uludağ Üniversitesi İngilizce Öğretmenliği Topluluğu'nu kurdum.",
+                hackathonDate: "29 Aralık 2025",
+                hackathonTitle: "Nilüfer Yapay Zeka Hackathonu'nda birinci oldum.",
+                hackathonText: "Nilüfer Yapay Zeka Hackathonu'nu takım arkadaşım Metin Torun ile kazandım.",
+                gaziDate: "6 Nisan 2026",
+                gaziTitle: "Gazi Projesi'ne başladım.",
+                gaziText: "Danışman hocam Prof. Dr. Zübeyde Sinem Genç rehberliğinde Osmangazi temalı bir coursebook hazırlama, materyal geliştirme ve erişkinlere İngilizce öğretme eğitimi verme fikriyle şekillenen Gazi Projesi için Osmangazi Belediyesi'nden yeşil ışık aldım ve projenin ilk bölümü üzerinde hâlâ çalışıyorum.",
+                unidesDate: "5 Mart 2026",
+                unidesTitle: "ÜNİDES \"Geleceğin Eğitimcileri Kodluyor\" projem onaylandı.",
+                unidesText: "T.C. Gençlik ve Spor Bakanlığı ÜNİDES kapsamında hazırladığım \"Geleceğin Eğitimcileri Kodluyor\" projem onaylandı. Projeyi başkanı olduğum Bursa Uludağ Üniversitesi İngilizce Öğretmenliği Topluluğu üzerinden yazdım ve 2-3 Mayıs 2026 tarihlerinde arkadaşım Metin Torun ile gerçekleştirdik.",
+                tubitakDate: "13 Mayıs 2026",
+                tubitakTitle: "TÜBİTAK 2209-A projem kabul edildi.",
+                tubitakText: "TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı'nın 2025 çağrısına proje ortağım Metin Torun ile gönderdiğim \"Yabancı Dil Eğitiminde Yapay Zeka Destekli Masa Oyunu Oluşturma Platformu\" projesi kabul edildi.",
+                ongoing: "Devam ediyor",
+                sourceLink: "Kaynak",
+                productsEyebrow: "Bireysel üretimler",
+                productsTitle: "Kodladığım bireysel projelerim",
+                buueltsProductTitle: "BUUELTS Topluluk Web Sitesi",
+                buueltsProductText: "Bursa Uludağ Üniversitesi İngilizce Öğretmenliği Topluluğu için hazırladığım, PHP temelli dinamik web sitesi.",
+                terziGameText: "Phaser JS ile yapılmış küçük bir 2D piksel oyun denemesi.",
+                blockyTriviaText: "Minecraft temalı, statik fan-made trivia oyunu.",
+                openProduct: "Ürünü aç",
+                contactEyebrow: "Bağlantı",
+                contactTitle: "Bana ulaş",
+                contactText: "Soru, öneri veya ortak çalışma için bana ulaşabilirsin.",
+                copyright: "© 2026 Yusuf Terzi. Tüm hakları saklıdır."
+            },
+            en: {
+                title: "Yusuf Terzi | Portfolio",
+                themeToggle: "Toggle theme",
+                originBadge: "Bursa-made, Torul-certified",
+                intro: "I'm an English Language Teaching student who loves building things in the classroom and on the web.",
+                timelineEyebrow: "Portfolio in motion",
+                timelineTitle: "What I have done since starting university.",
+                timelineNote: "Of course, there is more, but I do not want to write that I brush my teeth; everyone does this.",
+                birthDate: "June 6, 2005",
+                birthTitle: "I was born.",
+                birthText: "This long line started in Bursa.",
+                mysteryYears: "2005 - 2023",
+                mysteryTitle: "Middle stretch",
+                mysteryTooltip: "This part is buried in the dark corners of history. To learn it, you have to know me personally.",
+                universityDate: "2023",
+                universityTitle: "I started English Language Teaching at Bursa Uludağ University.",
+                universityText: "I began my undergraduate studies in English Language Teaching at Bursa Uludağ University.",
+                societyDate: "December 1, 2025",
+                societyTitle: "I founded the BUU English Language Teaching Society.",
+                societyText: "I founded Bursa Uludağ University English Language Teaching Society under the supervision of my advisor Prof. Dr. Zübeyde Sinem Genç.",
+                hackathonDate: "December 29, 2025",
+                hackathonTitle: "I took first place at the Nilüfer AI Hackathon.",
+                hackathonText: "I won the Nilüfer AI Hackathon with my teammate Metin Torun.",
+                gaziDate: "April 6, 2026",
+                gaziTitle: "I started the Gazi Project.",
+                gaziText: "Under the guidance of my advisor Prof. Dr. Zübeyde Sinem Genç, I received the green light from Osmangazi Municipality for the Gazi Project, shaped around preparing an Osmangazi-themed coursebook, developing materials, and providing training for teaching English to adults, and I am still working on its first part.",
+                unidesDate: "March 5, 2026",
+                unidesTitle: "My ÜNİDES \"Future Educators Code\" project was approved.",
+                unidesText: "My \"Future Educators Code\" project, prepared under ÜNİDES by the Republic of Türkiye Ministry of Youth and Sports, was approved. I wrote the project through Bursa Uludağ University English Language Teaching Society, where I serve as president, and carried it out with my friend Metin Torun on May 2-3, 2026.",
+                tubitakDate: "May 13, 2026",
+                tubitakTitle: "My TÜBİTAK 2209-A project was accepted.",
+                tubitakText: "My project \"AI-Supported Board Game Creation Platform in Foreign Language Education,\" which I submitted with my project partner Metin Torun to the 2025 call of the TÜBİTAK 2209-A University Students Research Projects Support Program, was accepted.",
+                ongoing: "Ongoing",
+                sourceLink: "Source",
+                productsEyebrow: "Personal builds",
+                productsTitle: "My personal coding projects",
+                buueltsProductTitle: "BUUELTS Society Website",
+                buueltsProductText: "A PHP-based dynamic website I built for the Bursa Uludağ University English Language Teaching Society.",
+                terziGameText: "A small 2D pixel game experiment built with Phaser JS.",
+                blockyTriviaText: "A static, Minecraft-themed fan-made trivia game.",
+                openProduct: "Open product",
+                contactEyebrow: "Contact",
+                contactTitle: "Get in touch",
+                contactText: "For questions, ideas, or collaboration, feel free to get in touch.",
+                copyright: "© 2026 Yusuf Terzi. All rights reserved."
+            },
+            de: {
+                title: "Yusuf Terzi | Portfolio",
+                themeToggle: "Design wechseln",
+                originBadge: "Made in Bursa, mit Torul-Siegel",
+                intro: "Ich studiere Englisch auf Lehramt und entwickle gern Dinge, im Klassenzimmer genauso wie im Web.",
+                timelineEyebrow: "Portfolio in Bewegung",
+                timelineTitle: "Was ich seit Beginn meines Universitätslebens gemacht habe.",
+                timelineNote: "Natürlich gibt es noch mehr, aber ich möchte nicht extra schreiben, dass ich mir die Zähne putze; das machen alle.",
+                birthDate: "6. Juni 2005",
+                birthTitle: "Ich wurde geboren.",
+                birthText: "Diese lange Linie begann in Bursa.",
+                mysteryYears: "2005 - 2023",
+                mysteryTitle: "Zwischenstück",
+                mysteryTooltip: "Dieser Teil liegt in den dunklen Ecken der Geschichte. Um ihn zu erfahren, musst du mich persönlich kennen.",
+                universityDate: "2023",
+                universityTitle: "Ich begann mein Englischlehramtsstudium an der Bursa Uludağ Universität.",
+                universityText: "Ich begann mein Bachelorstudium im Bereich Englischlehramt an der Bursa Uludağ Universität.",
+                societyDate: "1. Dezember 2025",
+                societyTitle: "Ich gründete die BUU English Language Teaching Society.",
+                societyText: "Ich gründete die English Language Teaching Society der Bursa Uludağ Universität unter der Betreuung meiner Beraterin Prof. Dr. Zübeyde Sinem Genç.",
+                hackathonDate: "29. Dezember 2025",
+                hackathonTitle: "Ich belegte den ersten Platz beim Nilüfer-KI-Hackathon.",
+                hackathonText: "Ich gewann den Nilüfer-KI-Hackathon zusammen mit meinem Teamkollegen Metin Torun.",
+                gaziDate: "6. April 2026",
+                gaziTitle: "Ich begann mit dem Gazi-Projekt.",
+                gaziText: "Unter der Anleitung meiner Beraterin Prof. Dr. Zübeyde Sinem Genç erhielt ich von der Gemeinde Osmangazi grünes Licht für das Gazi-Projekt, das sich um die Erstellung eines Osmangazi-thematischen Coursebooks, die Entwicklung von Materialien und eine Schulung zum Unterrichten von Englisch für Erwachsene dreht, und am ersten Teil arbeite ich weiterhin.",
+                unidesDate: "5. März 2026",
+                unidesTitle: "Mein ÜNİDES-Projekt \"Future Educators Code\" wurde genehmigt.",
+                unidesText: "Mein im Rahmen von ÜNİDES des Ministeriums für Jugend und Sport der Republik Türkei vorbereitetes Projekt \"Future Educators Code\" wurde genehmigt. Ich schrieb das Projekt über die Bursa Uludağ Universität English Language Teaching Society, deren Vorsitzender ich bin, und führte es am 2.-3. Mai 2026 gemeinsam mit meinem Freund Metin Torun durch.",
+                tubitakDate: "13. Mai 2026",
+                tubitakTitle: "Mein TÜBİTAK-2209-A-Projekt wurde angenommen.",
+                tubitakText: "Mein Projekt \"KI-gestützte Plattform zur Erstellung von Brettspielen im Fremdsprachenunterricht\", das ich gemeinsam mit meinem Projektpartner Metin Torun für die Ausschreibung 2025 des TÜBİTAK-2209-A-Förderprogramms für Forschungsprojekte von Universitätsstudierenden eingereicht habe, wurde angenommen.",
+                ongoing: "Läuft",
+                sourceLink: "Quelle",
+                productsEyebrow: "Eigene Projekte",
+                productsTitle: "Meine persönlichen Coding-Projekte",
+                buueltsProductTitle: "BUUELTS-Webseite der Hochschulgruppe",
+                buueltsProductText: "Eine PHP-basierte dynamische Website, die ich für die English Language Teaching Society der Bursa Uludağ Universität erstellt habe.",
+                terziGameText: "Ein kleines 2D-Pixelspiel-Experiment mit Phaser JS.",
+                blockyTriviaText: "Ein statisches, Minecraft-inspiriertes Fan-Trivia-Spiel.",
+                openProduct: "Produkt öffnen",
+                contactEyebrow: "Kontakt",
+                contactTitle: "Kontakt aufnehmen",
+                contactText: "Melde dich gern bei Fragen, Ideen oder Zusammenarbeit.",
+                copyright: "© 2026 Yusuf Terzi. Alle Rechte vorbehalten."
             }
+        };
+
+        const languageButtons = document.querySelectorAll("[data-language]");
+        const themeToggle = document.getElementById("theme-toggle");
+        const icon = themeToggle.querySelector("i");
+
+        function applyLanguage(lang) {
+            const dictionary = translations[lang] || translations.tr;
+
+            document.documentElement.lang = lang;
+            document.title = dictionary.title;
+
+            document.querySelectorAll("[data-lang]").forEach((element) => {
+                const key = element.getAttribute("data-lang");
+                if (dictionary[key]) {
+                    element.textContent = dictionary[key];
+                }
+            });
+
+            document.querySelectorAll("[data-lang-tooltip]").forEach((element) => {
+                const key = element.getAttribute("data-lang-tooltip");
+                if (dictionary[key]) {
+                    element.dataset.tooltip = dictionary[key];
+                }
+            });
+
+            document.querySelectorAll("[data-lang-title]").forEach((element) => {
+                const key = element.getAttribute("data-lang-title");
+                if (dictionary[key]) {
+                    element.setAttribute("title", dictionary[key]);
+                }
+            });
+
+            document.querySelectorAll("[data-lang-label]").forEach((element) => {
+                const key = element.getAttribute("data-lang-label");
+                if (dictionary[key]) {
+                    element.setAttribute("aria-label", dictionary[key]);
+                    element.setAttribute("title", dictionary[key]);
+                }
+            });
+
+            languageButtons.forEach((button) => {
+                const isActive = button.dataset.language === lang;
+                button.classList.toggle("is-active", isActive);
+                button.setAttribute("aria-pressed", String(isActive));
+            });
+
+            localStorage.setItem("language", lang);
         }
+
+        function updateThemeIcon(theme) {
+            icon.classList.toggle("fa-moon", theme !== "light");
+            icon.classList.toggle("fa-sun", theme === "light");
+        }
+
+        function applyTheme(theme) {
+            document.body.setAttribute("data-theme", theme);
+            localStorage.setItem("theme", theme);
+            updateThemeIcon(theme);
+        }
+
+        languageButtons.forEach((button) => {
+            button.addEventListener("click", () => applyLanguage(button.dataset.language));
+        });
+
+        themeToggle.addEventListener("click", () => {
+            const currentTheme = document.body.getAttribute("data-theme") || "dark";
+            applyTheme(currentTheme === "dark" ? "light" : "dark");
+        });
+
+        applyTheme(localStorage.getItem("theme") || "dark");
+        applyLanguage(localStorage.getItem("language") || "tr");
     </script>
 </body>
 </html>
