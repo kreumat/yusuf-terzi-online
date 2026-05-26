@@ -382,6 +382,28 @@ button {
     border-top: 1px solid var(--border-color);
 }
 
+.not-found-main {
+    min-height: calc(100vh - 145px);
+}
+
+.not-found-shell {
+    min-height: calc(100vh - 240px);
+}
+
+.not-found-panel {
+    border-top: 1px solid color-mix(in srgb, var(--border-color) 75%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--border-color) 75%, transparent);
+    padding-block: clamp(2.75rem, 8vw, 7rem);
+}
+
+.not-found-code {
+    color: color-mix(in srgb, var(--accent) 18%, transparent);
+    font-size: clamp(5.5rem, 22vw, 16rem);
+    font-weight: 800;
+    line-height: 0.78;
+    text-shadow: 0 1px 0 color-mix(in srgb, var(--accent) 42%, transparent);
+}
+
 @media (max-width: 1100px) {
     .timeline-list {
         grid-template-columns: repeat(3, minmax(0, 1fr));

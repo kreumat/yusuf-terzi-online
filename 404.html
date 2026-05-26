@@ -1,191 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found | Yusuf Terzi</title>
+    <title>Sayfa Bulunamadı | Yusuf Terzi</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "Arial", "sans-serif"]
+                    },
+                    boxShadow: {
+                        soft: "0 24px 70px rgba(0, 0, 0, 0.28)"
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* Base styles and variables (KIRMIZI/SİYAH TEMA ile güncellendi) */
-        :root {
-            --primary-color: #D9232D;   /* Kırmızı */
-            --primary-dark: #B71C1C;    /* Koyu Kırmızı */
-            --primary-light: #F05555;   /* Açık Kırmızı */
-            --text-color: #e0e0e0;     /* Açık gri yazı */
-            --text-light: #a0a0a0;     /* Daha soluk yazı */
-            --bg-color: #121212;       /* Ana arka plan (çok koyu) */
-            --bg-secondary: #1e1e1e;   /* Kart arka planı (biraz daha açık) */
-            --shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.7);
-            --transition: all 0.3s ease;
-            --spacing-sm: 0.5rem;
-            --spacing-md: 1rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 3rem;
-            --border-radius: 12px;
-        }
-
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            font-family: 'Inter', 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            
-            /* Sayfayı dikeyde ortalamak ve footer'ı en alta itmek için */
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Ana içerik (404 kartı) dikeyde ortalanacak */
-        main {
-            flex-grow: 1; /* Mevcut tüm alanı kapla */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: var(--spacing-lg);
-        }
-
-        /* Typography */
-        h1 {
-            font-family: 'Poppins', 'Inter', sans-serif;
-            font-weight: 700;
-            line-height: 1.1;
-            font-size: 8rem; /* 404 yazısını çok büyük yaptım */
-            color: var(--primary-color); /* Kırmızıya güncellendi */
-            margin-bottom: var(--spacing-sm);
-        }
-
-        p {
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 600px; /* Kartın maksimum genişliği */
-            margin: 0 auto;
-        }
-
-        /* 404 Kartı */
-        #about {
-            background-color: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: var(--spacing-xl);
-            text-align: center;
-            width: 100%;
-            /* 3D Görünüm için (isteğe bağlı) */
-            transform: perspective(1000px) rotateX(-2deg);
-        }
-        
-        .subtitle p {
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: var(--text-color);
-            margin-bottom: 0;
-        }
-
-        .forlng {
-            font-size: 1rem;
-            color: var(--text-light);
-            margin-top: 0.25rem;
-        }
-        
-        .home-button-container {
-             margin-top: var(--spacing-lg); /* Buton ile metin arasına boşluk */
-        }
-
-        /* Ana Sayfa Butonu (project-link404) */
-        .project-link404 {
-            display: inline-block;
-            margin-top: var(--spacing-sm);
-            padding: var(--spacing-md) var(--spacing-xl); /* Biraz daha büyük buton */
-            background-color: var(--primary-color); /* Kırmızıya güncellendi */
-            color: #121212; /* Koyu yazı */
-            font-weight: 600;
-            border-radius: 50px;
-            transition: var(--transition);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            font-size: 1.1rem;
-            text-decoration: none;
-        }
-
-        .project-link404:hover {
-            background-color: var(--primary-light); /* Açık kırmızıya güncellendi */
-            color: #121212;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-
-        .project-link404 i {
-            margin-right: var(--spacing-sm); /* İkon ve yazı arasına (eğer olsaydı) */
-            font-size: 1.2rem; /* İkonu büyüt */
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--bg-secondary);
-            color: var(--text-light);
-            text-align: center;
-            padding: var(--spacing-lg) 0;
-            width: 100%;
-            border-top: 1px solid #333;
-        }
-
-        /* Küçük ekranlar için 404 yazısını küçült */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 6rem;
-            }
-            #about {
-                padding: var(--spacing-lg);
-            }
-            .subtitle p {
-                font-size: 1.2rem;
-            }
-        }
-
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260527-2">
 </head>
-<body>
-    
-    <main>
-        <section id="about">
-            <div class="container">
-                <h1>404</h1>
-                <div class="subtitle">
-                    <p>Page Not Found</p>
-                    <p class="forlng">Sayfa Bulunamadı</p>
-                    <p class="forlng">Seite nicht gefunden</p>
+<body data-theme="dark" class="site-page min-h-screen overflow-x-hidden bg-[var(--bg-body)] text-[var(--text-main)] antialiased">
+    <header class="site-header sticky top-0 z-50 border-b border-[var(--border-color)] bg-[var(--bg-header)] backdrop-blur-xl">
+        <div class="site-header-inner mx-auto flex min-h-[72px] w-full max-w-[1180px] items-center justify-between gap-5 px-4">
+            <a href="/" aria-label="Yusuf Terzi" class="grid h-11 w-11 place-items-center rounded-lg border border-[var(--border-color)] bg-[var(--bg-surface)] text-sm font-extrabold text-[var(--text-main)] transition hover:border-[var(--accent)]">
+                YT
+            </a>
+
+            <div class="flex items-center gap-3 max-[520px]:gap-2">
+                <div class="language-switcher flex overflow-hidden rounded-lg border border-[var(--border-color)] bg-[var(--bg-surface)]" aria-label="Language">
+                    <button type="button" data-language="tr" aria-label="Türkçe" title="Türkçe" class="language-button grid h-11 w-12 place-items-center p-1.5 transition hover:bg-[var(--accent)] max-[520px]:h-9 max-[520px]:w-10">
+                        <img src="images/turkishflag.png" alt="" class="language-flag" aria-hidden="true">
+                    </button>
+                    <button type="button" data-language="en" aria-label="English" title="English" class="language-button grid h-11 w-12 place-items-center border-l border-[var(--border-color)] p-1.5 transition hover:bg-[var(--accent)] max-[520px]:h-9 max-[520px]:w-10">
+                        <img src="images/britishflag.png" alt="" class="language-flag" aria-hidden="true">
+                    </button>
+                    <button type="button" data-language="de" aria-label="Deutsch" title="Deutsch" class="language-button grid h-11 w-12 place-items-center border-l border-[var(--border-color)] p-1.5 transition hover:bg-[var(--accent)] max-[520px]:h-9 max-[520px]:w-10">
+                        <img src="images/germanflag.png" alt="" class="language-flag" aria-hidden="true">
+                    </button>
                 </div>
-                
-                <div class="home-button-container">
-                    <a href="/" class="project-link404" aria-label="Go to Homepage">
-                        <i class="fas fa-home"></i>
-                    </a>
+
+                <button id="theme-toggle" type="button" data-lang-label="themeToggle" aria-label="Tema değiştir" title="Tema değiştir" class="grid h-11 w-11 place-items-center rounded-lg border border-[var(--border-color)] bg-[var(--bg-surface)] text-[var(--text-secondary)] transition hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white max-[520px]:h-9 max-[520px]:w-9">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="not-found-main px-4 py-12">
+        <section class="not-found-shell mx-auto grid w-full max-w-[1180px] items-center" aria-labelledby="not-found-title">
+            <div class="not-found-panel">
+                <span class="hero-rule" aria-hidden="true"></span>
+
+                <div class="grid gap-8 lg:grid-cols-[0.78fr_1fr] lg:items-end">
+                    <p class="not-found-code" aria-hidden="true">404</p>
+
+                    <div class="max-w-[620px]">
+                        <p class="section-eyebrow text-xs font-extrabold uppercase text-[var(--accent-green)]" data-lang="notFoundEyebrow">Kayıp rota</p>
+                        <h1 id="not-found-title" class="mt-3 text-[clamp(2.1rem,6vw,4.8rem)] font-extrabold leading-[0.98] tracking-normal text-[var(--text-main)]" data-lang="notFoundTitle">
+                            Bu sayfa burada değil.
+                        </h1>
+                        <p class="mt-5 text-lg font-medium leading-relaxed text-[var(--text-secondary)] max-[720px]:text-base" data-lang="notFoundText">
+                            Aradığın şey portfolyoda yoksa ya henüz eklenmemiştir ya da tarihin karanlıklarına gömülmüştür.
+                        </p>
+
+                        <div class="mt-8 flex flex-wrap gap-3">
+                            <a href="/" class="inline-flex items-center gap-3 rounded-lg border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 font-extrabold text-white transition hover:border-[var(--accent-strong)] hover:bg-[var(--accent-strong)]" data-lang="homeLink">
+                                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                                Ana sayfaya dön
+                            </a>
+                            <a href="mailto:yusufxterzi@gmail.com" class="inline-flex items-center gap-3 rounded-lg border border-[var(--border-color)] bg-[var(--bg-surface)] px-4 py-3 font-extrabold text-[var(--text-main)] transition hover:border-[var(--accent)] hover:text-[var(--accent-strong)]" data-lang="contactLink">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                Bana ulaş
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Yusuf Terzi. All rights reserved.</p>
-        </div>
+
+    <footer class="border-t border-[var(--border-color)] px-4 py-6 text-center text-sm text-[var(--text-muted)]">
+        <p data-lang="copyright">© 2026 Yusuf Terzi. Tüm hakları saklıdır.</p>
     </footer>
+
+    <script>
+        const translations = {
+            tr: {
+                title: "Sayfa Bulunamadı | Yusuf Terzi",
+                themeToggle: "Tema değiştir",
+                notFoundEyebrow: "Kayıp rota",
+                notFoundTitle: "Bu sayfa burada değil.",
+                notFoundText: "Aradığın şey portfolyoda yoksa ya henüz eklenmemiştir ya da tarihin karanlıklarına gömülmüştür.",
+                homeLink: "Ana sayfaya dön",
+                contactLink: "Bana ulaş",
+                copyright: "© 2026 Yusuf Terzi. Tüm hakları saklıdır."
+            },
+            en: {
+                title: "Page Not Found | Yusuf Terzi",
+                themeToggle: "Toggle theme",
+                notFoundEyebrow: "Lost route",
+                notFoundTitle: "This page is not here.",
+                notFoundText: "If what you are looking for is not in the portfolio, it is either not added yet or buried in the dark corners of history.",
+                homeLink: "Back home",
+                contactLink: "Get in touch",
+                copyright: "© 2026 Yusuf Terzi. All rights reserved."
+            },
+            de: {
+                title: "Seite nicht gefunden | Yusuf Terzi",
+                themeToggle: "Design wechseln",
+                notFoundEyebrow: "Verirrte Route",
+                notFoundTitle: "Diese Seite gibt es hier nicht.",
+                notFoundText: "Wenn das Gesuchte nicht im Portfolio steht, wurde es entweder noch nicht ergänzt oder ist in den dunklen Ecken der Geschichte gelandet.",
+                homeLink: "Zur Startseite",
+                contactLink: "Kontakt aufnehmen",
+                copyright: "© 2026 Yusuf Terzi. Alle Rechte vorbehalten."
+            }
+        };
+
+        const languageButtons = document.querySelectorAll("[data-language]");
+        const themeToggle = document.getElementById("theme-toggle");
+        const icon = themeToggle.querySelector("i");
+
+        function applyLanguage(lang) {
+            const dictionary = translations[lang] || translations.tr;
+
+            document.documentElement.lang = lang;
+            document.title = dictionary.title;
+
+            document.querySelectorAll("[data-lang]").forEach((element) => {
+                const key = element.getAttribute("data-lang");
+                if (dictionary[key]) {
+                    element.textContent = dictionary[key];
+                }
+            });
+
+            document.querySelectorAll("[data-lang-label]").forEach((element) => {
+                const key = element.getAttribute("data-lang-label");
+                if (dictionary[key]) {
+                    element.setAttribute("aria-label", dictionary[key]);
+                    element.setAttribute("title", dictionary[key]);
+                }
+            });
+
+            languageButtons.forEach((button) => {
+                const isActive = button.dataset.language === lang;
+                button.classList.toggle("is-active", isActive);
+                button.setAttribute("aria-pressed", String(isActive));
+            });
+
+            localStorage.setItem("language", lang);
+        }
+
+        function updateThemeIcon(theme) {
+            icon.classList.toggle("fa-moon", theme !== "light");
+            icon.classList.toggle("fa-sun", theme === "light");
+        }
+
+        function applyTheme(theme) {
+            document.body.setAttribute("data-theme", theme);
+            localStorage.setItem("theme", theme);
+            updateThemeIcon(theme);
+        }
+
+        languageButtons.forEach((button) => {
+            button.addEventListener("click", () => applyLanguage(button.dataset.language));
+        });
+
+        themeToggle.addEventListener("click", () => {
+            const currentTheme = document.body.getAttribute("data-theme") || "dark";
+            applyTheme(currentTheme === "dark" ? "light" : "dark");
+        });
+
+        applyTheme(localStorage.getItem("theme") || "dark");
+        applyLanguage(localStorage.getItem("language") || "tr");
+    </script>
 </body>
 </html>
