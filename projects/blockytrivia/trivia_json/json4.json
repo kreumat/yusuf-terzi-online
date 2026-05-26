@@ -1,0 +1,55 @@
+{
+  "NAME": "Present Simple",
+  "questions": [
+    {
+      "question": "She ____ to school every morning.",
+      "answers": [
+        "go",
+        "goes",
+        "gone",
+        "going"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "They ____ like playing tennis.",
+      "answers": [
+        "doesn't",
+        "don't",
+        "isn't",
+        "aren't"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "____ you play the guitar?",
+      "answers": [
+        "Do",
+        "Does",
+        "Are",
+        "Is"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "He ____ (study) English every day.",
+      "answers": [
+        "study",
+        "studys",
+        "studies",
+        "studying"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "The sun ____ in the east.",
+      "answers": [
+        "rise",
+        "rises",
+        "rising",
+        "rose"
+      ],
+      "correct": 1
+    }
+  ]
+}

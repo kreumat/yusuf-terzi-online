@@ -1,0 +1,55 @@
+{
+  "NAME": "Past Simple",
+  "questions": [
+    {
+      "question": "Yesterday I ____ to the cinema.",
+      "answers": [
+        "go",
+        "goed",
+        "went",
+        "gone"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "She ____ (buy) a new laptop last week.",
+      "answers": [
+        "buyed",
+        "bought",
+        "buys",
+        "buying"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "We ____ (not/watch) the movie.",
+      "answers": [
+        "didn't watch",
+        "don't watch",
+        "didn't watched",
+        "not watched"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "____ they happy with the party?",
+      "answers": [
+        "Did",
+        "Were",
+        "Was",
+        "Are"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "He ____ (write) a letter to his friend.",
+      "answers": [
+        "writed",
+        "wrote",
+        "written",
+        "write"
+      ],
+      "correct": 1
+    }
+  ]
+}

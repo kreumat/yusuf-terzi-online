@@ -1,0 +1,30 @@
+{
+  "NAME": "Giving Advice",
+  "questions": [
+    {
+      "question": "You look tired. You ____ take a rest.",
+      "answers": ["should", "shouldn't", "can't", "won't"],
+      "correct": 0
+    },
+    {
+      "question": "It's raining heavily. You ____ forget your umbrella.",
+      "answers": ["must", "should", "shouldn't", "have to"],
+      "correct": 2
+    },
+    {
+      "question": "I have a toothache. What ____ I do?",
+      "answers": ["should", "would", "must", "did"],
+      "correct": 0
+    },
+    {
+      "question": "He has an exam tomorrow. He ____ play video games all night.",
+      "answers": ["should", "shouldn't", "must", "can"],
+      "correct": 1
+    },
+    {
+      "question": "Your room is messy. You ____ clean it.",
+      "answers": ["ought to", "shouldn't", "wouldn't", "couldn't"],
+      "correct": 0
+    }
+  ]
+}

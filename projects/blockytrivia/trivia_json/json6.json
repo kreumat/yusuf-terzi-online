@@ -1,0 +1,55 @@
+{
+  "NAME": "Comparisons",
+  "questions": [
+    {
+      "question": "An elephant is ____ than a mouse.",
+      "answers": [
+        "big",
+        "bigger",
+        "biggest",
+        "more big"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "This is the ____ movie I have ever seen.",
+      "answers": [
+        "good",
+        "better",
+        "best",
+        "goodest"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "Summer is ____ than winter.",
+      "answers": [
+        "hot",
+        "hotter",
+        "hottest",
+        "more hot"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "She is as ____ as her mother.",
+      "answers": [
+        "tall",
+        "taller",
+        "tallest",
+        "more tall"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which car is the ____?",
+      "answers": [
+        "fast",
+        "faster",
+        "fastest",
+        "most fast"
+      ],
+      "correct": 2
+    }
+  ]
+}
