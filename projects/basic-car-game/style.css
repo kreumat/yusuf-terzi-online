@@ -1,0 +1,538 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #1a1a2e;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    overflow: hidden;
+    touch-action: none;
+    image-rendering: pixelated;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overscroll-behavior: none;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.screen {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    background: rgba(10, 10, 30, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.panel {
+    background: #16213e;
+    padding: 2.5rem;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 0 0 4px #e74c3c, 0 0 0 8px #16213e, 0 0 30px rgba(231, 76, 60, 0.3);
+    border: 4px solid #e74c3c;
+    max-width: 600px;
+    width: 92%;
+    max-height: 95vh;
+    overflow-y: auto;
+}
+
+.selection-panel {
+    max-width: 1040px;
+}
+
+.game-logo {
+    display: block;
+    width: clamp(96px, 16vw, 156px);
+    height: clamp(96px, 16vw, 156px);
+    margin: 0 auto 1rem;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.45));
+}
+
+.car-container {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.car-card {
+    background: #0f3460;
+    border: 3px solid #1a1a2e;
+    border-radius: 4px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.car-card:hover {
+    transform: translateY(-4px);
+    background: #1a4a7a;
+    border-color: #e94560;
+}
+
+.car-card.selected {
+    border-color: #f1c40f;
+    background: rgba(241, 196, 15, 0.15);
+    box-shadow: 0 0 0 3px #f1c40f, 0 0 20px rgba(241, 196, 15, 0.3);
+}
+
+.car-card.selected .car-preview {
+    will-change: contents;
+}
+
+.car-preview-stage {
+    width: min(128px, 100%);
+    height: 128px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.car-card img {
+    width: var(--preview-size, 120px);
+    height: var(--preview-size, 120px);
+    max-width: 100%;
+    max-height: 100%;
+    margin-bottom: 0;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6));
+}
+
+.car-card h3 {
+    color: #fff;
+    margin-bottom: 8px;
+    font-size: 0.65rem;
+    line-height: 1.4;
+}
+
+.car-stats {
+    font-size: 0.55rem;
+    color: #bdc3c7;
+    width: 100%;
+}
+
+.car-stats div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+h1 {
+    color: #e94560;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0 rgba(0,0,0,0.5), 0 0 20px rgba(233, 69, 96, 0.4);
+}
+
+p {
+    margin-bottom: 1.2rem;
+    font-size: 0.7rem;
+    color: #ecf0f1;
+    line-height: 1.8;
+}
+
+button {
+    font-family: 'Press Start 2P', monospace;
+    background: #e94560;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    box-shadow: 0 4px 0 #a3233f, 0 6px 15px rgba(231, 76, 60, 0.3);
+    position: relative;
+    top: 0;
+}
+
+button:hover:not(:disabled) {
+    background: #c0392b;
+    top: -2px;
+    box-shadow: 0 6px 0 #a3233f, 0 10px 20px rgba(231, 76, 60, 0.4);
+}
+
+button:active:not(:disabled) {
+    top: 4px;
+    box-shadow: 0 0px 0 #a3233f;
+}
+
+button:disabled {
+    background: #4a4a6a;
+    cursor: not-allowed;
+    box-shadow: 0 4px 0 #333355;
+    opacity: 0.6;
+}
+
+#loadingStatus {
+    margin-top: 1.2rem;
+    color: #f1c40f;
+    font-size: 0.6rem;
+    line-height: 1.6;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#uiLayer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    pointer-events: none;
+    z-index: 50;
+}
+
+#hud {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(15, 15, 40, 0.88);
+    padding: 16px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    border: 3px solid #e94560;
+    box-shadow: 0 0 15px rgba(233, 69, 96, 0.25);
+    pointer-events: auto;
+}
+
+#hud div {
+    margin-bottom: 8px;
+    color: #8892b0;
+}
+
+.hud-value {
+    color: #ccd6f6;
+    font-size: 0.7rem;
+}
+
+#driftScoreContainer {
+    margin-top: 12px !important;
+    color: #f1c40f !important;
+    font-size: 0.75rem !important;
+    text-shadow: 0 0 8px rgba(241, 196, 15, 0.5);
+    transition: transform 0.1s, color 0.1s;
+}
+
+#driftScoreContainer .hud-value {
+    color: inherit;
+    font-size: 0.85rem;
+}
+
+#controlsInfo {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 10, 30, 0.85);
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+    border: 2px solid #0f3460;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    white-space: nowrap;
+}
+
+#touchControls {
+    position: absolute;
+    inset: 0;
+    display: none;
+    pointer-events: none;
+    z-index: 20;
+}
+
+#joystickZone {
+    position: absolute;
+    left: max(18px, env(safe-area-inset-left));
+    bottom: max(22px, calc(env(safe-area-inset-bottom) + 18px));
+    width: clamp(118px, 24vw, 156px);
+    height: clamp(118px, 24vw, 156px);
+    pointer-events: auto;
+    touch-action: none;
+}
+
+#joystickBase {
+    position: absolute;
+    inset: 0;
+    border: 3px solid rgba(236, 240, 241, 0.55);
+    border-radius: 50%;
+    background: rgba(10, 10, 30, 0.55);
+    box-shadow: inset 0 0 18px rgba(255,255,255,0.08), 0 6px 18px rgba(0,0,0,0.35);
+}
+
+#joystickBase::before,
+#joystickBase::after {
+    content: "";
+    position: absolute;
+    background: rgba(236, 240, 241, 0.22);
+}
+
+#joystickBase::before {
+    left: 50%;
+    top: 14px;
+    bottom: 14px;
+    width: 3px;
+    transform: translateX(-50%);
+}
+
+#joystickBase::after {
+    top: 50%;
+    left: 14px;
+    right: 14px;
+    height: 3px;
+    transform: translateY(-50%);
+}
+
+#joystickThumb {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: clamp(46px, 9vw, 62px);
+    height: clamp(46px, 9vw, 62px);
+    border: 3px solid #f1c40f;
+    border-radius: 50%;
+    background: rgba(233, 69, 96, 0.92);
+    box-shadow: 0 4px 0 #a3233f, 0 0 18px rgba(241, 196, 15, 0.35);
+    transform: translate(-50%, -50%) translate(0, 0);
+    transition: transform 0.08s ease-out;
+}
+
+#joystickZone.active #joystickThumb {
+    transition: none;
+}
+
+#driftTouchBtn {
+    position: absolute;
+    top: auto;
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(30px, calc(env(safe-area-inset-bottom) + 26px));
+    width: clamp(86px, 17vw, 116px);
+    height: clamp(86px, 17vw, 116px);
+    padding: 0;
+    border: 3px solid rgba(255,255,255,0.38);
+    border-radius: 50%;
+    font-size: clamp(0.48rem, 1.7vw, 0.68rem);
+    line-height: 1.4;
+    pointer-events: auto;
+    touch-action: none;
+    box-shadow: 0 6px 0 #0a2040, 0 6px 18px rgba(0,0,0,0.32);
+    background: rgba(15, 52, 96, 0.92);
+}
+
+#driftTouchBtn:hover:not(:disabled),
+#driftTouchBtn:active:not(:disabled),
+#driftTouchBtn.active {
+    top: auto;
+    background: #e94560;
+    box-shadow: 0 3px 0 #a3233f, 0 0 20px rgba(233, 69, 96, 0.42);
+}
+
+#debugPanel {
+    position: absolute;
+    bottom: 24px;
+    right: 16px;
+    background: rgba(0, 10, 0, 0.85);
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 0.55rem;
+    color: #2ecc71;
+    border: 2px solid #2ecc71;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.15);
+    pointer-events: auto;
+}
+
+.debug-title {
+    color: #f1c40f;
+    margin-bottom: 6px;
+    border-bottom: 2px solid #1a3a1a;
+    padding-bottom: 4px;
+    font-size: 0.5rem;
+}
+
+.ui-buttons {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+#restartBtn, #changeCarBtn {
+    position: relative;
+    font-size: 0.6rem;
+    padding: 10px 16px;
+    width: 100%;
+}
+
+#restartBtn {
+    background: #e94560;
+    box-shadow: 0 4px 0 #a3233f;
+}
+
+#restartBtn:hover {
+    background: #c0392b;
+}
+
+#changeCarBtn {
+    font-size: 0.55rem;
+    padding: 8px 14px;
+    background: #0f3460;
+    box-shadow: 0 4px 0 #0a2040;
+}
+
+#changeCarBtn:hover {
+    background: #1a4a7a;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    h1 { font-size: 1.2rem; }
+    p { font-size: 0.6rem; }
+    .panel { padding: 1.5rem; }
+
+    .car-card { width: 180px; padding: 10px; }
+    .car-card h3 { font-size: 0.55rem; }
+    .car-stats { font-size: 0.45rem; }
+
+    #hud {
+        font-size: 0.55rem;
+        padding: 12px;
+        top: 8px;
+        left: 8px;
+    }
+    .hud-value { font-size: 0.6rem; }
+    #driftScoreContainer { font-size: 0.6rem !important; }
+    #driftScoreContainer .hud-value { font-size: 0.65rem; }
+
+    .ui-buttons {
+        top: 8px;
+        right: 8px;
+        gap: 5px;
+    }
+
+    #restartBtn, #changeCarBtn {
+        padding: 7px 10px;
+        font-size: 0.5rem;
+    }
+
+    #controlsInfo {
+        font-size: 0.45rem;
+        width: 92%;
+        text-align: center;
+        bottom: 8px;
+        white-space: normal;
+    }
+
+    #debugPanel {
+        font-size: 0.45rem;
+        bottom: 50px;
+        right: 8px;
+        padding: 8px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse), (max-width: 760px) {
+    #touchControls {
+        display: block;
+    }
+
+    #controlsInfo {
+        display: none;
+    }
+}
+
+@media (max-height: 520px) {
+    #hud {
+        display: grid;
+        grid-template-columns: repeat(2, max-content);
+        column-gap: 12px;
+        row-gap: 6px;
+    }
+
+    #hud div {
+        margin-bottom: 0;
+    }
+
+    #driftScoreContainer {
+        margin-top: 0 !important;
+    }
+
+    .ui-buttons {
+        flex-direction: row;
+    }
+
+    #joystickZone {
+        width: clamp(96px, 24vh, 124px);
+        height: clamp(96px, 24vh, 124px);
+        bottom: max(12px, calc(env(safe-area-inset-bottom) + 10px));
+    }
+
+    #driftTouchBtn {
+        width: clamp(72px, 18vh, 94px);
+        height: clamp(72px, 18vh, 94px);
+        bottom: max(16px, calc(env(safe-area-inset-bottom) + 14px));
+    }
+}
+
+@media (max-width: 500px) {
+    h1 { font-size: 0.9rem; }
+    .panel { padding: 1rem; width: 96%; }
+    .game-logo {
+        width: 86px;
+        height: 86px;
+        margin-bottom: 0.75rem;
+    }
+    .car-container { gap: 10px; }
+    .car-card { width: min(140px, 44vw); padding: 8px; }
+    .car-card h3 { font-size: 0.45rem; }
+    button { font-size: 0.6rem; padding: 10px 16px; }
+
+    #hud {
+        max-width: calc(100vw - 124px);
+        font-size: 0.48rem;
+        line-height: 1.45;
+    }
+}
