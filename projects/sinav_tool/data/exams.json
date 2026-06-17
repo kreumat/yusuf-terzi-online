@@ -1,0 +1,1632 @@
+[
+  {
+    "id": "exam-001-e945dec3",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "SÜRDÜRÜLEBİLİR KALKINMA ve EĞİTİM",
+    "teacher": "Prof. Dr. Şükrü Ada",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "09.00",
+    "rooms": [
+      "A124",
+      "A223",
+      "A123",
+      "A119"
+    ],
+    "studentCounts": [
+      195
+    ]
+  },
+  {
+    "id": "exam-002-57a417e3",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "TOPLUMSAL KARAR VERME YÖNTEMLERİ (YÜZ YÜZE)",
+    "teacher": "Prof. Dr. Aysan Şentürk",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "09.00",
+    "rooms": [
+      "A205"
+    ],
+    "studentCounts": [
+      13
+    ]
+  },
+  {
+    "id": "exam-003-c6172fbd",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "OKUL DIŞI ÖĞRENME ORTAMLARI",
+    "teacher": "Doç. Dr. Dilek Zeren Özer",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "10.00",
+    "rooms": [
+      "A124",
+      "A223"
+    ],
+    "studentCounts": [
+      112
+    ]
+  },
+  {
+    "id": "exam-004-68d6dad9",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "OKUL DIŞI ÖĞRENME ORTAMLARI",
+    "teacher": "Dr. Öğr. Üyesi Sema Nur Güngör",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "10.00",
+    "rooms": [
+      "A123",
+      "A119",
+      "A102"
+    ],
+    "studentCounts": [
+      113
+    ]
+  },
+  {
+    "id": "exam-005-9b94ee34",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "EĞİTİM HUKUKU",
+    "teacher": "Doç. Dr. Gizem Günçavdı Alabay",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "11.00",
+    "rooms": [
+      "A123",
+      "A119",
+      "A102",
+      "A205"
+    ],
+    "studentCounts": [
+      141
+    ]
+  },
+  {
+    "id": "exam-006-4dc96363",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "KAPSAYICI EĞİTİM",
+    "teacher": "Dr. M. Muzaffer Özhan",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "11.00",
+    "rooms": [
+      "A124",
+      "A223"
+    ],
+    "studentCounts": [
+      112
+    ]
+  },
+  {
+    "id": "exam-007-4ecf9560",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "ÇOCUK PSİKOLOJİSİ",
+    "teacher": "Dr. Öğr. Üyesi Meltem Yıldız",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "12.00",
+    "rooms": [
+      "A124"
+    ],
+    "studentCounts": [
+      59
+    ]
+  },
+  {
+    "id": "exam-008-a986763c",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "KISA SÜRELİ ÇÖZÜM ODAKLI ÖĞRENCİ KOÇLUĞU (YÜZ YÜZE)",
+    "teacher": "Doç. Dr. Gizem Günçavdı Alabay",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "12.00",
+    "rooms": [
+      "A223",
+      "A204",
+      "A205"
+    ],
+    "studentCounts": [
+      109
+    ]
+  },
+  {
+    "id": "exam-009-10fde221",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "MÜZE EĞİTİMİ",
+    "teacher": "Arş. Gör. Dr. Tuğba Gürkan Şenyavaş",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "12.00",
+    "rooms": [
+      "A324",
+      "A304"
+    ],
+    "studentCounts": [
+      72
+    ]
+  },
+  {
+    "id": "exam-010-27328f28",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "KARŞILAŞTIRMALI EĞİTİM",
+    "teacher": "Dr. Serdar Erdem",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "13.00",
+    "rooms": [
+      "A223"
+    ],
+    "studentCounts": [
+      52
+    ]
+  },
+  {
+    "id": "exam-011-06285a69",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "KAYNAŞTIRMADA SOSYAL BECERİ ÖĞRETİMİ",
+    "teacher": "Dr. Öğr. Üyesi Ceyda Turhan",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "13.00",
+    "rooms": [
+      "A124",
+      "A123",
+      "A119",
+      "A102",
+      "A225"
+    ],
+    "studentCounts": [
+      215
+    ]
+  },
+  {
+    "id": "exam-012-7269c50c",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "MİKRO ÖĞRETİM",
+    "teacher": "Öğr. Gör. Edip Koşar",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "14.00",
+    "rooms": [
+      "A304",
+      "A305"
+    ],
+    "studentCounts": [
+      61
+    ]
+  },
+  {
+    "id": "exam-013-17eec035",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "MİKRO ÖĞRETİM",
+    "teacher": "Prof. Dr. Nermin Bulunuz",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "14.00",
+    "rooms": [
+      "A124",
+      "A123",
+      "A119"
+    ],
+    "studentCounts": [
+      135
+    ]
+  },
+  {
+    "id": "exam-014-bc6553e5",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "ELEŞTİREL VE ANALİTİK DÜŞÜNME",
+    "teacher": "Doç. Dr. Eyüp Yurt",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "15.00",
+    "rooms": [
+      "A124",
+      "A223"
+    ],
+    "studentCounts": [
+      104
+    ]
+  },
+  {
+    "id": "exam-015-88ad4ffa",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "ELEŞTİREL VE ANALİTİK DÜŞÜNME",
+    "teacher": "Doç. Dr. Şirin İlkörücü",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "15.00",
+    "rooms": [
+      "A102"
+    ],
+    "studentCounts": [
+      42
+    ]
+  },
+  {
+    "id": "exam-016-4dc07342",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "EĞİTİMDE PROGRAM GELİŞTİRME",
+    "teacher": "Doç. Dr. Eyüp Yurt",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "16.00",
+    "rooms": [
+      "A124",
+      "A123"
+    ],
+    "studentCounts": [
+      95
+    ]
+  },
+  {
+    "id": "exam-017-602d1cbe",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "EĞİTİMDE PROGRAM GELİŞTİRME",
+    "teacher": "Prof. Dr. Rüçhan Uz",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "16.00",
+    "rooms": [
+      "A102"
+    ],
+    "studentCounts": [
+      43
+    ]
+  },
+  {
+    "id": "exam-018-6e3f6418",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "TÜM EF",
+    "courseName": "ATATÜRK İLKELERİ VE İNKILAP TARİHİ 2",
+    "teacher": "İlgili Öğretim Elemanı",
+    "dateSort": "2026-06-15",
+    "dateText": "15 HAZİRAN PAZARTESİ",
+    "time": "20.00",
+    "rooms": [
+      "ONLINE"
+    ],
+    "studentCounts": [
+      609
+    ]
+  },
+  {
+    "id": "exam-019-1ef1a54a",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "SIN- OKU",
+    "courseName": "SINIF YÖNETİMİ",
+    "teacher": "Doç. Dr. Gönül Onur Sezer",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "10.00",
+    "rooms": [
+      "A223",
+      "A204",
+      "A225"
+    ],
+    "studentCounts": [
+      125
+    ]
+  },
+  {
+    "id": "exam-020-b6ac4a5d",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "FEN - SOS - C",
+    "courseName": "SINIF YÖNETİMİ",
+    "teacher": "Doç. Dr. Gizem Günçavdı Alabay",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "10.00",
+    "rooms": [
+      "A102",
+      "Az08",
+      "Az09"
+    ],
+    "studentCounts": [
+      111
+    ]
+  },
+  {
+    "id": "exam-021-86ff1393",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "İMÖ",
+    "courseName": "SINIF YÖNETİMİ",
+    "teacher": "Dr. Hilal Erkol",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "10.00",
+    "rooms": [
+      "A324"
+    ],
+    "studentCounts": [
+      42
+    ]
+  },
+  {
+    "id": "exam-022-e8350611",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "REH- MÜZ- RES",
+    "courseName": "SINIF YÖNETİMİ",
+    "teacher": "Dr. Öğr. Üyesi İsmail Çimen",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "10.00",
+    "rooms": [
+      "A124",
+      "A119",
+      "A123",
+      "A304"
+    ],
+    "studentCounts": [
+      171
+    ]
+  },
+  {
+    "id": "exam-023-aba95066",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "ÖZE- İNGA/B",
+    "courseName": "SINIF YÖNETİMİ",
+    "teacher": "Prof. Dr. Şükrü Ada",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "10.00",
+    "rooms": [
+      "B217",
+      "Bz03",
+      "Bz05",
+      "B202",
+      "Bz14"
+    ],
+    "studentCounts": [
+      171
+    ]
+  },
+  {
+    "id": "exam-024-d8d61cc5",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "ALM- BİL- FRN- TUR",
+    "courseName": "SINIF YÖNETİMİ",
+    "teacher": "Prof. Dr. Selahattin Turan",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "10.00",
+    "rooms": [
+      "B312",
+      "Bz12",
+      "Bz11",
+      "B324",
+      "Bz02"
+    ],
+    "studentCounts": [
+      134
+    ]
+  },
+  {
+    "id": "exam-025-79828de4",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "OKUMA BECERİLERİ II",
+    "teacher": "Öğr. Gör. Dr. Ebru Ertarman Şenyiğit",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "11.00",
+    "rooms": [],
+    "studentCounts": [
+      80
+    ]
+  },
+  {
+    "id": "exam-026-41979510",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "FRN - FEN",
+    "courseName": "ÖZEL EĞİTİM VE KAYNAŞTIRMA",
+    "teacher": "Dr. Öğr. Üyesi Gülcihan Yazçayır",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "13.00",
+    "rooms": [
+      "A124"
+    ],
+    "studentCounts": [
+      61
+    ]
+  },
+  {
+    "id": "exam-027-a789a5e6",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "MUZ",
+    "courseName": "ÖZEL EĞİTİM VE KAYNAŞTIRMA",
+    "teacher": "Dr. Öğr. Üyesi Özge Boşnak",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "13.00",
+    "rooms": [
+      "Bz02"
+    ],
+    "studentCounts": [
+      36
+    ]
+  },
+  {
+    "id": "exam-028-c7d7d754",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "OKU - SIN",
+    "courseName": "ÖZEL EĞİTİM VE KAYNAŞTIRMA",
+    "teacher": "Öğr. Gör. Dr. Oya Arslan Armutçu",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "13.00",
+    "rooms": [
+      "Az08",
+      "A102",
+      "A119",
+      "A123"
+    ],
+    "studentCounts": [
+      157
+    ]
+  },
+  {
+    "id": "exam-029-80386c4e",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "ALM-SOS- İNG",
+    "courseName": "ÖZEL EĞİTİM VE KAYNAŞTIRMA",
+    "teacher": "Öğr. Gör. Dr. Sakine Adıgüzel",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "13.00",
+    "rooms": [
+      "A223",
+      "A324",
+      "B217",
+      "Bz03",
+      "B324",
+      "B304"
+    ],
+    "studentCounts": [
+      237
+    ]
+  },
+  {
+    "id": "exam-030-8535f701",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "İNGİLİZCE ÖĞRETİM PROGRAMLARI",
+    "teacher": "Öğr. Gör. Dr. Ayşegül Zıngır Gülten",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "14.00",
+    "rooms": [],
+    "studentCounts": [
+      91
+    ]
+  },
+  {
+    "id": "exam-031-e2124def",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "EDİMBİLİMİ ve DİL ÖĞRETİMİ",
+    "teacher": "Doç. Dr. Çiğdem Karatepe",
+    "dateSort": "2026-06-16",
+    "dateText": "16 HAZİRAN SALI",
+    "time": "16.00",
+    "rooms": [],
+    "studentCounts": [
+      34
+    ]
+  },
+  {
+    "id": "exam-032-94f89b0c",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "REH-FRN-ALM",
+    "courseName": "EĞİTİM FELSEFESİ",
+    "teacher": "Prof. Dr. Abamüslim Akdemir",
+    "dateSort": "2026-06-17",
+    "dateText": "17 HAZİRAN ÇARŞAMBA",
+    "time": "10.00",
+    "rooms": [
+      "B217",
+      "B324",
+      "A123"
+    ],
+    "studentCounts": [
+      217
+    ]
+  },
+  {
+    "id": "exam-033-c525bd91",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "SOS-SIN",
+    "courseName": "EĞİTİM FELSEFESİ",
+    "teacher": "Prof. Dr. Abamüslim Akdemir",
+    "dateSort": "2026-06-17",
+    "dateText": "17 HAZİRAN ÇARŞAMBA",
+    "time": "10.00",
+    "rooms": [
+      "A124",
+      "A304"
+    ],
+    "studentCounts": [
+      217
+    ]
+  },
+  {
+    "id": "exam-034-f19d2ec8",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "BİL-İNG",
+    "courseName": "EĞİTİM SOSYOLOJİSİ",
+    "teacher": "Dr. Öğr. Üyesi Abdullah Açar",
+    "dateSort": "2026-06-17",
+    "dateText": "17 HAZİRAN ÇARŞAMBA",
+    "time": "10.00",
+    "rooms": [
+      "A223",
+      "A225",
+      "A205"
+    ],
+    "studentCounts": [
+      126
+    ]
+  },
+  {
+    "id": "exam-035-82d72ecf",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "İNGİLİZCE DİL BECERİLERİNİN ÖĞRETİMİ II",
+    "teacher": "Dr. Öğr. Üyesi Derya Döner Yılmaz",
+    "dateSort": "2026-06-17",
+    "dateText": "17 HAZİRAN ÇARŞAMBA",
+    "time": "11.00",
+    "rooms": [],
+    "studentCounts": [
+      118
+    ]
+  },
+  {
+    "id": "exam-036-0087aca2",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "İNGİLİZCE DİL BECERİLERİNİN ÖĞRETİMİ II",
+    "teacher": "Prof. Dr. Zübeyde Sinem Genç",
+    "dateSort": "2026-06-17",
+    "dateText": "17 HAZİRAN ÇARŞAMBA",
+    "time": "11.00",
+    "rooms": [],
+    "studentCounts": [
+      33
+    ]
+  },
+  {
+    "id": "exam-037-ff9577d3",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "İNGİLİZCE ÖĞRETİMİNDE SINAV HAZIRLAMA",
+    "teacher": "Prof. Dr. İlknur Savaşkan",
+    "dateSort": "2026-06-17",
+    "dateText": "17 HAZİRAN ÇARŞAMBA",
+    "time": "13.00",
+    "rooms": [],
+    "studentCounts": [
+      160
+    ]
+  },
+  {
+    "id": "exam-038-0861d990",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "BİL-FRN",
+    "courseName": "TÜRK EĞİTİM TARİHİ",
+    "teacher": "Doç. Dr. Sabri Becerikli",
+    "dateSort": "2026-06-17",
+    "dateText": "17 HAZİRAN ÇARŞAMBA",
+    "time": "13.00",
+    "rooms": [
+      "A119",
+      "A102"
+    ],
+    "studentCounts": [
+      73
+    ]
+  },
+  {
+    "id": "exam-039-31cdaf64",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "İMÖ-REH",
+    "courseName": "TÜRK EĞİTİM TARİHİ",
+    "teacher": "Prof. Dr. Fatih Demirel",
+    "dateSort": "2026-06-17",
+    "dateText": "17 HAZİRAN ÇARŞAMBA",
+    "time": "13.00",
+    "rooms": [
+      "A124",
+      "A223"
+    ],
+    "studentCounts": [
+      119
+    ]
+  },
+  {
+    "id": "exam-040-cc75a946",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "TEKNOLOJİ ve DİL ÖĞRETİMİ",
+    "teacher": "Prof. Dr. Zübeyde Sinem Genç",
+    "dateSort": "2026-06-17",
+    "dateText": "17 HAZİRAN ÇARŞAMBA",
+    "time": "16.00",
+    "rooms": [],
+    "studentCounts": [
+      28
+    ]
+  },
+  {
+    "id": "exam-041-6e91120a",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "ÇOCUKLARA YABANCI DİL ÖĞRETİMİ II",
+    "teacher": "Doç. Dr. Şule Çelik Korkmaz",
+    "dateSort": "2026-06-18",
+    "dateText": "18 HAZİRAN PERŞEMBE",
+    "time": "10.00",
+    "rooms": [],
+    "studentCounts": [
+      81
+    ]
+  },
+  {
+    "id": "exam-042-60b4eda9",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "ÇOCUKLARA YABANCI DİL ÖĞRETİMİ II",
+    "teacher": "Prof. Dr. Esim Gürsoy",
+    "dateSort": "2026-06-18",
+    "dateText": "18 HAZİRAN PERŞEMBE",
+    "time": "10.00",
+    "rooms": [],
+    "studentCounts": [
+      76
+    ]
+  },
+  {
+    "id": "exam-043-e1e91eb5",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "DİL ve DİL ÖĞRETİMİNDE TEMEL KAVRAMLAR",
+    "teacher": "Dr. Öğr. Üyesi Ebru Atak Damar",
+    "dateSort": "2026-06-18",
+    "dateText": "18 HAZİRAN PERŞEMBE",
+    "time": "11.00",
+    "rooms": [],
+    "studentCounts": [
+      73
+    ]
+  },
+  {
+    "id": "exam-044-5eea053e",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "İNGİLİZ EDEBİYATI II",
+    "teacher": "Doç. Dr. Ufuk Özen Baykent",
+    "dateSort": "2026-06-18",
+    "dateText": "18 HAZİRAN PERŞEMBE",
+    "time": "14.00",
+    "rooms": [],
+    "studentCounts": [
+      95
+    ]
+  },
+  {
+    "id": "exam-045-f30c68f0",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "GENÇ YETİŞKİNLERE İNGİLİZCE ÖĞRETİMİ",
+    "teacher": "Prof. Dr. Ayşegül Amanda Yeşilbursa",
+    "dateSort": "2026-06-18",
+    "dateText": "18 HAZİRAN PERŞEMBE",
+    "time": "15.00",
+    "rooms": [],
+    "studentCounts": [
+      29
+    ]
+  },
+  {
+    "id": "exam-046-4305b65d",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "DİL ve TOPLUM",
+    "teacher": "Doç. Dr. Figen Dinçer",
+    "dateSort": "2026-06-18",
+    "dateText": "18 HAZİRAN PERŞEMBE",
+    "time": "16.00",
+    "rooms": [],
+    "studentCounts": [
+      56
+    ]
+  },
+  {
+    "id": "exam-047-7daab333",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "İNGİLİZCE ÖĞRETİMİNDE DİJİTAL ARAÇLAR",
+    "teacher": "Prof. Dr. Levent Uzun",
+    "dateSort": "2026-06-19",
+    "dateText": "19 HAZİRAN CUMA",
+    "time": "10.00",
+    "rooms": [],
+    "studentCounts": [
+      161
+    ]
+  },
+  {
+    "id": "exam-048-a4e55ef4",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "BAĞLAMSAL DİLBİLGİSİ II",
+    "teacher": "Dr. Öğr. Üyesi Uğur Recep Çetinavcı",
+    "dateSort": "2026-06-19",
+    "dateText": "19 HAZİRAN CUMA",
+    "time": "11.00",
+    "rooms": [],
+    "studentCounts": [
+      101
+    ]
+  },
+  {
+    "id": "exam-049-2c52cea0",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "SINIF SÖYLEMİ ve ETKİLEŞİMİ",
+    "teacher": "Prof. Dr. Ayşegül Amanda Yeşilbursa",
+    "dateSort": "2026-06-19",
+    "dateText": "19 HAZİRAN CUMA",
+    "time": "14.00",
+    "rooms": [],
+    "studentCounts": [
+      136
+    ]
+  },
+  {
+    "id": "exam-050-66a9ca44",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "SINIF İÇİ ÖĞRENMELERİN DEĞERLENDİRİLMESİ",
+    "teacher": "Öğr. Gör. Dr. Ayşegül Zıngır Gülten",
+    "dateSort": "2026-06-19",
+    "dateText": "19 HAZİRAN CUMA",
+    "time": "16.00",
+    "rooms": [],
+    "studentCounts": [
+      47
+    ]
+  },
+  {
+    "id": "exam-051-318390aa",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "TÜM EF",
+    "courseName": "YABANCI DİL 2 (Almanca)",
+    "teacher": "İlgili Öğretim Elemanı",
+    "dateSort": "2026-06-20",
+    "dateText": "20 HAZİRAN CUMARTESİ",
+    "time": "10.00",
+    "rooms": [
+      "ONLINE"
+    ],
+    "studentCounts": [
+      70
+    ]
+  },
+  {
+    "id": "exam-052-befd6072",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "TÜM EF",
+    "courseName": "YABANCI DİL 2 (Fransızca)",
+    "teacher": "İlgili Öğretim Elemanı",
+    "dateSort": "2026-06-20",
+    "dateText": "20 HAZİRAN CUMARTESİ",
+    "time": "10.00",
+    "rooms": [
+      "ONLINE"
+    ],
+    "studentCounts": [
+      70
+    ]
+  },
+  {
+    "id": "exam-053-392b1e9d",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "TÜM EF",
+    "courseName": "YABANCI DİL 2 (İngilizce)",
+    "teacher": "İlgili Öğretim Elemanı",
+    "dateSort": "2026-06-20",
+    "dateText": "20 HAZİRAN CUMARTESİ",
+    "time": "11.00",
+    "rooms": [
+      "ONLINE"
+    ],
+    "studentCounts": [
+      70
+    ]
+  },
+  {
+    "id": "exam-054-c1c27c96",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "FRN-FEN",
+    "courseName": "BİLİŞİM TEKNOLOJİLERİ",
+    "teacher": "Öğr. Gör. Mustafa Balay",
+    "dateSort": "2026-06-20",
+    "dateText": "20 HAZİRAN CUMARTESİ",
+    "time": "14.00",
+    "rooms": [
+      "ONLINE"
+    ],
+    "studentCounts": [
+      75
+    ]
+  },
+  {
+    "id": "exam-055-c1d59ac5",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "İNG C-ÖZE",
+    "courseName": "ÖĞRETİM İLKE VE YÖNTEMLERİ",
+    "teacher": "Doç. Dr. Eyüp Yurt",
+    "dateSort": "2026-06-22",
+    "dateText": "22 HAZİRAN PAZARTESİ",
+    "time": "10.00",
+    "rooms": [
+      "Bz02",
+      "Bz03"
+    ],
+    "studentCounts": [
+      81
+    ]
+  },
+  {
+    "id": "exam-056-ccf94b4e",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "İNG B-MUZ",
+    "courseName": "ÖĞRETİM İLKE VE YÖNTEMLERİ",
+    "teacher": "Doç. Dr. Şule Betül Tosuntaş",
+    "dateSort": "2026-06-22",
+    "dateText": "22 HAZİRAN PAZARTESİ",
+    "time": "10.00",
+    "rooms": [
+      "B217",
+      "Bz11"
+    ],
+    "studentCounts": [
+      69
+    ]
+  },
+  {
+    "id": "exam-057-5c385d12",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "TUR",
+    "courseName": "ÖĞRETİM İLKE VE YÖNTEMLERİ",
+    "teacher": "Dr. Alper Aytaç",
+    "dateSort": "2026-06-22",
+    "dateText": "22 HAZİRAN PAZARTESİ",
+    "time": "10.00",
+    "rooms": [
+      "A124"
+    ],
+    "studentCounts": [
+      62
+    ]
+  },
+  {
+    "id": "exam-058-9b791302",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "FRN-İNG A",
+    "courseName": "ÖĞRETİM İLKE VE YÖNTEMLERİ",
+    "teacher": "Prof. Dr. Sedat Yüksel",
+    "dateSort": "2026-06-22",
+    "dateText": "22 HAZİRAN PAZARTESİ",
+    "time": "10.00",
+    "rooms": [
+      "Bz14",
+      "B324"
+    ],
+    "studentCounts": [
+      71
+    ]
+  },
+  {
+    "id": "exam-059-7d42e065",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "EĞİTİMDE ARAŞTIRMA YÖNTEMLERİ",
+    "teacher": "Öğr. Gör. M. Tuğba Yıldız Ekin",
+    "dateSort": "2026-06-22",
+    "dateText": "22 HAZİRAN PAZARTESİ",
+    "time": "13.00",
+    "rooms": [],
+    "studentCounts": [
+      100
+    ]
+  },
+  {
+    "id": "exam-060-8cbac08f",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "TÜM EF",
+    "courseName": "TÜRK DİLİ 2",
+    "teacher": "İlgili Öğretim Elemanı",
+    "dateSort": "2026-06-22",
+    "dateText": "22 HAZİRAN PAZARTESİ",
+    "time": "14.00",
+    "rooms": [
+      "ONLINE"
+    ],
+    "studentCounts": [
+      552
+    ]
+  },
+  {
+    "id": "exam-061-9568741a",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "İNGİLİZCE SÖZCÜK BİLGİSİ ÖĞRETİMİ",
+    "teacher": "Öğr. Gör. Dr. Ebru Ertarman Şenyiğit",
+    "dateSort": "2026-06-22",
+    "dateText": "22 HAZİRAN PAZARTESİ",
+    "time": "15.00",
+    "rooms": [],
+    "studentCounts": [
+      49
+    ]
+  },
+  {
+    "id": "exam-062-5c5dba66",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "SÖYLEM ÇÖZÜMLEMESİ ve DİL ÖĞRETİMİ",
+    "teacher": "Öğr. Gör. M. Tuğba Yıldız Ekin",
+    "dateSort": "2026-06-22",
+    "dateText": "22 HAZİRAN PAZARTESİ",
+    "time": "16.00",
+    "rooms": [],
+    "studentCounts": [
+      50
+    ]
+  },
+  {
+    "id": "exam-063-aa33d684",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "TÜRK UYGARLIK TARİHİ",
+    "teacher": "Prof. Dr. Ömer Düzbakar",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "09.00",
+    "rooms": [
+      "A124",
+      "A123",
+      "A119"
+    ],
+    "studentCounts": [
+      57,
+      70
+    ]
+  },
+  {
+    "id": "exam-064-5ede9605",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "BİLİM TARİHİ VE FELSEFESİ",
+    "teacher": "Prof. Dr. Abamüslim Akdemir",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "10.00",
+    "rooms": [
+      "A223",
+      "A204"
+    ],
+    "studentCounts": [
+      88
+    ]
+  },
+  {
+    "id": "exam-065-697527fe",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "İNSAN İLİŞKİLERİ VE İLETİŞİM",
+    "teacher": "Öğr. Gör. Gülsüm Yeşilyurt Cerit",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "11.00",
+    "rooms": [
+      "A124",
+      "A123",
+      "A119",
+      "A118",
+      "A104"
+    ],
+    "studentCounts": [
+      188
+    ]
+  },
+  {
+    "id": "exam-066-c96c6270",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "TÜRK HALK MÜZİĞİ (YÜZ YÜZE)",
+    "teacher": "Öğr. Gör. Erdem Gedikli",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "11.00",
+    "rooms": [
+      "A304"
+    ],
+    "studentCounts": [
+      31
+    ]
+  },
+  {
+    "id": "exam-067-b6c3c635",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "KARİYER PLANLAMA VE GELİŞTİRME",
+    "teacher": "Öğr. Gör. Gülsüm Yeşilyurt Cerit",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "12.00",
+    "rooms": [
+      "A124",
+      "A123",
+      "A119",
+      "A118",
+      "A104"
+    ],
+    "studentCounts": [
+      185
+    ]
+  },
+  {
+    "id": "exam-068-bff3cc66",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "SANAT VE ESTETİK",
+    "teacher": "Doç. Dr. Rasim Başak",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "12.00",
+    "rooms": [
+      "A223",
+      "A204"
+    ],
+    "studentCounts": [
+      70
+    ]
+  },
+  {
+    "id": "exam-069-c360c378",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "TÜRK MUSİKİSİ",
+    "teacher": "Öğr. Gör. Erdem Gedikli",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "12.00",
+    "rooms": [
+      "A304"
+    ],
+    "studentCounts": [
+      22
+    ]
+  },
+  {
+    "id": "exam-070-435622b4",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "BESLENME VE SAĞLIK",
+    "teacher": "Doç. Dr. Yeter Şimşekli",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "13.00",
+    "rooms": [
+      "A124",
+      "A123",
+      "A119",
+      "A118",
+      "A104"
+    ],
+    "studentCounts": [
+      182
+    ]
+  },
+  {
+    "id": "exam-071-f1ddde79",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "GELENEKSEL TÜRK EL SANATLARI",
+    "teacher": "Öğr. Gör. Sevgi Yüksel Uzunöz",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "13.00",
+    "rooms": [
+      "A223",
+      "A204",
+      "A225",
+      "A205"
+    ],
+    "studentCounts": [
+      130
+    ]
+  },
+  {
+    "id": "exam-072-66398d63",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "BİLİM VE ARAŞTIRMA ETİĞİ",
+    "teacher": "Prof. Dr. Ahmet Kılınç",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "14.00",
+    "rooms": [
+      "A124",
+      "A123",
+      "A119",
+      "A118",
+      "A104"
+    ],
+    "studentCounts": [
+      182
+    ]
+  },
+  {
+    "id": "exam-073-cba06043",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "KARAKTER VE DEĞER EĞİTİMİ",
+    "teacher": "Prof. Dr. Ahmet Kılınç",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "15.00",
+    "rooms": [
+      "A223",
+      "A225",
+      "A119",
+      "A204"
+    ],
+    "studentCounts": [
+      158
+    ]
+  },
+  {
+    "id": "exam-074-c40cbc22",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": null,
+    "courseName": "KARAKTER VE DEĞER EĞİTİMİ",
+    "teacher": "Prof. Dr. Kazım Yoldaş",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "15.00",
+    "rooms": [
+      "A124",
+      "A123"
+    ],
+    "studentCounts": [
+      99
+    ]
+  },
+  {
+    "id": "exam-075-686f9ece",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "YAZMA BECERİLERİ II",
+    "teacher": "Öğr. Gör. Dr. Erkan Yılmaz",
+    "dateSort": "2026-06-23",
+    "dateText": "23 HAZİRAN SALI",
+    "time": "16.00",
+    "rooms": [],
+    "studentCounts": [
+      76
+    ]
+  },
+  {
+    "id": "exam-076-b9c1a3bc",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "REH-FRN-ALM",
+    "courseName": "EĞİTİMDE AHLAK VE ETİK",
+    "teacher": "Prof. Dr. Şükrü Ada",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "10.00",
+    "rooms": [
+      "B217",
+      "B324",
+      "Bz02",
+      "Bz03"
+    ],
+    "studentCounts": [
+      174
+    ]
+  },
+  {
+    "id": "exam-077-f117e839",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "FEN",
+    "courseName": "EĞİTİMDE ÖLÇME VE DEĞERLENDİRME",
+    "teacher": "Doç. Dr. Ümmühan Ormancı",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "10.00",
+    "rooms": [
+      "A223"
+    ],
+    "studentCounts": [
+      52
+    ]
+  },
+  {
+    "id": "exam-078-4de6b9eb",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "TUR- İMÖ",
+    "courseName": "EĞİTİMDE ÖLÇME VE DEĞERLENDİRME",
+    "teacher": "Dr. Öğr. Üyesi Elif Sezer Başaran",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "10.00",
+    "rooms": [
+      "Bz14",
+      "Bz11",
+      "A304",
+      "A324"
+    ],
+    "studentCounts": [
+      136
+    ]
+  },
+  {
+    "id": "exam-079-cf4abead",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "SIN-OKU",
+    "courseName": "EĞİTİMDE ÖLÇME VE DEĞERLENDİRME",
+    "teacher": "Öğr. Gör. Uğur Avcı",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "10.00",
+    "rooms": [
+      "A225",
+      "Az08",
+      "A205",
+      "A204"
+    ],
+    "studentCounts": [
+      128
+    ]
+  },
+  {
+    "id": "exam-080-72c5a707",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "BİL- RES- İNG",
+    "courseName": "EĞİTİMDE ÖLÇME VE DEĞERLENDİRME",
+    "teacher": "Öğr. Gör. Edip Koşar",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "10.00",
+    "rooms": [
+      "A124",
+      "A123",
+      "A119",
+      "A102"
+    ],
+    "studentCounts": [
+      184
+    ]
+  },
+  {
+    "id": "exam-081-02548164",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "DİL EDİNİMİ",
+    "teacher": "Doç. Dr. Çiğdem Karatepe",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "11.00",
+    "rooms": [],
+    "studentCounts": [
+      126
+    ]
+  },
+  {
+    "id": "exam-082-027bf77a",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "RES- MUZ- ÖZE",
+    "courseName": "EĞİTİM PSİKOLOJİSİ",
+    "teacher": "Doç. Dr. Asuman Yüksel",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "13.00",
+    "rooms": [
+      "A225",
+      "A223",
+      "A204",
+      "A205"
+    ],
+    "studentCounts": [
+      143
+    ]
+  },
+  {
+    "id": "exam-083-008db3fa",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "SIN-OKU",
+    "courseName": "EĞİTİM PSİKOLOJİSİ",
+    "teacher": "Doç. Dr. Fatih Camadan",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "13.00",
+    "rooms": [
+      "A119",
+      "A102",
+      "A118"
+    ],
+    "studentCounts": [
+      108
+    ]
+  },
+  {
+    "id": "exam-084-06fd8355",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "ALM-FRN-BİL",
+    "courseName": "EĞİTİM PSİKOLOJİSİ",
+    "teacher": "Doç. Dr. Hacer Belen",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "13.00",
+    "rooms": [
+      "B217",
+      "A324",
+      "A316"
+    ],
+    "studentCounts": [
+      117
+    ]
+  },
+  {
+    "id": "exam-085-e953919d",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "İNG",
+    "courseName": "EĞİTİM PSİKOLOJİSİ",
+    "teacher": "Dr. Öğr. Üyesi Hazel Duru",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "13.00",
+    "rooms": [
+      "Bz03",
+      "B324"
+    ],
+    "studentCounts": [
+      81
+    ]
+  },
+  {
+    "id": "exam-086-152d5a79",
+    "source": "Eğitim Fakültesi Ortak Dersler",
+    "sourcePdf": "25-26-egitim-fak-final.pdf",
+    "programGroup": "FEN- İMÖ -TUR- SOS",
+    "courseName": "EĞİTİM PSİKOLOJİSİ",
+    "teacher": "Dr. Öğr. Üyesi Meltem Yıldız",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "13.00",
+    "rooms": [
+      "A124",
+      "A123",
+      "Bz14",
+      "Bz02",
+      "A304"
+    ],
+    "studentCounts": [
+      204
+    ]
+  },
+  {
+    "id": "exam-087-71334335",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "EDEBİ METİNLERİN DİL ÖĞRETİMİNDE KULLANIMI II",
+    "teacher": "Doç. Dr. Figen Dinçer",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "15.00",
+    "rooms": [],
+    "studentCounts": [
+      153
+    ]
+  },
+  {
+    "id": "exam-088-f9867845",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "KİTLE İLETİŞİMİNDE İNGİLİZCE",
+    "teacher": "Öğr. Gör. Dr. Erkan Yılmaz",
+    "dateSort": "2026-06-24",
+    "dateText": "24 HAZİRAN ÇARŞAMBA",
+    "time": "16.00",
+    "rooms": [],
+    "studentCounts": [
+      42
+    ]
+  },
+  {
+    "id": "exam-089-6da1cd34",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "SÖZLÜ İLETİŞİM BECERİLERİ II",
+    "teacher": "Öğr. Gör. Dr. Erkan Yılmaz",
+    "dateSort": "2026-06-25",
+    "dateText": "25-26 HAZİRAN PERŞEMBE-CUMA",
+    "time": "10.00",
+    "rooms": [],
+    "studentCounts": [
+      101
+    ]
+  },
+  {
+    "id": "exam-090-ae608e50",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "DİNLEME ve SESLETİM II",
+    "teacher": "Dr. Öğr. Üyesi Ebru Atak Damar",
+    "dateSort": "2026-06-25",
+    "dateText": "25 HAZİRAN PERŞEMBE",
+    "time": "11.00",
+    "rooms": [],
+    "studentCounts": [
+      73
+    ]
+  },
+  {
+    "id": "exam-091-c06c3a2e",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "İNGİLİZCE ÖĞRETİMİNDE YAKLAŞIMLAR II",
+    "teacher": "Dr. Öğr. Üyesi Pınar Salı",
+    "dateSort": "2026-06-25",
+    "dateText": "25 HAZİRAN PERŞEMBE",
+    "time": "14.00",
+    "rooms": [],
+    "studentCounts": [
+      92
+    ]
+  },
+  {
+    "id": "exam-092-2d200125",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "İNGİLİZCE ÖĞRETİMİNDE DRAMA",
+    "teacher": "Doç. Dr. Figen Dinçer",
+    "dateSort": "2026-06-25",
+    "dateText": "25 HAZİRAN PERŞEMBE",
+    "time": "16.00",
+    "rooms": [],
+    "studentCounts": [
+      32
+    ]
+  },
+  {
+    "id": "exam-093-c6b9c76a",
+    "source": "İngiliz Dili Eğitimi",
+    "sourcePdf": "25-26-bahar-final-elt.pdf",
+    "programGroup": "İNGİLİZ DİLİ EĞİTİMİ",
+    "courseName": "DİLBİLİM II",
+    "teacher": "Dr. Öğr. Üyesi Umut M. Salihoğlu",
+    "dateSort": "2026-06-26",
+    "dateText": "26 HAZİRAN CUMA",
+    "time": "11.00",
+    "rooms": [],
+    "studentCounts": [
+      84
+    ]
+  }
+]

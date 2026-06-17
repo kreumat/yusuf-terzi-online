@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bursa Uludağ Üniversitesi ELT - İngilizce Öğretmenliği Sınav Programı Hazırlama Aracı</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen bg-zinc-50 text-zinc-950 antialiased">
+    <section id="termScreen" class="mx-auto flex min-h-screen w-full max-w-4xl items-center px-4 py-6 sm:px-6">
+      <div class="w-full border border-zinc-200 bg-white p-5 shadow-sm sm:p-7">
+        <p class="text-sm font-medium text-teal-700">Made by Yusuf Terzi</p>
+        <h1 class="mt-2 text-2xl font-semibold leading-tight tracking-normal text-zinc-950 sm:text-4xl">
+          Bursa Uludağ Üniversitesi ELT - İngilizce Öğretmenliği Sınav Programı Hazırlama Aracı
+        </h1>
+
+        <div class="mt-6 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+          <button
+            id="chooseTermButton"
+            type="button"
+            class="group flex w-full items-center justify-between gap-4 rounded-md border border-teal-700 bg-teal-50 p-4 text-left transition hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-teal-700 focus:ring-offset-2"
+          >
+            <span>
+              <span class="block text-lg font-semibold text-zinc-950">2025-2026 Bahar Finaller</span>
+              <span class="mt-1 block text-sm text-zinc-600"><span id="termExamCount">0</span> sınav kaydı</span>
+            </span>
+            <i data-lucide="arrow-right" class="h-5 w-5 shrink-0 text-teal-800 transition group-hover:translate-x-0.5"></i>
+          </button>
+        </div>
+
+        <div class="mt-5 flex gap-3 rounded-md border border-amber-200 bg-amber-50 p-3 text-sm leading-6 text-amber-950">
+          <i data-lucide="alert-triangle" class="mt-0.5 h-5 w-5 shrink-0"></i>
+          <p>Sınav programında küçük bir hata ihtimali olabilir; muhtemelen yoktur ama resmi duyuruyla double-check etmek zarar getirmez.</p>
+        </div>
+      </div>
+    </section>
+
+    <main id="appShell" class="mx-auto hidden min-h-screen w-full max-w-7xl flex-col gap-4 px-3 py-3 sm:px-6 lg:px-8">
+      <header class="flex flex-col gap-4 border-b border-zinc-200 pb-4 lg:flex-row lg:items-end lg:justify-between">
+        <div class="min-w-0">
+          <p class="text-sm font-medium text-teal-700">Made by Yusuf Terzi</p>
+          <h1 class="mt-1 text-xl font-semibold leading-tight tracking-normal text-zinc-950 sm:text-2xl lg:text-3xl">
+            Bursa Uludağ Üniversitesi ELT - İngilizce Öğretmenliği Sınav Programı Hazırlama Aracı
+          </h1>
+          <div class="mt-3 flex flex-wrap items-center gap-2 text-sm">
+            <span id="currentTermLabel" class="rounded-md border border-teal-200 bg-teal-50 px-3 py-1.5 font-medium text-teal-900">2025-2026 Bahar Finaller</span>
+            <button
+              id="changeTermButton"
+              type="button"
+              class="inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-white px-3 py-1.5 font-medium text-zinc-700 transition hover:border-zinc-400 hover:bg-zinc-50"
+            >
+              <i data-lucide="repeat-2" class="h-4 w-4"></i>
+              Dönemi Değiştir
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 text-center sm:min-w-80">
+          <div class="rounded-md border border-zinc-200 bg-white px-3 py-2">
+            <p class="text-lg font-semibold" id="totalCount">0</p>
+            <p class="text-xs text-zinc-500">Ders</p>
+          </div>
+          <div class="rounded-md border border-zinc-200 bg-white px-3 py-2">
+            <p class="text-lg font-semibold" id="selectedCount">0</p>
+            <p class="text-xs text-zinc-500">Seçili</p>
+          </div>
+          <div class="rounded-md border border-zinc-200 bg-white px-3 py-2">
+            <p class="text-lg font-semibold" id="outputCount">0</p>
+            <p class="text-xs text-zinc-500">Satır</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="grid gap-4 lg:min-h-0 lg:grid-cols-[minmax(0,1.12fr)_minmax(360px,0.88fr)]">
+        <div class="flex min-w-0 flex-col gap-4 lg:min-h-0">
+          <div class="rounded-md border border-zinc-200 bg-white p-3">
+            <div class="grid gap-3 md:grid-cols-[minmax(0,1fr)_220px]">
+              <label class="relative block">
+                <i data-lucide="search" class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400"></i>
+                <input
+                  id="searchInput"
+                  type="search"
+                  class="h-11 w-full rounded-md border border-zinc-300 bg-white pl-9 pr-3 text-sm outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-700/10"
+                  placeholder="Ders adı, hoca veya program"
+                />
+              </label>
+              <select
+                id="sourceFilter"
+                class="h-11 rounded-md border border-zinc-300 bg-white px-3 text-sm outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-700/10"
+              >
+                <option value="all">Tüm listeler</option>
+              </select>
+            </div>
+          </div>
+
+          <section class="rounded-md border border-zinc-200 bg-white p-3">
+            <div class="flex items-center justify-between gap-3">
+              <h2 class="text-base font-semibold">Seçili Dersler</h2>
+              <span class="rounded-md bg-zinc-100 px-2 py-1 text-xs font-medium text-zinc-600" data-selected-counter>0 ders</span>
+            </div>
+            <div class="mt-3 grid max-h-48 gap-2 overflow-y-auto sm:max-h-56" data-selected-list></div>
+            <p class="mt-3 text-sm text-zinc-500" data-selected-empty>Seçili ders yok.</p>
+          </section>
+
+          <section class="flex min-h-[360px] max-h-[52vh] min-w-0 flex-col rounded-md border border-zinc-200 bg-white lg:min-h-[70vh] lg:max-h-[calc(100vh-220px)]">
+            <div class="flex items-center justify-between gap-3 border-b border-zinc-200 px-3 py-3">
+              <h2 class="text-base font-semibold">Dersler</h2>
+              <span id="visibleCount" class="rounded-md bg-zinc-100 px-2 py-1 text-xs font-medium text-zinc-600">0 sonuç</span>
+            </div>
+            <div id="courseList" class="grid flex-1 content-start gap-2 overflow-y-auto p-3"></div>
+            <div id="emptyState" class="hidden p-8 text-center text-sm text-zinc-500">Eşleşen ders bulunamadı.</div>
+          </section>
+        </div>
+
+        <aside class="flex min-w-0 flex-col gap-4 lg:min-h-[70vh] lg:max-h-[calc(100vh-220px)]">
+          <section class="flex min-h-[420px] flex-1 flex-col rounded-md border border-zinc-200 bg-white">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-200 p-3">
+              <h2 class="text-base font-semibold">Program Çıktısı</h2>
+              <div class="flex gap-2">
+                <button
+                  id="clearButton"
+                  type="button"
+                  class="inline-flex h-10 items-center gap-2 rounded-md border border-zinc-300 bg-white px-3 text-sm font-medium text-zinc-700 transition hover:border-zinc-400 hover:bg-zinc-50"
+                >
+                  <i data-lucide="x" class="h-4 w-4"></i>
+                  Temizle
+                </button>
+                <button
+                  id="copyButton"
+                  type="button"
+                  class="inline-flex h-10 items-center gap-2 rounded-md border border-zinc-900 bg-zinc-900 px-3 text-sm font-medium text-white transition hover:bg-zinc-800"
+                >
+                  <i data-lucide="copy" class="h-4 w-4"></i>
+                  Kopyala
+                </button>
+              </div>
+            </div>
+
+            <div class="flex flex-1 flex-col gap-3 p-3">
+              <pre
+                id="output"
+                class="min-h-[220px] flex-1 overflow-auto rounded-md border border-zinc-200 bg-zinc-950 p-4 font-mono text-sm leading-7 text-zinc-50 whitespace-pre-wrap lg:min-h-[300px]"
+              ></pre>
+              <div class="flex gap-2 rounded-md border border-amber-200 bg-amber-50 p-3 text-sm leading-6 text-amber-950">
+                <i data-lucide="alert-triangle" class="mt-0.5 h-4 w-4 shrink-0"></i>
+                <p>Sınav programında küçük bir hata ihtimali olabilir; muhtemelen yoktur ama resmi duyuruyla double-check etmek zarar getirmez.</p>
+              </div>
+              <p id="statusText" class="min-h-5 text-sm text-zinc-500"></p>
+            </div>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
