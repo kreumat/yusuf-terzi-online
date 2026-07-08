@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Great Quest</title>
+    <link rel="icon" type="image/png" href="assets/icons/the-great-quest-icon.png" />
+    <link rel="apple-touch-icon" href="assets/icons/the-great-quest-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="transitionShade" class="transition-shade" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <section id="loadingScreen" class="screen loading-screen is-active" aria-live="polite">
+        <div class="loading-panel pixel-frame">
+          <img src="assets/icons/the-great-quest-icon.png" alt="" />
+          <h1>The Great Quest</h1>
+          <p>Gorseller hazirlaniyor</p>
+          <div class="loading-counter">
+            <span>Baslamaya kalan</span>
+            <strong id="loadingCountdown">10</strong>
+          </div>
+          <div class="loading-meter" aria-hidden="true">
+            <span id="loadingMeterFill"></span>
+          </div>
+          <span id="loadingStatus" class="loading-status">Arka plan yukleniyor...</span>
+        </div>
+      </section>
+
+      <section id="introScreen" class="screen intro-screen" aria-hidden="true">
+        <div class="intro-stage pixel-frame">
+          <div class="dialogue-box" role="region" aria-live="polite">
+            <div class="dialogue-name">Yusuf</div>
+            <div class="dialogue-layout">
+              <div class="dialogue-copy">
+            <p id="dialogueText">
+              Merhaba Tuana Ela Aytekin. Oteki adiyla, 8. sinifta bana
+              acilan kiz. Simdilik Ela ile devam edelim.
+            </p>
+            <div class="dialogue-actions">
+              <button
+                id="dialogueNext"
+                class="pixel-button icon-button"
+                type="button"
+                aria-label="Devam et"
+                  >
+                <img src="assets/icons/arrow-right.png" alt="" />
+                <span>Devam</span>
+              </button>
+              <button
+                id="startButton"
+                class="pixel-button start-button"
+                type="button"
+                hidden
+              >
+                <img src="assets/icons/start-gem.png" alt="" />
+                <span>Basla</span>
+              </button>
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gameScreen" class="screen game-screen" aria-hidden="true">
+        <header class="game-hud pixel-frame">
+          <div class="hud-title-wrap">
+            <img src="assets/icons/the-great-quest-icon.png" alt="" />
+            <h1>Konusma limitini yenilemek icin ikinci bulusmamizin detaylarina karar ver!</h1>
+          </div>
+          <div id="progressDots" class="progress-dots" aria-label="Ilerleme"></div>
+        </header>
+
+        <div class="quest-layout">
+          <aside class="selection-rail pixel-frame" aria-label="Secim ozeti">
+            <div class="rail-title">
+              <img src="assets/icons/speech-bubble.png" alt="" />
+              <span>Gorev Defteri</span>
+            </div>
+            <dl id="choiceSummary" class="choice-summary"></dl>
+          </aside>
+
+          <div class="quest-board">
+            <section id="dateSection" class="quest-section pixel-frame is-visible">
+              <div class="section-title">
+                <img src="assets/icons/calendar-heart.png" alt="" />
+                <h2>Ne zaman bulusalim?</h2>
+              </div>
+              <div id="dateGrid" class="option-grid date-grid"></div>
+            </section>
+
+            <section id="placeSection" class="quest-section pixel-frame" hidden>
+              <div class="section-title">
+                <img src="assets/icons/map-pin.png" alt="" />
+                <h2>Mekan ve zaman secimi</h2>
+              </div>
+              <div id="placeGrid" class="option-grid place-grid"></div>
+            </section>
+
+            <section id="activitySection" class="quest-section pixel-frame" hidden>
+              <div class="section-title">
+                <img src="assets/icons/coffee-cup.png" alt="" />
+                <h2>Ne yapalim?</h2>
+              </div>
+              <div id="activityGrid" class="option-grid activity-grid"></div>
+            </section>
+
+            <section id="characterSection" class="quest-section pixel-frame" hidden>
+              <div class="section-title">
+                <img src="assets/sprites/portrait-yusuf.png" alt="" />
+                <h2>Bulusma karakterini sec</h2>
+              </div>
+              <div id="characterGrid" class="character-grid"></div>
+            </section>
+
+            <section id="outfitSection" class="quest-section pixel-frame" hidden>
+              <div class="section-title">
+                <img src="assets/icons/hanger.png" alt="" />
+                <h2>Yusuf o gun ne giysin?</h2>
+              </div>
+
+              <div class="closet-layout">
+                <div class="avatar-podium" aria-live="polite">
+                  <img
+                    id="outfitPreview"
+                    src="assets/sprites/outfits/outfit-white-black.png"
+                    alt="Secilen kiyafetli Yusuf karakteri"
+                  />
+                  <span class="podium-shadow" aria-hidden="true"></span>
+                </div>
+
+                <div class="closet-controls">
+                  <div class="closet-row" data-kind="top">
+                    <span class="closet-kind">Ust</span>
+                    <button
+                      class="mini-arrow is-left"
+                      type="button"
+                      data-carousel="top"
+                      data-direction="-1"
+                      aria-label="Onceki ust"
+                    >
+                      <img src="assets/icons/arrow-right.png" alt="" />
+                    </button>
+                    <div class="closet-slot">
+                      <img id="topIcon" src="assets/sprites/top-white-tshirt.png" alt="" />
+                      <span id="topLabel">Beyaz t-shirt</span>
+                    </div>
+                    <button
+                      class="mini-arrow"
+                      type="button"
+                      data-carousel="top"
+                      data-direction="1"
+                      aria-label="Sonraki ust"
+                    >
+                      <img src="assets/icons/arrow-right.png" alt="" />
+                    </button>
+                  </div>
+
+                  <div class="closet-row" data-kind="bottom">
+                    <span class="closet-kind">Alt</span>
+                    <button
+                      class="mini-arrow is-left"
+                      type="button"
+                      data-carousel="bottom"
+                      data-direction="-1"
+                      aria-label="Onceki alt"
+                    >
+                      <img src="assets/icons/arrow-right.png" alt="" />
+                    </button>
+                    <div class="closet-slot">
+                      <img id="bottomIcon" src="assets/sprites/bottom-black-shorts.png" alt="" />
+                      <span id="bottomLabel">Siyah sort</span>
+                    </div>
+                    <button
+                      class="mini-arrow"
+                      type="button"
+                      data-carousel="bottom"
+                      data-direction="1"
+                      aria-label="Sonraki alt"
+                    >
+                      <img src="assets/icons/arrow-right.png" alt="" />
+                    </button>
+                  </div>
+
+                  <div class="closet-row" data-kind="shoes">
+                    <span class="closet-kind">Ayakkabi</span>
+                    <button
+                      class="mini-arrow is-locked"
+                      type="button"
+                      disabled
+                      aria-label="Ayakkabi sabit"
+                    >
+                      <img src="assets/icons/padlock.png" alt="" />
+                    </button>
+                    <div class="closet-slot">
+                      <img id="shoeIcon" src="assets/sprites/shoes-white.png" alt="" />
+                      <span id="shoeLabel">Beyaz spor ayakkabi</span>
+                    </div>
+                    <button
+                      class="mini-arrow is-locked"
+                      type="button"
+                      disabled
+                      aria-label="Ayakkabi sabit"
+                    >
+                      <img src="assets/icons/padlock.png" alt="" />
+                    </button>
+                  </div>
+
+                  <button id="confirmOutfit" class="pixel-button confirm-button" type="button">
+                    <img src="assets/icons/quest-star.png" alt="" />
+                    <span>Kombini onayla, detaylari kesinlestir ve son adima gec (bundan sonra geri donemezsin)</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section id="finalSection" class="quest-section pixel-frame final-section" hidden>
+              <div class="section-title">
+                <img src="assets/icons/share-phone.png" alt="" />
+                <h2>Son adim</h2>
+              </div>
+              <p class="final-instruction">
+                Konusma limitini gercekten yenilemek ve gorevi tamamlamak icin bu mesaji Yusuf Terzi'ye at:
+              </p>
+              <textarea id="finalMessage" readonly></textarea>
+              <div class="final-actions">
+                <button id="copyButton" class="pixel-button" type="button">
+                  <img src="assets/icons/speech-bubble.png" alt="" />
+                  <span>Mesaji kopyala</span>
+                </button>
+                <button id="shareButton" class="pixel-button alt-button" type="button">
+                  <img src="assets/icons/share-phone.png" alt="" />
+                  <span>Paylas</span>
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
