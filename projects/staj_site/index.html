@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#12345b" />
+    <meta
+      name="description"
+      content="Offline smartboard game for Grade 4 Unit 2: Nationality"
+    />
+    <title>Nationality Quest - Grade 4</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="background-shape shape-one" aria-hidden="true"></div>
+    <div class="background-shape shape-two" aria-hidden="true"></div>
+    <div class="background-dots" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <button class="brand" id="brandButton" type="button" aria-label="Go to main menu">
+        <span class="brand-mark" aria-hidden="true">NQ</span>
+        <span class="brand-copy">
+          <strong>Nationality Quest</strong>
+          <small>Grade 4 • Unit 2</small>
+        </span>
+      </button>
+
+      <nav class="toolbar" aria-label="Classroom controls">
+        <button class="tool-button" id="menuButton" type="button" hidden>
+          <span aria-hidden="true">⌂</span>
+          <span>Menu</span>
+        </button>
+        <button class="tool-button" id="soundButton" type="button" aria-pressed="true">
+          <span id="soundIcon" aria-hidden="true">🔊</span>
+          <span id="soundLabel">Sound</span>
+        </button>
+        <button class="tool-button" id="fullscreenButton" type="button">
+          <span aria-hidden="true">⛶</span>
+          <span>Full screen</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="app-shell" id="app">
+      <section class="home-screen" id="homeScreen">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <p class="eyebrow">UNIT 2 • NATIONALITY</p>
+            <h1>Meet my<br /><span>new friends!</span></h1>
+            <p class="hero-text">
+              Help me remember their names, countries and nationalities.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" id="fullLessonButton" type="button">
+                <span>Start full sequence</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <p class="offline-note"><span aria-hidden="true">●</span> Works fully offline</p>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="Some of the lesson characters">
+            <div class="orbit orbit-one" aria-hidden="true"></div>
+            <div class="orbit orbit-two" aria-hidden="true"></div>
+            <img
+              class="hero-character hero-steve"
+              src="assets/characters/01_steve_turkiye.webp"
+              alt="Steve with the flag of Türkiye"
+            />
+            <img
+              class="hero-character hero-panda"
+              src="assets/characters/03_panda_china.webp"
+              alt="Panda with the flag of China"
+            />
+            <img
+              class="hero-character hero-kitty"
+              src="assets/characters/09_hello_kitty_britain.webp"
+              alt="Hello Kitty with the flag of Britain"
+            />
+            <span class="floating-star star-one" aria-hidden="true">★</span>
+            <span class="floating-star star-two" aria-hidden="true">★</span>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CHOOSE A PART</p>
+            <h2>Three steps, one adventure</h2>
+          </div>
+          <p class="section-hint">Big buttons for the smartboard • Keys 1-4 select an answer</p>
+        </div>
+
+        <div class="mode-grid">
+          <button class="mode-card mode-who" type="button" data-mode="who">
+            <span class="mode-number">01</span>
+            <span class="mode-icon" aria-hidden="true">👋</span>
+            <strong>Who is this?</strong>
+            <small>Choose the character's name.</small>
+            <span class="mode-action">Start names <b aria-hidden="true">→</b></span>
+          </button>
+
+          <button class="mode-card mode-where" type="button" data-mode="where">
+            <span class="mode-number">02</span>
+            <span class="mode-icon" aria-hidden="true">🌍</span>
+            <strong>Where is ... from?</strong>
+            <small>Match each friend with a country.</small>
+            <span class="mode-action">Start countries <b aria-hidden="true">→</b></span>
+          </button>
+
+          <button class="mode-card mode-is" type="button" data-mode="is">
+            <span class="mode-number">03</span>
+            <span class="mode-icon" aria-hidden="true">💬</span>
+            <strong>Is he / she / it ...?</strong>
+            <small>Answer with nationalities.</small>
+            <span class="mode-action">Start nationalities <b aria-hidden="true">→</b></span>
+          </button>
+        </div>
+
+        <div class="classroom-tip">
+          <span class="tip-icon" aria-hidden="true">💡</span>
+          <p>
+            <strong>Teacher tip:</strong> Press <kbd>F</kbd> for full screen, <kbd>1</kbd>-<kbd>4</kbd>
+            for answers and <kbd>N</kbd> for the next question.
+          </p>
+        </div>
+      </section>
+
+      <section class="game-screen" id="gameScreen" hidden>
+        <div class="game-status">
+          <div class="part-chip" id="partChip">PART 1 • NAMES</div>
+          <div class="progress-wrap" aria-label="Question progress">
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+            <span id="progressText">1 / 13</span>
+          </div>
+          <div class="score-chip"><span aria-hidden="true">★</span> <span id="scoreText">0</span></div>
+        </div>
+
+        <div class="quiz-card">
+          <div class="character-pane">
+            <div class="speaker-card" id="speakerCard">
+              <img id="speakerImage" src="" alt="" />
+              <span><strong id="speakerName"></strong> asks...</span>
+            </div>
+
+            <div class="character-stage" id="characterStage">
+              <div class="stage-ring" aria-hidden="true"></div>
+              <img id="characterImage" src="" alt="" />
+              <div class="celebration" id="celebration" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="question-pane">
+            <div class="question-header">
+              <div>
+                <p class="question-kicker" id="questionKicker">LOOK AND CHOOSE</p>
+                <h2 id="questionText">Who is this?</h2>
+              </div>
+              <button class="speak-button" id="speakButton" type="button" aria-label="Read the question aloud">
+                <span aria-hidden="true">🔈</span>
+                <span>Listen</span>
+              </button>
+            </div>
+
+            <div class="options-grid" id="optionsGrid" aria-label="Answer choices"></div>
+
+            <div class="feedback-panel" id="feedbackPanel" aria-live="polite" hidden>
+              <span class="feedback-icon" id="feedbackIcon" aria-hidden="true"></span>
+              <div>
+                <strong id="feedbackTitle"></strong>
+                <p id="feedbackText"></p>
+              </div>
+            </div>
+
+            <div class="question-footer">
+              <span class="keyboard-hint">Choose with <kbd>1</kbd>-<kbd id="maxOptionKey">4</kbd></span>
+              <button class="next-button" id="nextButton" type="button" hidden>
+                <span>Next</span><span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="finish-screen" id="finishScreen" hidden>
+        <div class="finish-card">
+          <div class="finish-burst" aria-hidden="true">★</div>
+          <p class="eyebrow" id="finishEyebrow">PART COMPLETE</p>
+          <h2 id="finishTitle">Brilliant work!</h2>
+          <p class="finish-message" id="finishMessage">You met all 13 friends.</p>
+          <div class="result-ring">
+            <strong id="finishScore">13</strong>
+            <span id="finishTotal">out of 13</span>
+          </div>
+          <div class="result-stars" id="resultStars" aria-label="Result stars">★★★</div>
+          <div class="finish-actions">
+            <button class="secondary-button" id="repeatButton" type="button">↻ Repeat this part</button>
+            <button class="primary-button" id="continueButton" type="button">
+              <span id="continueLabel">Back to menu</span><span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="sr-only" id="liveRegion" aria-live="assertive"></div>
+  </body>
+</html>
