@@ -113,7 +113,6 @@ const menuSections = [
 
 const stage = document.querySelector("#stage");
 const sectionLabel = document.querySelector("#sectionLabel");
-const teacherCue = document.querySelector("#teacherCue");
 const nextButton = document.querySelector("#nextButton");
 const backButton = document.querySelector("#backButton");
 const menuButton = document.querySelector("#menuButton");
@@ -122,12 +121,10 @@ const closeMenuButton = document.querySelector("#closeMenuButton");
 const menuGrid = document.querySelector("#menuGrid");
 const resetButton = document.querySelector("#resetButton");
 const fullscreenButton = document.querySelector("#fullscreenButton");
-const soundButton = document.querySelector("#soundButton");
 const toast = document.querySelector("#toast");
 
 let toastTimer = null;
 let mapAnimationToken = 0;
-let currentSpeakText = "";
 
 const initialState = () => ({
   screen: "warmup",
@@ -177,24 +174,6 @@ function showToast(message, tone = "info", duration = 1500) {
   toastTimer = window.setTimeout(() => {
     toast.className = "toast";
   }, duration);
-}
-
-function speak(text = currentSpeakText) {
-  if (!text || !("speechSynthesis" in window)) {
-    showToast("Seslendirme bu tarayıcıda kullanılamıyor.", "info");
-    return;
-  }
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
-  utterance.rate = 0.82;
-  utterance.pitch = 1.02;
-  window.speechSynthesis.speak(utterance);
-}
-
-function setTeacherCue(text) {
-  teacherCue.textContent = text;
-  teacherCue.title = text;
 }
 
 function setNext(label, disabled = false) {
@@ -323,10 +302,6 @@ function render() {
 }
 
 function renderWarmup() {
-  currentSpeakText = state.selectedDay
-    ? `What day is it today? It is ${state.selectedDay} today.`
-    : "What day is it today?";
-  setTeacherCue("Rutin selamlaşma toplu olabilir. Gün sorusunda bir öğrenci seçin; sonra chunkları normal tahtaya yazın.");
   setNext("Arkadaşlarla Tanış", false);
 
   const dayCards = days
@@ -370,17 +345,7 @@ function renderMeet() {
   const character = characters[state.charIndex];
   const questionVisible = state.charStep >= 1;
   const answerVisible = state.charStep >= 2;
-  currentSpeakText = answerVisible
-    ? `This is ${character.name}. ${character.roleSentence}`
-    : questionVisible
-      ? "Who is this?"
-      : character.name;
 
-  setTeacherCue(
-    answerVisible
-      ? "Cevap açıldı. Ad ve rol kelimesini modelleyip kısa choral repetition yapabilirsiniz."
-      : "Who is this? sorusunu bir öğrenciye yöneltin. Yanlışsa cevabı göstermeden başka bir öğrenciye sorun.",
-  );
   const nextLabel = state.charStep === 0 ? "Soruyu Göster" : state.charStep === 1 ? "Cevabı Göster" : state.charIndex === characters.length - 1 ? "Days Chain" : "Sonraki Arkadaş";
   setNext(nextLabel, false);
 
@@ -437,8 +402,6 @@ function advanceMeet() {
 
 function renderDaysChain() {
   const currentDay = days[state.chainIndex];
-  currentSpeakText = currentDay.name;
-  setTeacherCue("Her öğrenci yalnız bir gün söyler. Hata olursa kartları işaretleyip tekrar denetin; sonra öğrenciyi 'helper' olarak tahtaya alın.");
   setNext("Place Story", false);
 
   const track = days
@@ -484,8 +447,6 @@ function friendsCloud(extraClass = "") {
 }
 
 function renderConfused() {
-  currentSpeakText = "Our friends are confused. They do not know the places at school. Let's help them.";
-  setTeacherCue("Bağlamı kurun: 'Our friends do not know the places at school. Let's help them.' Sonra quiz bölümüne geçin.");
   setNext("Let's Help!", false);
 
   stage.innerHTML = `
@@ -535,8 +496,6 @@ function renderQuiz() {
   if (!state.quizOrder.length) startQuizState();
   const place = currentQuizPlace();
   if (!state.quizOptions.length) state.quizOptions = makeQuizOptions(place.id);
-  currentSpeakText = state.quizCorrect ? `This is a ${place.name}.` : "What is this?";
-  setTeacherCue("Bir öğrenci seçenekleri okuyup dokunsun. Yanlışsa doğruyu söylemeyin; aynı soruyu başka bir öğrenciye yöneltin.");
   setNext(state.quizIndex === places.length - 1 ? "Başarı Ekranı" : "Sonraki Mekân", !state.quizCorrect);
 
   const progress = places
@@ -612,8 +571,6 @@ function confetti() {
 }
 
 function renderSuccess() {
-  currentSpeakText = "Great job! Our friends know the school now!";
-  setTeacherCue("Dokuz mekân tamamlandı. Başarıyı kısa biçimde kutlayın; ardından harita oyununa geçin.");
   setNext("Harita Oyununa Geç", false);
 
   stage.innerHTML = `
@@ -632,8 +589,6 @@ function renderSuccess() {
 }
 
 function renderCharacterChoice() {
-  currentSpeakText = "Choose a friend.";
-  setTeacherCue("Bir öğrenci karakter seçsin. Seçimden sonra rastgele hedef mekânla harita otomatik açılır.");
   setNext("Bir Karakter Seçin", true);
 
   const cards = characters
@@ -686,9 +641,7 @@ function prepareMapTarget() {
 function renderMap() {
   const character = getCharacter();
   const target = getPlace();
-  currentSpeakText = target.name;
-  setTeacherCue("Öğrenci üstteki kelimeyi okusun ve resme dokunsun. Yanlışta karakter hareket etmez; doğruyu söylemeden başka öğrenciye sorun.");
-  setNext("Önce doğru mekânı bulun", true);
+  setNext("Mekânı Seç", true);
 
   const placeButtons = places
     .map(
@@ -705,19 +658,21 @@ function renderMap() {
     <section class="screen map-screen">
       <div class="map-target-bar">
         <small>Read and touch</small>
-        <strong>${target.name}</strong>
+        <strong lang="en">${target.name}</strong>
       </div>
       <div class="school-map" id="schoolMap">
         ${placeButtons}
         <img class="character-pawn" id="characterPawn" src="${character.image}" alt="" />
-        <div class="map-result hidden" id="mapResult">
+      </div>
+      <div class="map-result hidden" id="mapResult">
+        <div class="map-result-copy">
           <h3>Where is ${character.name}?</h3>
           <div class="map-answer hidden" id="mapAnswer">${character.pronoun} is in the ${target.name}.</div>
-          <div class="action-row">
-            <button class="action-button orange" id="showMapAnswer" type="button">Show the full answer</button>
-            <button class="action-button green hidden" id="nextRoundButton" type="button">Next round</button>
-            <button class="action-button light hidden" id="finishLessonButton" type="button">Finish lesson</button>
-          </div>
+        </div>
+        <div class="action-row">
+          <button class="action-button orange" id="showMapAnswer" type="button">Show the full answer</button>
+          <button class="action-button green hidden" id="nextRoundButton" type="button">Next round</button>
+          <button class="action-button light hidden" id="finishLessonButton" type="button">Finish lesson</button>
         </div>
       </div>
     </section>`;
@@ -764,23 +719,18 @@ function handleMapChoice(button) {
   window.setTimeout(() => {
     if (token !== mapAnimationToken || state.screen !== "map") return;
     state.mapArrived = true;
-    currentSpeakText = `Where is ${getCharacter().name}?`;
+    stage.querySelector(".map-screen").classList.add("has-result");
     stage.querySelector("#mapResult").classList.remove("hidden");
-    setTeacherCue("Where is ...? sorusunu farklı bir öğrenciye yöneltin. Önce öğrenci cevaplasın, sonra 'Show the full answer' düğmesine basın.");
   }, 2350);
 }
 
 function revealMapAnswer() {
   if (!state.mapArrived) return;
   state.mapAnswerRevealed = true;
-  const character = getCharacter();
-  const target = getPlace();
-  currentSpeakText = `${character.pronoun} is in the ${target.name}.`;
   stage.querySelector("#mapAnswer").classList.remove("hidden");
   stage.querySelector("#showMapAnswer").classList.add("hidden");
   stage.querySelector("#nextRoundButton").classList.remove("hidden");
   stage.querySelector("#finishLessonButton").classList.remove("hidden");
-  setTeacherCue("Tam cümleyi sınıfla kontrol edin. Yeni turda yeniden karakter seçilir; etkinlik süresiz devam edebilir.");
   setNext("Yeni Tur", false);
 }
 
@@ -795,8 +745,6 @@ function nextMapRound() {
 
 function renderGoodbye() {
   const character = getCharacter(state.selectedCharacterId || "steve");
-  currentSpeakText = "What day is it today? Goodbye, everyone. See you next week.";
-  setTeacherCue("Bir öğrenci gün sorusunu, başka bir öğrenci son Where is ...? sorusunu tam cümleyle yanıtlasın. Vedalaşma toplu olabilir.");
   setNext("Dersi Baştan Başlat", false);
 
   stage.innerHTML = `
@@ -854,7 +802,6 @@ menuOverlay.addEventListener("click", (event) => {
 });
 resetButton.addEventListener("click", resetLesson);
 fullscreenButton.addEventListener("click", toggleFullscreen);
-soundButton.addEventListener("click", () => speak());
 backButton.addEventListener("click", goBack);
 nextButton.addEventListener("click", handleNext);
 
