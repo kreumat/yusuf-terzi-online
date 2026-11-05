@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#123e67" />
+    <title>World Map Adventure · Week 5</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <button class="top-button menu-button" id="menuButton" type="button" aria-label="Menüyü aç">
+        <span aria-hidden="true">☰</span><span>Menü</span>
+      </button>
+
+      <div class="brand" aria-label="World Map Adventure">
+        <span class="brand-compass" aria-hidden="true">✦</span>
+        <span class="brand-text">World Map Adventure</span>
+      </div>
+
+      <div class="lesson-status" id="lessonStatus" aria-live="polite"></div>
+
+      <div class="top-actions">
+        <button class="top-button icon-button" id="backButton" type="button" aria-label="Önceki ekran">←</button>
+        <button class="top-button icon-button" id="nextButton" type="button" aria-label="Sonraki ekran">→</button>
+        <button class="top-button fullscreen-button" id="fullscreenButton" type="button">
+          <span aria-hidden="true">⛶</span><span>Tam ekran</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="app" lang="en" aria-live="polite"></main>
+
+    <aside class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer-panel">
+        <div class="drawer-heading">
+          <div>
+            <span class="eyebrow">WEEK 5 · UNIT 2</span>
+            <h2>Lesson Menu</h2>
+          </div>
+          <button class="close-button" id="closeMenuButton" type="button" aria-label="Menüyü kapat">×</button>
+        </div>
+
+        <nav class="lesson-menu" id="lessonMenu" aria-label="Ders bölümleri"></nav>
+
+        <button class="reset-button" id="resetButton" type="button">Dersi baştan başlat</button>
+      </div>
+      <button class="drawer-backdrop" id="drawerBackdrop" type="button" aria-label="Menüyü kapat"></button>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="assertive"></div>
+
+    <script src="map-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
